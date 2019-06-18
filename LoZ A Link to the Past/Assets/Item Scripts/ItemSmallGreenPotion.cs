@@ -16,7 +16,7 @@ namespace Assets.Item_Scripts
     private void Start()
     {
       m_ItemType = ItemTypeCollectible.SmallGreenPotion;
-      InitItem();
+      GetLinkData();
     }
 
     public override bool ItemEffect(ref int Magica)
@@ -41,6 +41,9 @@ namespace Assets.Item_Scripts
       if (Col.tag == "Link")
       {
         m_link.AddFuel(m_Value);
+        Destroy(this);
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
       }
     }
   }

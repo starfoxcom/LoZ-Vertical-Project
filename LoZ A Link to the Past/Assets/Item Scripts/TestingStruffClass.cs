@@ -17,39 +17,38 @@ namespace Assets.Item_Scripts
     int m_testingStat1 = 1;
     int m_testingStat2 = 1;//
 
-    int[] RubyValueArry = { 1, 5, 20 };
-    SByte SelectedRubyValue = 0;
+    public Link_Data m_link;
+    public ItemBomerang m_Bomerang;
+
+    private void Start()
+    {
+      GameObject Temp = GameObject.FindWithTag("Link");
+      m_link = Temp.GetComponent<Link_Data>();
+      GameObject TempOther = GameObject.FindGameObjectWithTag("Item_Tool");
+      m_Bomerang = TempOther.GetComponent<ItemBomerang>();
+    }
+
 
     private void Update()
     {
-      if (Input.GetKey(KeyCode.A))
+      if (Input.GetButtonDown("Button_A"))
       {
-        ItemHeart itemHeart = new ItemHeart();
-        Debug.Log("Heat count before " + m_testingStat1);
-        itemHeart.ItemEffect(ref m_testingStat1);
+        m_Bomerang.ItemAcction(new Vector2(-1, 0), m_link.transform.position);
+
       }
-      else if (Input.GetKey(KeyCode.B))
+      else if (Input.GetKey(KeyCode.A))
       {
-        ItemSmallGreenPotion smallGreenPotion = new ItemSmallGreenPotion();
-        Debug.Log("Magica count before " + m_testingStat2);
-        smallGreenPotion.ItemEffect(ref m_testingStat2);
-      }
-      else if (Input.GetKey(KeyCode.C))
-      {
-        ItemRuby RubyTest = new ItemRuby();
-        Debug.Log("Ruby Count before " + m_testingStat2);
-        RubyTest.setValue(RubyValueArry[SelectedRubyValue]);
-        RubyTest.ItemEffect(ref m_testingStat2);
-        Debug.Log("Ruby Count after " + m_testingStat2);
+
       }
       else if (Input.GetKey(KeyCode.D))
       {
-        SelectedRubyValue++;
-        if(SelectedRubyValue > 2)
-        {
-          SelectedRubyValue = 0;
-        }
+
       }
+      else if (Input.GetKey(KeyCode.S))
+      {
+
+      }
+
 
     }
 

@@ -12,7 +12,7 @@ namespace Assets.Item_Scripts
     private void Start()
     {
       m_ItemType = ItemTypeCollectible.MasterKey;
-      InitItem();
+      GetLinkData();
     }
 
     public override int GetValue()
@@ -31,6 +31,9 @@ namespace Assets.Item_Scripts
       if (Col.tag == "Link")
       {
         m_link.AddMasterKey(1);
+        Destroy(this);
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
       }
 
     }

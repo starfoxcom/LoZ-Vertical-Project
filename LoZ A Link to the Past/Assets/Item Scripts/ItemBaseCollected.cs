@@ -11,9 +11,9 @@ public enum ItemTypeCollectible
   MasterKey
 }
 
-
 public abstract class ItemBaseCollectible<T> : MonoBehaviour
 {
+  
   public ItemTypeCollectible m_ItemType { get; set; }
   // Use this for initialization
   // this a reference to a link 
@@ -28,8 +28,11 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
 
     m_ItemType = ItemTypeCollectible.Unknown;
   }
-
-  public void InitItem()
+  /// <summary>
+  /// USE THIS FUNCTION ON EVERY ITEM 
+  /// OR SPEND HOURS DOING IT MANUALY 
+  /// </summary>
+  public void GetLinkData()
   { 
     GameObject Temp = GameObject.FindWithTag("Link");
     m_link = Temp.GetComponent<Link_Data>();

@@ -42,6 +42,10 @@ namespace Assets.Item_Scripts
       if(Col.tag == "Link")
       {
         m_link.AddHealth(m_Value);
+        Destroy(this);
+        // make the sprite 
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
       }
     }
   }

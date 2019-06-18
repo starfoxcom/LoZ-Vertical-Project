@@ -36,7 +36,7 @@ namespace Assets.Item_Scripts
       m_Limit = 999;
       // this is to identify the ruby class 
       m_ItemType = ItemTypeCollectible.Rubys;
-      InitItem();
+      GetLinkData();
     }
     /// <summary>
     /// use to set the value of the ruby's denoted by there color 
@@ -75,6 +75,9 @@ namespace Assets.Item_Scripts
       if(Col.tag == "Link")
       {
         m_link.AddRupiah(m_Value);
+        Destroy(this);
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
       }
     }
   }
