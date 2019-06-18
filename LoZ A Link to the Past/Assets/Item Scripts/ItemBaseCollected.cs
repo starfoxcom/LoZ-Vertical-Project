@@ -22,7 +22,7 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
     m_ItemType = ItemTypeCollectible.Unknown;
   }
 
-  ItemTypeCollectible GetItemType()
+  public ItemTypeCollectible GetItemType()
   {
     return m_ItemType;
   }
@@ -30,4 +30,5 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
   public abstract int GetValue();
   //! this method will increase (or possible decrease) some stat
   public abstract bool ItemEffect(ref T Stat);
+
 }
