@@ -8,10 +8,24 @@ using UnityEngine;
 public class Link_Controller : MonoBehaviour
 {
 
+
+
   /************************************************************************/
   /* Public                                                               */
   /************************************************************************/
-  
+  public void
+  GetBoomerang()
+  {
+    GameObject boom = Instantiate(m_boomerang_prefab, gameObject.transform.position, Quaternion.identity) as GameObject;
+    m_boomerang_cntr = boom.GetComponent<Boomerang_Controller>();
+
+    m_boomerang_cntr.SetLink(gameObject);
+
+    return;
+  }
+
+  public GameObject m_boomerang_prefab;
+
   /************************************************************************/
   /* Private                                                              */
   /************************************************************************/
@@ -27,11 +41,11 @@ public class Link_Controller : MonoBehaviour
     // FSM
 
     m_fsm = new FSM();
-    
-    m_fsm.AddState(new Link_Dead());
-    m_fsm.AddState(new Link_Pull());
-    m_fsm.AddState(new Link_Push());
-    m_fsm.AddState(new Link_Idle());
+
+    m_fsm.AddState(new Link_Dead(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Pull(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Push(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Idle(gameObject, m_fsm));
 
     m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
@@ -43,6 +57,14 @@ public class Link_Controller : MonoBehaviour
   Update()
   {
       
+    if(Input.GetButtonDown("Button_A"))
+    {
+      if(m_data.m_has_boomerang)
+      {
+        m_boomerang_cntr.Throw();
+      }
+    }
+
   }
 
   private void 
@@ -93,4 +115,6 @@ public class Link_Controller : MonoBehaviour
   private Link_Data m_data;
 
   private Link_Movement m_movement_controller;
+
+  private Boomerang_Controller m_boomerang_cntr;
 }

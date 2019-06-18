@@ -1,27 +1,28 @@
-﻿public class Link_Dead
+﻿using UnityEngine;
+
+public class Link_Dead
   : State
 {
 
-  public Link_Dead()
+  public Link_Dead(GameObject _gm, FSM _fsm)
   {
     m_id = LINK_GLOBALS.DEAD_STATE_ID;
+
+    m_gameObject  = _gm;
+    m_fsm         = _fsm;
+
+    return;
   }
 
   public override void 
   OnExit()
-  {
-    throw new System.NotImplementedException();
-  }
+  {}
 
   public override void 
   OnPrepare()
-  {
-    throw new System.NotImplementedException();
-  }
+  { }
 
   public override void 
   Update()
-  {
-    throw new System.NotImplementedException();
-  }
+  { }
 }
