@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Link_Movement : MonoBehaviour
 {
+    /************************************************************************/
+    /* PUBLIC                                                               */
+    /************************************************************************/   
+
     // Start is called before the first frame update
     void Start()
     {

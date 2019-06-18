@@ -122,6 +122,28 @@ public class Link_Data : MonoBehaviour
   }
 
   /*
+   * Número de flehcas de link
+   * */
+  public int ARROWS
+  {
+    get
+    {
+      return m_num_arrow;
+    }
+    set
+    {
+      m_num_arrow += value;
+      
+      if(m_num_arrow < 0)
+      {
+        m_num_arrow = 0;
+      }
+
+      return;
+    }
+  }
+
+  /*
    * Número máximo de unidades de corazón que link puede tener
    * */
   static int MAX_HEALTH = 6;
@@ -163,6 +185,11 @@ public class Link_Data : MonoBehaviour
    * Porcentaje de gas para lampara.
    * */
   private int m_fuel_percent;
+
+  /*
+   * Número de flehcas.
+   * */
+  private int m_num_arrow;
     
   /*
    * Inicialización del personaje
@@ -174,6 +201,7 @@ public class Link_Data : MonoBehaviour
     m_num_master_keys   = 0;
     m_fuel_percent      = 0;
     m_num_rupiahs       = 0;
+    m_num_arrow         = 0;
 
     return;
   }
