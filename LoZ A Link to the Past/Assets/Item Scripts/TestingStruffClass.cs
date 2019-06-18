@@ -15,7 +15,7 @@ namespace Assets.Item_Scripts
   {
 
     int m_testingStat1 = 1;
-    int m_testingStat2 = 1;
+    int m_testingStat2 = 1;//
 
     private void Update()
     {
