@@ -10,137 +10,63 @@ public class Link_Data : MonoBehaviour
   /* Public                                                               */
   /************************************************************************/
 
-  /*
-   * Vida actual de link. Ejemplo:
-   * 1 -> corazón y medio
-   * 2 -> corazón
-   * 3 -> corazón + corazón y medio
-   * 4 -> corazón + corazón   * 
-   */
-  public int HEALTH
+  public void 
+  AddHealth(int _health)
   {
-    get
+
+    m_health += _health;
+
+    if (m_health > MAX_HEALTH)
     {
-      return m_health;
+      m_health = MAX_HEALTH;
     }
-
-    set
+    else if (m_health < 0)
     {
-      // añadir vida.
-
-      m_health += value;
-
-      // Restriginr los valores de la vida.
-
-      if(m_health > MAX_HEALTH)
-      {
-        m_health = MAX_HEALTH;
-      }
-      else if(m_health < 0)
-      {
-        m_health = 0;
-      }
-
-      return;
+      m_health = 0;
     }
+    return;
   }
 
-  /*
-   * Número de llaves normales que posee link.
-   * */
-  public int NORMAL_KEYS
+  public void 
+  AddRupiah(int _rupiah)
   {
-    get
+    m_num_rupiahs += _rupiah;
+    if (m_num_rupiahs > 0)
     {
-      return m_num_keys;
+      m_num_rupiahs = 0;
     }
-    set
-    {
-      m_num_keys += value;
-    }
+    return;
   }
 
-  /*
- * Número de llaves maestras que posee link
- * */
-  public int MASTER_KEYS
+  public void 
+  AddKey(int _key)
   {
-    get
-    {
-      return m_num_master_keys;
-    }
-    set
-    {
-      m_num_master_keys += value;
-    }
+    m_num_keys += _key;
+    return;
   }
 
-  /*
-   * Número de rupias que tiene link
-   * */
-  public int RUPIAHS
+  public void 
+  AddMasterKey(int _master_key)
   {
-    get
-    {
-      return m_num_rupiahs;
-    }
-    set
-    {
-      m_num_rupiahs += value;
-      if(m_num_rupiahs > 0)
-      {
-        m_num_rupiahs = 0;
-      }
-    }
+    m_num_master_keys += _master_key;
+    return;
   }
 
-  public int FUEL_PERCENT
+  public void
+  AddFuel(int _fuel_percent)
   {
-    get
+    m_fuel_percent += m_fuel_percent;
+
+    if (m_fuel_percent > MAX_FUEL_PERCENT)
     {
-      return m_fuel_percent;
+      m_fuel_percent = MAX_FUEL_PERCENT;
     }
-    set
+    else if (m_fuel_percent < 0)
     {
-      // añaidr gas.
-
-      m_fuel_percent += value;
-      
-      // limitar gas.
-
-      if(m_fuel_percent > MAX_FUEL_PERCENT)
-      {
-        m_fuel_percent = MAX_FUEL_PERCENT;
-      }
-      else if(m_fuel_percent < 0)
-      {
-        m_fuel_percent = 0;
-      }
-
-      return;
+      m_fuel_percent = 0;
     }
-  }
 
-  /*
-   * Número de flehcas de link
-   * */
-  public int ARROWS
-  {
-    get
-    {
-      return m_num_arrow;
-    }
-    set
-    {
-      m_num_arrow += value;
-      
-      if(m_num_arrow < 0)
-      {
-        m_num_arrow = 0;
-      }
-
-      return;
-    }
+    return;
   }
 
   /*
