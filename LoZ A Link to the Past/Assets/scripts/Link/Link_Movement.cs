@@ -57,7 +57,7 @@ public class Link_Movement : MonoBehaviour
     float v_value = Input.GetAxis("Vertical");
 
     m_link_rigidbody.velocity = new Vector2( h_value , v_value) * LINK_N_SPEED;
-
+    
   }
 
   // velocidad en el movimiento de los 4 ejes.
@@ -69,7 +69,7 @@ public class Link_Movement : MonoBehaviour
   /*
    * Velocidad normal de link.
    * */
-  static float LINK_N_SPEED = 10.0f;
+  static float LINK_N_SPEED = 5.0f;
 
   /*
    * Velocidad lenta de link.

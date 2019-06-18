@@ -1,25 +1,25 @@
-﻿public class Link_Dead
+﻿public class Link_Idle
   : State
 {
 
-  public Link_Dead()
+  public Link_Idle()
   {
-    m_id = LINK_GLOBALS.DEAD_STATE_ID;
+    m_id = LINK_GLOBALS.IDLE_STATE_ID;
   }
 
-  public override void 
+  public override void
   OnExit()
   {
     throw new System.NotImplementedException();
   }
 
-  public override void 
+  public override void
   OnPrepare()
   {
     throw new System.NotImplementedException();
   }
 
-  public override void 
+  public override void
   Update()
   {
     throw new System.NotImplementedException();

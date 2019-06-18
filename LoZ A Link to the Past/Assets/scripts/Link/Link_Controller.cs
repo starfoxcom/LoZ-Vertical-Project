@@ -27,8 +27,13 @@ public class Link_Controller : MonoBehaviour
     // FSM
 
     m_fsm = new FSM();
+    
+    m_fsm.AddState(new Link_Dead());
+    m_fsm.AddState(new Link_Pull());
+    m_fsm.AddState(new Link_Push());
+    m_fsm.AddState(new Link_Idle());
 
-    // States
+    m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
     return;
   }
