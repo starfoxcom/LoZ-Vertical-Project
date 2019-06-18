@@ -24,6 +24,12 @@ public class Link_Controller : MonoBehaviour
     m_data = gameObject.GetComponent<Link_Data>();
     m_movement_controller = gameObject.GetComponent<Link_Movement>();
 
+    // FSM
+
+    m_fsm = new FSM();
+
+    // States
+
     return;
   }
 
@@ -33,6 +39,8 @@ public class Link_Controller : MonoBehaviour
   {
       
   }
+
+  private FSM m_fsm;
 
   private Link_Data m_data;
 
