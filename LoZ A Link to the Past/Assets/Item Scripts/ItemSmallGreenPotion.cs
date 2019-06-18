@@ -11,6 +11,10 @@ namespace Assets.Item_Scripts
   {
     //TODO: find out the actual limit later 
     int m_MagicaLimit = 10;
+    private void Start()
+    {
+      m_ItemType = ItemTypeCollectible.SmallGreenPotion;
+    }
 
     public override bool ItemEffect(ref int Magica)
     {
@@ -24,5 +28,9 @@ namespace Assets.Item_Scripts
       return false;
     }// end function 
 
+    public override int GetValue()
+    {
+      return 1;
+    }
   }
 }

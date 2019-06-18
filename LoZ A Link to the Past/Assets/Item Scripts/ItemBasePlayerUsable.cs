@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 //! used to know which type of item the player is using 
-public enum ItemType
-{
-  Unknown,//<! means we forgot to assign the appropriate value. 
-  Collection,//<! means the item takes affect when collected example : hearts 
-  PlayerUse,//<! means the player can chose when to use the item.
-}
+
+
+  public enum ItemTypePlayerUse
+  {
+    Unknown,//<! means we forgot to assign the appropriate value. 
+    Boomerang,//<! means the item takes affect when collected example : hearts 
+    Lamp,
+  }
+
+
 /// <summary>
 /// This is a base class for all items the player can use 
 /// </summary>
@@ -16,17 +20,19 @@ public abstract class ItemBasePlayerUsable : MonoBehaviour
   //! this is just for debugging
   public string m_ItemName { get; set; }
   //! this is used to know the type of the item 
-  public ItemType m_ItemType { get; set; }
+  public ItemTypePlayerUse m_ItemType { get; set; }
 
   // Start is called before the first frame update
   void Start()
   {
     m_ItemName = "Base Item class";
 
+    m_ItemType = ItemTypePlayerUse.Unknown;
+
     Debug.Log(m_ItemName);
   }
 
-  ItemType GetItemType()
+  ItemTypePlayerUse GetItemType()
   {
     return m_ItemType;
   }

@@ -14,6 +14,10 @@ namespace Assets.Item_Scripts
   {
     //TODO: find out the actual limit later 
     int m_Limit = 10;
+    private void Start()
+    {
+      m_ItemType = ItemTypeCollectible.Heart;
+    }
 
     public override bool ItemEffect(ref int HitPoints)
     {
@@ -24,6 +28,11 @@ namespace Assets.Item_Scripts
         return true;
       }
       return false;
+    }
+
+    public override int GetValue()
+    {
+      return 1;
     }
   }
 }
