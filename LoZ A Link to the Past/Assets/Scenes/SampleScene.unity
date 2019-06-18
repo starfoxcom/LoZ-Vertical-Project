@@ -935,6 +935,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Link_Stats: {fileID: 1876968951}
+  m_Key: {fileID: 1326914292}
+  bHideKey: 1
   m_ShowRupees: {fileID: 699486340}
   m_ShowBombs: {fileID: 46836019}
   m_ShowArrows: {fileID: 271953477}

@@ -11,9 +11,11 @@ public class UI_Behaviour : MonoBehaviour
 
     //DONE
     ////Link Stats (this stats will be passed by reference later on the project---------------------
-  
 
 
+    public Text m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
+    public bool bHideKey; //placeholder bool to test hide and show keys function
+    
     //Hud Text where it shows the stats passed by link--------------------------------------------
     public Text m_ShowRupees;
     public Text m_ShowBombs;
@@ -29,6 +31,7 @@ public class UI_Behaviour : MonoBehaviour
         RefreshStats();
         m_ShowBombs.text = "00";
         m_ShowArrows.text = "00";
+        HideKeys();
     }
 
     // Update is called once per frame
@@ -53,6 +56,26 @@ public class UI_Behaviour : MonoBehaviour
         m_ShowKeys.text = m_Link_Stats.NORMAL_KEYS.ToString();
         m_ShowwHearts.text = m_Link_Stats.HEALTH.ToString();
 
+    }
+
+    //function that disables keys hud, only use when link is not in a dungeon
+    void HideKeys()
+    {
+        if(bHideKey)
+        {
+            m_Key.gameObject.SetActive(false);
+            m_ShowKeys.gameObject.SetActive(false);
+        }
+    }
+
+    //function that enables key hud, only use it when link is in a dungeon
+    void ShowKeys()
+    {
+        if(!bHideKey)
+        {
+            m_Key.gameObject.SetActive(true);
+            m_ShowKeys.gameObject.SetActive(true);
+        }
     }
 
 }
