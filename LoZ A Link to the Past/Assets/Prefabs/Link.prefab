@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6771614637876415578}
   - component: {fileID: 6771614637876415579}
   - component: {fileID: 1076784816}
+  - component: {fileID: 6478900796648998369}
   m_Layer: 0
   m_Name: Link
   m_TagString: Link
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5436253443287384aac6a3051ed47f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_has_boomerang: 0
 --- !u!114 &6771614637876415579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_active_displacement: 1
+  m_direction: {x: 0, y: 0}
 --- !u!70 &1076784816
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +148,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.16, y: 0.16}
   m_Direction: 0
+--- !u!114 &6478900796648998369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771614637876415574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a708fc7727ec7848a54a589f343ae72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_boomerang_prefab: {fileID: 7536394120820288966, guid: 79755b3d7201b8a4f9bf909677b68207,
+    type: 3}

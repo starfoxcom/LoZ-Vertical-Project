@@ -4,28 +4,50 @@ using UnityEngine;
 
 public class Boomerang_Controller : MonoBehaviour
 {
-
   //////////////////////////////////////////////////////////////////////////
   // Public Methods                                                       //
   //////////////////////////////////////////////////////////////////////////
+  
+  public void
+  Throw()
+  {
+    Link_Data linkData = m_link.GetComponent<Link_Data>();
+    linkData.m_has_boomerang = false;
 
-  /*
-   * Estados del boomerang
-   * 
-   * 0 = idle
-   * 1 = forward
-   * 2 = attack
-   */
-  int m_state;
+    m_fsm.SetState(FORWARD_STATE);
+    return;
+  }
+
+  public void
+  Catch()
+  {
+    Link_Data linkData = m_link.GetComponent<Link_Data>();
+    linkData.m_has_boomerang = true;
+
+    m_fsm.SetState(IDLE_STATE);
+    return;
+  }
+
+  public GameObject
+  getLink()
+  {
+    return m_link;
+  }
+
+  public float
+  getRadius()
+  {
+    return m_radius;
+  }
 
   //////////////////////////////////////////////////////////////////////////
   // Public Properties                                                    //
   //////////////////////////////////////////////////////////////////////////
 
-  void 
-  SetLink(Transform _transform)
+  public void 
+  SetLink(GameObject _link)
   {
-    m_link = _transform;
+    m_link = _link;
     return;
   }
 
@@ -36,7 +58,23 @@ public class Boomerang_Controller : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    m_state = 0;
+
+    m_fsm = new FSM();
+
+    Boom_BackState backState = new Boom_BackState();
+    backState.Init(gameObject, m_fsm);
+
+    Boom_ForwardState forwardState = new Boom_ForwardState();
+    forwardState.Init(gameObject, m_fsm);
+
+    Boom_IdleState idleState = new Boom_IdleState();
+    idleState.Init(gameObject, m_fsm);
+
+    m_fsm.AddState(backState);
+    m_fsm.AddState(forwardState);
+    m_fsm.AddState(idleState);
+
+    m_fsm.SetState(IDLE_STATE);   
 
     return;
   }
@@ -44,14 +82,42 @@ public class Boomerang_Controller : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    m_fsm.Update();
+    return;
+  }
 
+  private void 
+  OnTriggerEnter2D(Collider2D _collision)
+  {
+    if (_collision.gameObject.tag == "Link")
+    {
+      if(m_fsm != null)
+      {
+        if (m_fsm.getActiveStateID() == BACK_STATE)
+        {
+          Catch();
+        }
+      }      
+    }
+
+    return;
   }
 
   //////////////////////////////////////////////////////////////////////////
   // Private Properties                                                   //
   //////////////////////////////////////////////////////////////////////////      
 
-  Transform m_link = null;
+  GameObject m_link = null;
 
   Rigidbody2D m_rb = null;
+  
+  FSM m_fsm = null;
+
+  float m_radius = 5.0f;
+
+  public static int IDLE_STATE = 0;
+
+  public static int FORWARD_STATE = 1;
+
+  public static int BACK_STATE = 2;
 }
