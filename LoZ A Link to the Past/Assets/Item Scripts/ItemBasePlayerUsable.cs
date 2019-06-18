@@ -8,7 +8,7 @@ using UnityEngine;
   {
     Unknown,//<! means we forgot to assign the appropriate value. 
     Boomerang,//<! means the item takes affect when collected example : hearts 
-    Lamp,
+    Lamp,//<! represents the lamp item 
   }
 
 
