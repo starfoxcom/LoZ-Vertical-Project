@@ -17,7 +17,7 @@ public class TempPlayer : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update()
+  void Update()// made commit before merge
   {
 
   }
