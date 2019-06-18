@@ -11,9 +11,12 @@ namespace Assets.Item_Scripts
   {
     //TODO: find out the actual limit later 
     int m_MagicaLimit = 10;
+    int m_Value = 1;
+
     private void Start()
     {
       m_ItemType = ItemTypeCollectible.SmallGreenPotion;
+      InitItem();
     }
 
     public override bool ItemEffect(ref int Magica)
@@ -21,7 +24,7 @@ namespace Assets.Item_Scripts
 
       if (Magica < m_MagicaLimit)
       {
-        Magica += 1;
+        Magica += m_Value;
         Debug.Log("Here is the magica now " + Magica.ToString());
         return true;
       }
@@ -30,7 +33,15 @@ namespace Assets.Item_Scripts
 
     public override int GetValue()
     {
-      return 1;
+      return m_Value;
+    }
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if (Col.tag == "Link")
+      {
+        m_link.AddFuel(m_Value);
+      }
     }
   }
 }

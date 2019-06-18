@@ -7,12 +7,11 @@ using UnityEngine;
 
 namespace Assets.Item_Scripts
 {
-  class ItemKey : ItemBaseCollectible<int>
+  class ItemMasterKey : ItemBaseCollectible<int>
   {
-
     private void Start()
     {
-      m_ItemType = ItemTypeCollectible.Key;
+      m_ItemType = ItemTypeCollectible.MasterKey;
       InitItem();
     }
 
@@ -29,13 +28,13 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if(Col.tag == "Link")
+      if (Col.tag == "Link")
       {
-        m_link.AddKey(1);
+        m_link.AddMasterKey(1);
       }
 
     }
 
   }
-
 }
+

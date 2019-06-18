@@ -36,6 +36,7 @@ namespace Assets.Item_Scripts
       m_Limit = 999;
       // this is to identify the ruby class 
       m_ItemType = ItemTypeCollectible.Rubys;
+      InitItem();
     }
     /// <summary>
     /// use to set the value of the ruby's denoted by there color 
@@ -67,6 +68,14 @@ namespace Assets.Item_Scripts
         RubyCount += m_Value;
       }
       return true;
+    }// end function 
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if(Col.tag == "Link")
+      {
+        m_link.AddRupiah(m_Value);
+      }
     }
   }
 }
