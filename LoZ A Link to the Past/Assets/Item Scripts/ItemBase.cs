@@ -4,7 +4,7 @@ using UnityEngine;
 //! used to know which type of item the player is using 
 public enum ItemType
 {
-  Unknown,
+  Unknown,//<! means we forgot to assign the appropriate value. 
   Collection,//<! means the item takes affect when collected example : hearts 
   PlayerUse,//<! means the player can chose when to use the item.
 }
@@ -20,8 +20,20 @@ public abstract class ItemBase : MonoBehaviour
   void Start()
   {
     m_ItemName = "Base Item class";
+
     Debug.Log(m_ItemName);
   }
+
+  ItemType GetItemType()
+  {
+    return m_ItemType;
+  }
+
+  string GetItemName()
+  {
+    return m_ItemName;
+  }
+
   //! depending on the item this can represent direction OR position
-  public abstract void ItemAcction(Vector2 vector);
+  public abstract Vector2 ItemAcction(Vector2 direction, Vector2 Position);
 }

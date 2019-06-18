@@ -12,49 +12,83 @@ namespace Assets.Item_Scripts
   /// </summary>
   public class ItemLamp : ItemBase
   {
+    //*********************Variables ***********//
     // use this to render the fire from the lamp 
     SpriteRenderer spriteRenderer;
 
-    public Sprite FireSprite;
+    public Sprite m_FireSprite;
+    //! to know how munch time the fire sprite will remain on screen 
     public float m_fireTime;
+    //! this is to reset m_fireTime;
+    public float m_fireTimeAmount;
+    //! to know if a sprite is on screen
+    bool isOnScreen;
+    //! to know if it hit something or not 
+    public Collider2D m_collider;
 
+
+    //*********************Functions***********//
     private void Start()
     {
-      spriteRenderer = gameObject.AddComponent< SpriteRenderer >() as SpriteRenderer;
+      isOnScreen = false;
+
+      m_collider = GetComponent<Collider2D>();
+
+      spriteRenderer = gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
+
       m_ItemName = "Lamp";
       m_ItemType = ItemType.PlayerUse;
       // this is temporay REMOVE WHEN DONE  
-      UnityEngine.Vector2 Dir = new Vector2(-1, 0);
+      UnityEngine.Vector2 Dir = new Vector2(-10, 0);
+
       m_fireTime = 0.05f;
+      m_fireTimeAmount = m_fireTime;
 
-      ItemAcction(Dir);
-
-      Debug.Log("Item Lamp");
-    }
-
-    public override void ItemAcction(Vector2 Direction)
+      Debug.Log("Item" + m_ItemName);
+    }// end function
+    /// <summary>
+    /// make the sprite of the fire disappear after it invoked.
+    /// </summary>
+    private void Update()
     {
-      Vector3 Temp = new Vector3();
-      Temp = spriteRenderer.transform.position;
-      Temp.x += Direction.x;
-      Temp.y += Direction.y;
-
-      Task Stun = Task.Factory.StartNew(() =>
+     
+      if (isOnScreen)
       {
-        while (m_HitStunTime > 0.0f)
+        m_fireTime -= Time.deltaTime;
+        if(m_fireTime < 0.01)
         {
-          m_HitStunTime -= Time.deltaTime;
-          Debug.Log("You are Stunned");
+          spriteRenderer.sprite = null;
+          isOnScreen = false;
+          // reset the time 
+          m_fireTime = m_fireTimeAmount;
         }
-        m_HitStunTime = m_HisStunAmount;
-      });
 
+      }
 
-      spriteRenderer.transform.position = Temp;
-    
-      spriteRenderer.sprite = FireSprite;
+    }// end function 
 
-      Debug.Log("Do something");
-    }
+    /// <summary>
+    /// this function will make the fire sprite appear
+    /// </summary>
+    /// <param name="Direction"></param>
+    /// <param name="PlayerPosition"></param>
+    /// <returns></returns>
+    public override Vector2 ItemAcction(Vector2 Direction, Vector2 PlayerPosition)
+    {
+      Vector3 Result = new Vector3();
+      // get the spites current possession 
+      Result = PlayerPosition;
+
+      Result.x += Direction.x;
+      Result.y += Direction.y;
+
+      spriteRenderer.transform.position = Result;
+
+      spriteRenderer.sprite = m_FireSprite;
+
+      isOnScreen = true;
+      return Result;
+    }// end function 
+
   }
 }
