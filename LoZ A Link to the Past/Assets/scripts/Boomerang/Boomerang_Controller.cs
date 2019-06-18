@@ -1,0 +1,57 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Boomerang_Controller : MonoBehaviour
+{
+
+  //////////////////////////////////////////////////////////////////////////
+  // Public Methods                                                       //
+  //////////////////////////////////////////////////////////////////////////
+
+  /*
+   * Estados del boomerang
+   * 
+   * 0 = idle
+   * 1 = forward
+   * 2 = attack
+   */
+  int m_state;
+
+  //////////////////////////////////////////////////////////////////////////
+  // Public Properties                                                    //
+  //////////////////////////////////////////////////////////////////////////
+
+  void 
+  SetLink(Transform _transform)
+  {
+    m_link = _transform;
+    return;
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Private Methods                                                      //
+  //////////////////////////////////////////////////////////////////////////
+  
+  // Start is called before the first frame update
+  void Start()
+  {
+    m_state = 0;
+
+    return;
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // Private Properties                                                   //
+  //////////////////////////////////////////////////////////////////////////      
+
+  Transform m_link = null;
+
+  Rigidbody2D m_rb = null;
+}
