@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// this class represent a ruby item in the game world.
+/// </summary>
 namespace Assets.Item_Scripts
 {
   class ItemRuby : ItemBaseCollectible<int>
@@ -25,7 +28,7 @@ namespace Assets.Item_Scripts
 
     private void Start()
     {
-      if(m_rubyColor != RubyColor.Blue || m_rubyColor != RubyColor.Red)
+      if (m_rubyColor != RubyColor.Blue || m_rubyColor != RubyColor.Red)
       {
         m_rubyColor = RubyColor.Green;
         m_Value = 1;
@@ -38,7 +41,7 @@ namespace Assets.Item_Scripts
     /// use to set the value of the ruby's denoted by there color 
     /// </summary>
     /// <param name="val"></param>
-    void setValue(int val)
+    public void setValue(int val)
     {
       if (val == 5)
       {

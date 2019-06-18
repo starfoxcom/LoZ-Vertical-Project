@@ -37,7 +37,7 @@ namespace Assets.Item_Scripts
       spriteRenderer = gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
 
       m_ItemName = "Lamp";
-      m_ItemType = ItemType.PlayerUse;
+      m_ItemType = ItemTypePlayerUse.Lamp;
       // this is temporay REMOVE WHEN DONE  
       UnityEngine.Vector2 Dir = new Vector2(-10, 0);
 
