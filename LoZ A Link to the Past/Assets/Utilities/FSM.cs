@@ -7,6 +7,11 @@ public class FSM
   // Public Methods                                                       //
   //////////////////////////////////////////////////////////////////////////
 
+  public FSM()
+  {
+    Init();
+  }
+
   public void
   Init()
   {
