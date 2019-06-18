@@ -27,6 +27,11 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
     return m_ItemType;
   }
 
+  private void OnTriggerEnter2D(Collider2D Col)
+  {
+    
+  }
+
   public abstract int GetValue();
   //! this method will increase (or possible decrease) some stat
   public abstract bool ItemEffect(ref T Stat);

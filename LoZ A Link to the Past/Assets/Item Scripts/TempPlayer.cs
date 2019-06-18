@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TempPlayer : MonoBehaviour
 {
-
   public int RubyStat = 1;
   public int HeartStat = 1;
   public int MagicaStat = 1;
