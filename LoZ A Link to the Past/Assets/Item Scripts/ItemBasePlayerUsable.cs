@@ -8,8 +8,10 @@ public enum ItemType
   Collection,//<! means the item takes affect when collected example : hearts 
   PlayerUse,//<! means the player can chose when to use the item.
 }
-
-public abstract class ItemBase : MonoBehaviour
+/// <summary>
+/// This is a base class for all items the player can use 
+/// </summary>
+public abstract class ItemBasePlayerUsable : MonoBehaviour
 {
   //! this is just for debugging
   public string m_ItemName { get; set; }

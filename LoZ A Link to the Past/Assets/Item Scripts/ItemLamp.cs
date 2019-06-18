@@ -10,7 +10,7 @@ namespace Assets.Item_Scripts
   /// <summary>
   /// all this does is spawn a sprite and collision box in the direction thats front
   /// </summary>
-  public class ItemLamp : ItemBase
+  public class ItemLamp : ItemBasePlayerUsable
   {
     //*********************Variables ***********//
     // use this to render the fire from the lamp 
