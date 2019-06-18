@@ -68,6 +68,5 @@ namespace Assets.Item_Scripts
       }
       return true;
     }
-
   }
 }

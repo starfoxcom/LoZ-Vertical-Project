@@ -2,6 +2,11 @@
   : State
 {
 
+  public Link_Pull()
+  {
+    m_id = LINK_GLOBALS.PULL_STATE_ID;
+  }
+
   public override void
   OnExit()
   {

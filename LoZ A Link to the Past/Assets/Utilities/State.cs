@@ -20,6 +20,6 @@
   // Private Properties                                                   //
   //////////////////////////////////////////////////////////////////////////  
 
-  private int m_id;
+  protected int m_id;
 
 }
