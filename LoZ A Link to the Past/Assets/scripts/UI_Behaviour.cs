@@ -3,63 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//DONE
-//This script needs to be implemented with the "Link Data" Player Class to be completed 
+
+//Class that changes the text of every consumable of link when 
 public class UI_Behaviour : MonoBehaviour
 {
-    public Link_Data m_Link_Stats;
-
-    //DONE
-    ////Link Stats (this stats will be passed by reference later on the project---------------------
-
-
-    public Text m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
-    public bool bHideKey; //placeholder bool to test hide and show keys function
     
-    //Hud Text where it shows the stats passed by link--------------------------------------------
+    public Text m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
+    bool bHideKey; //placeholder bool to test hide and show keys function
+    
+    //Hud Text where it shows the stats passed by link Data--------------------------------------------
     public Text m_ShowRupees;
     public Text m_ShowBombs;
     public Text m_ShowArrows;
     public Text m_ShowKeys;
     public Text m_ShowwHearts;
+    public Text m_showMagic;
     //--------------------------------------------------------------------------------------------
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        RefreshStats();
-        m_ShowBombs.text = "00";
-        m_ShowArrows.text = "00";
-        HideKeys();
-    }
-
-    // Update is called once per frame
-
-    //function that gets the stats of link and write it on the hud every frame, bombs and arrows dont apply with our scope
-
-    //this function will be called by link gameobject to change hud
-    //TODO: Keys hud hides when not in a dungeon
-    void RefreshStats()
-    {
-        //if that concatenates zeros to show three zeros always on hud when rupees is minor that 100 and double zero if minor that 10
-        if(m_Link_Stats.RUPIAHS < 100)
-        {
-            m_ShowRupees.text = "0";
-            if (m_Link_Stats.RUPIAHS < 10)
-            {
-                m_ShowRupees.text += "0";
-            }
-        }
-
-        m_ShowRupees.text += m_Link_Stats.RUPIAHS.ToString();
-        m_ShowKeys.text = m_Link_Stats.NORMAL_KEYS.ToString();
-        m_ShowwHearts.text = m_Link_Stats.HEALTH.ToString();
-
-    }
-
     //function that disables keys hud, only use when link is not in a dungeon
-    void HideKeys()
+    public void HideKeys()
     {
         if(bHideKey)
         {
@@ -69,7 +32,7 @@ public class UI_Behaviour : MonoBehaviour
     }
 
     //function that enables key hud, only use it when link is in a dungeon
-    void ShowKeys()
+    public void ShowKeys()
     {
         if(!bHideKey)
         {
@@ -78,4 +41,34 @@ public class UI_Behaviour : MonoBehaviour
         }
     }
 
+
+    //change rupees on HUD, ref int passed by Link Data
+    public void ChangeRupees(ref int _rupees)
+    {
+        if (_rupees < 100)
+        {
+            m_ShowRupees.text = "0";
+            if (_rupees < 10)
+            {
+                m_ShowRupees.text += "0";
+            }
+        }
+        m_ShowRupees.text = _rupees.ToString();
+    } 
+
+    //change keys on HUD, ref int passed by Link Data
+    public void ChangeKeys(ref int _keys)
+    {
+        m_ShowKeys.text = _keys.ToString();
+    }
+
+    public void ChangeHealth(ref int _health)
+    {
+        m_ShowwHearts.text = _health.ToString();
+    }
+
+    public void ChangeFuel(ref int _fuel)
+    {
+        m_showMagic.text = _fuel.ToString();
+    }
 }
