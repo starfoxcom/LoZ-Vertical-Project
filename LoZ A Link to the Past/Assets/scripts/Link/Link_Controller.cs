@@ -21,6 +21,8 @@ public class Link_Controller : MonoBehaviour
 
     m_boomerang_cntr.SetLink(gameObject);
 
+    m_data.m_has_boomerang = true;
+
     return;
   }
 
@@ -49,6 +51,8 @@ public class Link_Controller : MonoBehaviour
 
     m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
+    GetBoomerang();
+
     return;
   }
 
@@ -63,6 +67,7 @@ public class Link_Controller : MonoBehaviour
       {
         m_boomerang_cntr.Throw();
       }
+
     }
 
   }

@@ -87,11 +87,17 @@ public class Boomerang_Controller : MonoBehaviour
   }
 
   private void 
-  OnCollisionEnter(Collision _collision)
+  OnTriggerEnter2D(Collider2D _collision)
   {
-    if(_collision.gameObject.tag == "Link")
+    if (_collision.gameObject.tag == "Link")
     {
-      Catch();      
+      if(m_fsm != null)
+      {
+        if (m_fsm.getActiveStateID() == BACK_STATE)
+        {
+          Catch();
+        }
+      }      
     }
 
     return;
@@ -111,7 +117,7 @@ public class Boomerang_Controller : MonoBehaviour
 
   public static int IDLE_STATE = 0;
 
-  public static int FORWARD_STATE = 0;
+  public static int FORWARD_STATE = 1;
 
-  public static int BACK_STATE = 0;
+  public static int BACK_STATE = 2;
 }

@@ -70,6 +70,8 @@ public class Link_Data : MonoBehaviour
 
   public bool m_has_boomerang = false;
 
+  public bool m_has_sword = false;
+
   /*
    * Número máximo de unidades de corazón que link puede tener
    * */

@@ -12,7 +12,7 @@ public class Boom_ForwardState
     m_start_position  = new Vector3();
 
     m_speed       = 6.0f;
-    m_radius      = 15.0f;
+    m_radius      = 6.0f;
 
     return;
   }
@@ -39,9 +39,11 @@ public class Boom_ForwardState
 
     // get direction
 
+    GameObject link = boomerang.getLink();
+
     Link_Movement link_Movement;
 
-    link_Movement = m_gameObject.GetComponent<Link_Movement>();
+    link_Movement = link.GetComponent<Link_Movement>();
 
     m_direction = link_Movement.m_direction;
 

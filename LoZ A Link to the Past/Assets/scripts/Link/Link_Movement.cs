@@ -58,11 +58,16 @@ public class Link_Movement : MonoBehaviour
     float h_value = Input.GetAxis("Horizontal");
     float v_value = Input.GetAxis("Vertical");
 
-    m_direction = new Vector2(h_value, v_value);
-    m_direction.Normalize();
+    Vector2 direction = new Vector2(h_value, v_value);
+    direction.Normalize();
 
-    m_link_rigidbody.velocity = m_direction * LINK_N_SPEED;
+    m_link_rigidbody.velocity = direction * LINK_N_SPEED;
     
+    if(direction.magnitude != 0)
+    {
+      m_direction = direction;
+    }
+
     return;
   }
 
