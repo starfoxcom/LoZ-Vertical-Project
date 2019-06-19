@@ -17,7 +17,7 @@ namespace Assets.scripts.Item_Scripts.Dynamic
     }
 
     //! in this instance it would be lifting the bush 
-    public override bool DynamitcAcction()
+    public override bool DynamicAcction()
     {
 
 

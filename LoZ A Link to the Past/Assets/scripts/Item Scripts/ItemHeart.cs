@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 namespace Assets.Item_Scripts
 {
-  class ItemHeart : ItemBaseCollectible<int>
+  public class ItemHeart : ItemBaseCollectible<int>
   {
     //TODO: find out the actual limit later 
     int m_Limit = 10;
@@ -19,6 +19,7 @@ namespace Assets.Item_Scripts
     private void Start()
     {
       m_ItemType = ItemTypeCollectible.Heart;
+      GetLinkData();
     }
 
     public override bool ItemEffect(ref int HitPoints)
@@ -39,7 +40,7 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if(Col.tag == "Link")
+      if (Col.tag == "Link")
       {
         m_link.AddHealth(m_Value);
         Destroy(this);

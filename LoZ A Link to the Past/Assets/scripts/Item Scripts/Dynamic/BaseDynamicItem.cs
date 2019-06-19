@@ -8,6 +8,8 @@ using UnityEngine;
 /// in other word ones that link doesn't collect 
 /// Examples : the bushes and pots
 /// </summary>
+
+
 public abstract class BaseDynamicItem : MonoBehaviour
 {
   //! for later identifying which type of Dynamic item that's used
@@ -45,6 +47,6 @@ public abstract class BaseDynamicItem : MonoBehaviour
   }
 
   //! first check if link can do it THEN do it.
-  public abstract bool DynamitcAcction();
+  public abstract bool DynamicAcction();
 
 }
