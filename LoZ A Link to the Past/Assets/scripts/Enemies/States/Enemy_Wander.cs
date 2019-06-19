@@ -16,7 +16,7 @@ public class Enemy_Wander : State
   public override void
   OnExit()
   {
-    throw new System.NotImplementedException();
+
   }
 
   public override void
@@ -30,25 +30,42 @@ public class Enemy_Wander : State
   public override void
   Update()
   {
-    if (m_timer >= 150)
+    if (onLinkCollision())
     {
 
-      if (m_standBy <= 50)
+      if (m_timer >= 150)
       {
 
-        stopDirection();
+        if (m_standBy <= 50)
+        {
 
-        ++m_standBy;
+          stopDirection();
 
-        return;
+          ++m_standBy;
+
+          return;
+        }
+
+        m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
       }
 
-      setNewDirection();
+      ++m_timer;
+    }
+    else
+    {
 
       m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
     }
+  }
 
-    ++m_timer;
+  bool onLinkCollision()
+  {
+    if(m_gameObject.GetComponent<Collision2D>().otherCollider.tag != "Link")
+    {
+      return false;
+    }
+
+    return true;
   }
 
   void setNewDirection()

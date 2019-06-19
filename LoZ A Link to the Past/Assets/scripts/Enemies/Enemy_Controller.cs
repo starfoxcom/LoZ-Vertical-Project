@@ -23,6 +23,8 @@ public class Enemy_Controller : MonoBehaviour
 
     m_fsm = new FSM();
 
+    m_directions = new List<Vector2>();
+
     //Right
     m_directions.Add(new Vector2(1, 0));
 
@@ -35,9 +37,10 @@ public class Enemy_Controller : MonoBehaviour
     //Bottom
     m_directions.Add(new Vector2(0, -1));
 
+    m_fsm.AddState(new Enemy_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions));
 
-    m_fsm.SetState(ENEMY_GLOBALS.WANDER_STATE_ID);
+    m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
     return;
   }
@@ -46,11 +49,16 @@ public class Enemy_Controller : MonoBehaviour
   void
   Update()
   {
+
+    if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.IDLE_STATE_ID)
+    {
+      m_fsm.SetState(ENEMY_GLOBALS.WANDER_STATE_ID);
+    }
+
+    m_fsm.Update();
   }
 
   private FSM m_fsm;
 
   private List<Vector2> m_directions;
-
-  private int m_directionIndex;
 }

@@ -8,6 +8,7 @@ TagManager:
   - Item_Tool
   - Block_High
   - Link
+  - Block
   layers:
   - Default
   - TransparentFX
