@@ -9,6 +9,8 @@ public class Link_Data : MonoBehaviour
   /* Public                                                               */
   /************************************************************************/
 
+  public UI_Behaviour m_ui;
+
   public void 
   AddHealth(int _health)
   {
@@ -23,6 +25,9 @@ public class Link_Data : MonoBehaviour
     {
       m_health = 0;
     }
+
+    m_ui.ChangeHealth(ref m_health);
+
     return;
   }
 
@@ -34,6 +39,9 @@ public class Link_Data : MonoBehaviour
     {
       m_num_rupiahs = 0;
     }
+
+    m_ui.ChangeRupees(ref m_num_rupiahs);
+
     return;
   }
 
@@ -41,6 +49,9 @@ public class Link_Data : MonoBehaviour
   AddKey(int _key)
   {
     m_num_keys += _key;
+
+    m_ui.ChangeKeys(ref m_num_keys);
+
     return;
   }
 
@@ -48,6 +59,7 @@ public class Link_Data : MonoBehaviour
   AddMasterKey(int _master_key)
   {
     m_num_master_keys += _master_key;
+    
     return;
   }
 
@@ -64,6 +76,8 @@ public class Link_Data : MonoBehaviour
     {
       m_fuel_percent = 0;
     }
+
+    m_ui.ChangeFuel(ref m_fuel_percent);
 
     return;
   }
