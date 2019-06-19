@@ -12,7 +12,7 @@ namespace Assets.Item_Scripts
 {
   class ItemRuby : ItemBaseCollectible<int>
   {
-    enum RubyColor
+    public enum RubyColor
     {
       Green = 1,
       Blue = 5,
@@ -32,6 +32,14 @@ namespace Assets.Item_Scripts
       {
         m_rubyColor = RubyColor.Green;
         m_Value = 1;
+      }
+      else if(m_rubyColor == RubyColor.Blue)
+      {
+        m_Value = 5;
+      }
+      else if(m_rubyColor == RubyColor.Red)
+      {
+        m_Value = 20;
       }
       m_Limit = 999;
       // this is to identify the ruby class 

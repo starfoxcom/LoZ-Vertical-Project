@@ -25,7 +25,7 @@ public abstract class ItemBasePlayerUsable : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    m_ItemName = "Base Item class";
+    m_ItemName = "Base m_Item class";
 
     m_ItemType = ItemTypePlayerUse.Unknown;
 
