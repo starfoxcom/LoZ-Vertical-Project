@@ -34,7 +34,14 @@ public class FollowLink_State
   public override void
   Update()
   {
-    m_gameObject.transform.position = m_link_gm.transform.position;
+    Vector3 new_pos = new Vector3
+      (
+      m_link_gm.transform.position.x,
+      m_link_gm.transform.position.y,
+      m_gameObject.transform.position.z
+      );
+
+    m_gameObject.transform.position = new_pos;
     return;
   }
 
