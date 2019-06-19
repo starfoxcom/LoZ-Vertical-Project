@@ -1,27 +1,28 @@
-﻿public class Link_Pull
+﻿using UnityEngine;
+
+public class Link_Pull
   : State
 {
 
-  public Link_Pull()
+  public Link_Pull(GameObject _gameObject, FSM _fsm)
   {
     m_id = LINK_GLOBALS.PULL_STATE_ID;
+
+    m_fsm         = _fsm;
+    m_gameObject  = _gameObject;
+
+    return;
   }
 
   public override void
   OnExit()
-  {
-    throw new System.NotImplementedException();
-  }
+  { }
 
   public override void
   OnPrepare()
-  {
-    throw new System.NotImplementedException();
-  }
+  { }
 
   public override void
   Update()
-  {
-    throw new System.NotImplementedException();
-  }
+  { }
 }

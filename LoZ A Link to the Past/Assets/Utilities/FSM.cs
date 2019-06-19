@@ -7,6 +7,11 @@ public class FSM
   // Public Methods                                                       //
   //////////////////////////////////////////////////////////////////////////
 
+  public FSM()
+  {
+    Init();
+  }
+
   public void
   Init()
   {
@@ -30,6 +35,19 @@ public class FSM
     return;
   }
 
+  public int
+  getActiveStateID()
+  {
+    if(m_active_state != null)
+    {
+      return m_active_state.GetID();
+    }
+    else
+    {
+      return -1;
+    }    
+  }
+
   public void
   SetState(int _id)
   {
@@ -44,9 +62,9 @@ public class FSM
 
         m_active_state = state;
         m_active_state.OnPrepare();
-      }
 
-      return;
+        return;
+      }
     }
 
     return;

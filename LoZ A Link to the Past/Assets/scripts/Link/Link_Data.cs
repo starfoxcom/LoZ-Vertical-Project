@@ -68,6 +68,10 @@ public class Link_Data : MonoBehaviour
     return;
   }
 
+  public bool m_has_boomerang = false;
+
+  public bool m_has_sword = false;
+
   /*
    * Número máximo de unidades de corazón que link puede tener
    * */
@@ -115,7 +119,9 @@ public class Link_Data : MonoBehaviour
    * Número de flehcas.
    * */
   private int m_num_arrow;
-    
+
+  
+
   /*
    * Inicialización del personaje
    * */
@@ -127,8 +133,12 @@ public class Link_Data : MonoBehaviour
     m_fuel_percent      = 0;
     m_num_rupiahs       = 0;
     m_num_arrow         = 0;
-
+    
     return;
+  }
+
+  private void Update()
+  {    
   }
 
 }
