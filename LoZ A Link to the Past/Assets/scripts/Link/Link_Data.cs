@@ -68,6 +68,10 @@ public class Link_Data : MonoBehaviour
     return;
   }
 
+  public bool m_has_boomerang = false;
+
+  public bool m_has_sword = false;
+
   /*
    * Número máximo de unidades de corazón que link puede tener
    * */
@@ -131,6 +135,10 @@ public class Link_Data : MonoBehaviour
     m_num_arrow         = 0;
     
     return;
+  }
+
+  private void Update()
+  {    
   }
 
 }
