@@ -34,7 +34,7 @@ namespace Assets.Item_Scripts.Chest_Clases
     // add the class map when it's made             // 
     private void Start()
     {
-
+   
       switch (m_ItemType)
       {
         case (ItemTypePlayerUse.Boomerang):
@@ -47,6 +47,8 @@ namespace Assets.Item_Scripts.Chest_Clases
           break;
       }
     }// end function 
+
+
     public ItemTypePlayerUse GetItemType()
     {
       return m_ItemType;

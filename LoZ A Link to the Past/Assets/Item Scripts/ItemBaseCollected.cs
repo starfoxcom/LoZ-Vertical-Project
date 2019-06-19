@@ -47,4 +47,8 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
   //! this method will increase (or possible decrease) some stat
   public abstract bool ItemEffect(ref T Stat);
 
+
+
+
+
 }

@@ -14,6 +14,8 @@ namespace Assets.Item_Scripts
   public abstract class ChestBase<T> : MonoBehaviour
   {
 
+    public bool IsChestUsed = false;
+
     public enum ItemClass
     {
       PlayerUsable,
