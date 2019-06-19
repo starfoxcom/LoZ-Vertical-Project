@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /*
  * Estructura que almacena toda la información de link. 
@@ -9,7 +10,49 @@ public class Link_Data : MonoBehaviour
   /* Public                                                               */
   /************************************************************************/
 
+  public bool m_has_boomerang = true;
+
+  public LINK_TOOLS m_active_item;
+
+  public GameObject m_lamp_fire_prefab;
+
   public UI_Behaviour m_ui;
+
+  public GameObject
+  GetLampFire()
+  {
+
+    GameObject lamp = null;
+
+    foreach(GameObject fire_lamp in m_lamp_pool)
+    {
+      if(!fire_lamp.gameObject.activeSelf)
+      {
+        lamp = fire_lamp;
+        break;
+      }
+    }
+
+    if(lamp == null)
+    {
+      lamp = Instantiate
+        (
+        m_lamp_fire_prefab, 
+        gameObject.transform.position, 
+        Quaternion.identity
+        ) as GameObject;
+
+      Debug.Log("New fire lamp");
+
+      m_lamp_pool.Add(lamp);
+    }
+
+    lamp.SetActive(true);
+
+
+
+    return lamp;
+  }
 
   public void 
   AddHealth(int _health)
@@ -80,11 +123,19 @@ public class Link_Data : MonoBehaviour
     m_ui.ChangeFuel(ref m_fuel_percent);
 
     return;
+  }  
+
+  public bool
+  ConsumeFuel()
+  {
+    if(m_fuel_percent > 0)
+    {
+      m_fuel_percent -= FUEL_CONSUME;
+      return true;
+    }
+
+    return false;
   }
-
-  public bool m_has_boomerang = false;
-
-  public bool m_has_sword = false;
 
   /*
    * Número máximo de unidades de corazón que link puede tener
@@ -94,7 +145,12 @@ public class Link_Data : MonoBehaviour
   /*
    * Porcentaje máximo de gas que link debe tener.
    * */
-  static int MAX_FUEL_PERCENT = 100;
+  static int MAX_FUEL_PERCENT = 128;
+
+  /*
+   * Consumo de gas por uso
+   */
+  static int FUEL_CONSUME = 8;
 
   /************************************************************************/
   /* Private                                                              */
@@ -134,6 +190,8 @@ public class Link_Data : MonoBehaviour
    * */
   private int m_num_arrow;
 
+    
+  private List<GameObject> m_lamp_pool;
   
 
   /*
@@ -144,10 +202,30 @@ public class Link_Data : MonoBehaviour
     m_health            = 6;
     m_num_keys          = 0;
     m_num_master_keys   = 0;
-    m_fuel_percent      = 0;
+    m_fuel_percent      = MAX_FUEL_PERCENT;
     m_num_rupiahs       = 0;
     m_num_arrow         = 0;
-    
+
+    // lamp fire pool
+
+    m_lamp_pool = new List<GameObject>();
+    for(int index = 0; index < 4; ++index)
+    {
+
+      GameObject lamp;
+
+      lamp = Instantiate
+       (
+       m_lamp_fire_prefab,
+       gameObject.transform.position,
+       Quaternion.identity
+       ) as GameObject;
+
+      lamp.SetActive(false);
+
+      m_lamp_pool.Add(lamp);
+    }
+
     return;
   }
 

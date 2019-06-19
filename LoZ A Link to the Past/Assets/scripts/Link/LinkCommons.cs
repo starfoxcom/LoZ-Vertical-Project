@@ -15,3 +15,10 @@ static class LINK_GLOBALS
 
   public static string CONSUMIBLE_TAG = "Item_Consumible";
 }
+
+public enum LINK_TOOLS
+{
+  k_BOOMERANG,
+  k_LAMP,
+  k_EMPTY
+}

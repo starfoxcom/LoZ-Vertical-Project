@@ -41,9 +41,23 @@ public class Link_Idle
   {
     if (Input.GetButtonDown("Button_A"))
     {
-      if (m_link_data.m_has_boomerang)
+      switch(m_link_data.m_active_item)
       {
-        m_fsm.SetState(LINK_GLOBALS.BOOMERANG_STATE_ID);
+        case LINK_TOOLS.k_BOOMERANG:
+
+          if (m_link_data.m_has_boomerang)
+          {
+            m_fsm.SetState(LINK_GLOBALS.BOOMERANG_STATE_ID);
+          }
+
+          break;
+
+        case LINK_TOOLS.k_LAMP:
+          ThrowFireFlame();
+          break;
+
+        case LINK_TOOLS.k_EMPTY:
+          break;
       }
     }
 
@@ -61,4 +75,32 @@ public class Link_Idle
   Link_Movement m_link_move;
 
   Link_Animation_Controller m_link_animator;
+
+  float m_fire_spawn_mag = 0.6f;
+
+  private void
+  ThrowFireFlame()
+  {
+    if(m_link_data.ConsumeFuel())
+    {
+      GameObject lamp_fire = m_link_data.GetLampFire();
+
+      LampFire_Controller lamp_cntrl 
+        = lamp_fire.GetComponent<LampFire_Controller>();
+
+      lamp_cntrl.ActiveLamp();
+
+      Vector2 dir = m_link_move.m_direction;
+      dir *= m_fire_spawn_mag;
+
+      Vector2 position = m_gameObject.transform.position;
+      position += dir;
+
+      lamp_cntrl.Init(position);
+    }
+    else
+    {
+      // TODO: Mensaje que no tienes gas.
+    }
+  }
 }
