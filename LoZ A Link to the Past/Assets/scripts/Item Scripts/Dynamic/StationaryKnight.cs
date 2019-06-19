@@ -21,8 +21,10 @@ public class StationaryKnight : MonoBehaviour
   //! this will keep track of link.
   Transform m_LinkPos;
 
-   const float ThreeOver4Pi = (0.75f * Mathf.PI);
-   const float OneOver4Pi = (0.25f * Mathf.PI);
+  // used to know where link is 
+  const float ThreeFourthsPi = (0.75f * Mathf.PI);
+  //
+  const float OneFourthsPi = (0.25f * Mathf.PI);
 
 
   private void Start()
@@ -60,19 +62,19 @@ public class StationaryKnight : MonoBehaviour
   {
     float Angle = GetAngleFromLink();
     // Right 
-    if (Angle > ThreeOver4Pi || Angle < -ThreeOver4Pi)
+    if (Angle > ThreeFourthsPi || Angle < -ThreeFourthsPi)
     {
       Debug.Log("right side");
       m_Renderer.sprite = m_sprites[0];
     }
     // Up
-    else if (Angle < -OneOver4Pi && Angle > -ThreeOver4Pi)
+    else if (Angle < -OneFourthsPi && Angle > -ThreeFourthsPi)
     {
       Debug.Log("Font Side");
       m_Renderer.sprite = m_sprites[1];
     }
     // left 
-    else if(Angle < OneOver4Pi || Angle < -OneOver4Pi)
+    else if (Angle < OneFourthsPi || Angle < -OneFourthsPi)
     {
       Debug.Log("Left Side");
       m_Renderer.sprite = m_sprites[2];
