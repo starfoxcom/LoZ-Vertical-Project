@@ -119,7 +119,9 @@ public class Link_Data : MonoBehaviour
    * Número de flehcas.
    * */
   private int m_num_arrow;
-    
+
+  
+
   /*
    * Inicialización del personaje
    * */
@@ -131,7 +133,7 @@ public class Link_Data : MonoBehaviour
     m_fuel_percent      = 0;
     m_num_rupiahs       = 0;
     m_num_arrow         = 0;
-
+    
     return;
   }
 

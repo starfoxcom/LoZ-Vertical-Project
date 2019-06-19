@@ -80,7 +80,7 @@ public class Link_Movement : MonoBehaviour
   /*
    * Velocidad normal de link.
    * */
-  static float LINK_N_SPEED = 5.0f;
+  static float LINK_N_SPEED = 2.0f;
 
   /*
    * Velocidad lenta de link.
