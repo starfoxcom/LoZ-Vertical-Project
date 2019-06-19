@@ -4,15 +4,16 @@ public class Boom_ForwardState
   : State
 {
 
+  /************************************************************************/
+  /* PUBLIC                                                               */
+  /************************************************************************/
+
   public Boom_ForwardState()
   {
     m_id = Boomerang_Controller.FORWARD_STATE;
 
     m_direction       = new Vector2();
-    m_start_position  = new Vector3();
-
-    m_speed       = 6.0f;
-    m_radius      = 6.0f;
+    m_start_position  = new Vector3();    
 
     return;
   }
@@ -29,9 +30,10 @@ public class Boom_ForwardState
     Boomerang_Controller boomerang =
       m_gameObject.GetComponent<Boomerang_Controller>();
 
-    m_gameObject.transform.position = boomerang.getLink().transform.position;
+    m_gameObject.transform.position = boomerang.m_spawn_position;
 
-    m_radius = boomerang.getRadius();
+    m_radius =  boomerang.m_boom_radius;
+    m_speed =   boomerang.m_boom_speed;
 
     // get rigidbody 2D
 
@@ -47,9 +49,10 @@ public class Boom_ForwardState
 
     m_direction = link_Movement.m_direction;
 
-    // get start position;
+    //////////////////////////////////////////
+    // Spawn Position
 
-    m_start_position = m_gameObject.transform.position;
+    m_start_position = boomerang.m_spawn_position;
 
     return;
   }
@@ -70,6 +73,10 @@ public class Boom_ForwardState
 
     return;
   }
+
+  /************************************************************************/
+  /* PRIVATE                                                             */
+  /************************************************************************/
 
   private float m_radius;
 

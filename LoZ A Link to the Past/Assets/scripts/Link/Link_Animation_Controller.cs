@@ -17,8 +17,8 @@ public class Link_Animation_Controller : MonoBehaviour
   void Start()
   {
     m_link_move = gameObject.GetComponent<Link_Movement>();
-    m_rb = gameObject.GetComponent<Rigidbody2D>();
-    m_animator = gameObject.GetComponent<Animator>();
+    m_rb =        gameObject.GetComponent<Rigidbody2D>();
+    m_animator =  gameObject.GetComponent<Animator>();
 
     return;
   }
@@ -30,9 +30,7 @@ public class Link_Animation_Controller : MonoBehaviour
     Vector2 m_velocity  = m_rb.velocity;
 
     float speed = m_velocity.magnitude;
-
-    Debug.Log(speed);
-
+       
     m_animator.SetFloat("speed", speed);
 
     m_animator.SetBool("idle", (speed < 0.1) );

@@ -14,6 +14,8 @@ public class Link_Movement : MonoBehaviour
   public bool m_active_displacement;
 
   public Vector2 m_direction;
+
+  public Vector2 m_raw_direction;
   
   /************************************************************************/
   /* PRIVATE                                                              */
@@ -46,9 +48,13 @@ public class Link_Movement : MonoBehaviour
     if (m_active_displacement)
     {
       UpdateDisplacement();
-    }  
+    }
+    else
+    {
+      m_link_rigidbody.velocity = new Vector2(0.0f, 0.0f);
+    }
 
-
+    return;
   }
 
   // Controla el desplazamiento de link 
@@ -62,12 +68,12 @@ public class Link_Movement : MonoBehaviour
     direction.Normalize();
 
     m_link_rigidbody.velocity = direction * LINK_N_SPEED;
-    
+            
     if(direction.magnitude != 0)
     {
       m_direction = direction;
     }
-
+    
     return;
   }
 

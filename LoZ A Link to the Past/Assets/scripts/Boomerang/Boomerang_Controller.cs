@@ -7,12 +7,20 @@ public class Boomerang_Controller : MonoBehaviour
   //////////////////////////////////////////////////////////////////////////
   // Public Methods                                                       //
   //////////////////////////////////////////////////////////////////////////
-  
+
+  public Vector2 m_spawn_position;
+
+  public float m_boom_radius = 5.0f;
+
+  public float m_boom_speed = 5.0f;
+
   public void
-  Throw()
+  Throw(Vector2 _spawn_position)
   {
     Link_Data linkData = m_link.GetComponent<Link_Data>();
     linkData.m_has_boomerang = false;
+
+    m_spawn_position = _spawn_position;
 
     m_fsm.SetState(FORWARD_STATE);
     return;
@@ -32,17 +40,7 @@ public class Boomerang_Controller : MonoBehaviour
   getLink()
   {
     return m_link;
-  }
-
-  public float
-  getRadius()
-  {
-    return m_radius;
-  }
-
-  //////////////////////////////////////////////////////////////////////////
-  // Public Properties                                                    //
-  //////////////////////////////////////////////////////////////////////////
+  }  
 
   public void 
   SetLink(GameObject _link)
@@ -111,9 +109,7 @@ public class Boomerang_Controller : MonoBehaviour
 
   Rigidbody2D m_rb = null;
   
-  FSM m_fsm = null;
-
-  float m_radius = 5.0f;
+  FSM m_fsm = null;  
 
   public static int IDLE_STATE = 0;
 
