@@ -12,6 +12,7 @@ namespace Assets.Item_Scripts
 {
   class ItemRuby : ItemBaseCollectible<int>
   {
+    //! the colors correspond to the value of the ruby's
     public enum RubyColor
     {
       Green = 1,
@@ -20,7 +21,7 @@ namespace Assets.Item_Scripts
     }
 
     RubyColor m_rubyColor;
-
+    //! how much a ruby is valued at (how many ruby's link get from this ruby)
     int m_Value;
 
     int m_Limit = 999;
