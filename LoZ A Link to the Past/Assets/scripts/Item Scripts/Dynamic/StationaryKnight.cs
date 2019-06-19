@@ -15,6 +15,11 @@ public class StationaryKnight : MonoBehaviour
   /// The m_sprites are expected to be organized counter clock-wise 
   /// </summary>
   SpriteRenderer m_Renderer;
+
+  /// <summary>
+  /// The Sprite Here should be of the golden knight that block link path 
+  /// and looks in his general direction.
+  /// </summary>
   public Sprite[] m_sprites;
   //! this will be used to determine which direction to face (and which sprite to us) 
   Vector2 m_Dir;
@@ -42,10 +47,6 @@ public class StationaryKnight : MonoBehaviour
   {
     //Debug.Log(GetAngleFromLink());
     SetSprite();
-
-    /*    Vector3 dir = other.transform.position - transform.position;
-    dir = other.transform.InverseTransformDirection(dir);
-    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;*/
   }
   //! find out which angle from this knight
   protected float GetAngleFromLink()
@@ -86,5 +87,5 @@ public class StationaryKnight : MonoBehaviour
     }
 
 
-  }
+  }// end function
 }
