@@ -30,42 +30,49 @@ public class Enemy_Wander : State
   public override void
   Update()
   {
-    if (onLinkCollision())
-    {
 
-      if (m_timer >= 150)
+    if(m_fsm.m_messages.Count != 0)
+    {
+      if(onCollisionWith(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION))
       {
 
-        if (m_standBy <= 50)
-        {
-
-          stopDirection();
-
-          ++m_standBy;
-
-          return;
-        }
-
         m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
-      }
 
-      ++m_timer;
+        m_timer = m_standBy = 0;
+        return;
+      }
     }
-    else
+
+    if (m_timer >= 150)
     {
+
+      if (m_standBy <= 50)
+      {
+
+        stopDirection();
+
+        ++m_standBy;
+
+        return;
+      }
 
       m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
     }
+
+    ++m_timer;
   }
 
-  bool onLinkCollision()
+  bool onCollisionWith(Message.MESSAGE_TYPE _type)
   {
-    if(m_gameObject.GetComponent<Collision2D>().otherCollider.tag != "Link")
+    if(m_fsm.m_messages.Peek().m_type == _type)
     {
-      return false;
+
+      m_fsm.m_messages.Dequeue();
+      return true;
     }
 
-    return true;
+    m_fsm.m_messages.Dequeue();
+    return false;
   }
 
   void setNewDirection()

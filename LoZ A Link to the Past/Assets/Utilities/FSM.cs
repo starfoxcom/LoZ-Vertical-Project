@@ -17,6 +17,7 @@ public class FSM
   {
     m_active_state = null;
     m_state_list = new List<State>();
+    m_messages = new Queue<Message>();
 
     return;
   }
@@ -75,6 +76,8 @@ public class FSM
   //////////////////////////////////////////////////////////////////////////
 
   List<State> m_state_list;
+
+  public Queue<Message> m_messages;
 
   State m_active_state = null;
 

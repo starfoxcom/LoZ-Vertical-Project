@@ -45,6 +45,15 @@ public class Enemy_Controller : MonoBehaviour
     return;
   }
 
+  private void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.tag == "Block")
+    {
+      m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
+      Debug.Log(m_fsm.m_messages.Peek().m_type);
+    }
+  }
+
   // Update is called once per frame
   void
   Update()
