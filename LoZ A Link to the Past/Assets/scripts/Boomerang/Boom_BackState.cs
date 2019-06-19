@@ -26,7 +26,8 @@ public class Boom_BackState
     Boomerang_Controller boomerang =
       m_gameObject.GetComponent<Boomerang_Controller>();
 
-    m_link = boomerang.getLink();
+    m_link =  boomerang.getLink();
+    m_speed = boomerang.m_boom_speed;
 
     // get link rigidbody
 
@@ -52,5 +53,5 @@ public class Boom_BackState
 
   Rigidbody2D m_rb;
 
-  float m_speed  = 6.0f;
+  float m_speed;
 }

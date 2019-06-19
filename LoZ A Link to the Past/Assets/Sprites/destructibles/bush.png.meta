@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a3d76d2c33ea8444a75f4e1845b8282
+guid: 11606be2929bba74f88ed32b7395c276
 TextureImporter:
   fileIDToRecycleName:
     21300000: bush_0
@@ -2723,7 +2723,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3049e437ac1247f4ab0c92fd208f2db9
+    spriteID: 1d8c61ce286372345a2edc78cf80b27f
     vertices: []
     indices: 
     edges: []

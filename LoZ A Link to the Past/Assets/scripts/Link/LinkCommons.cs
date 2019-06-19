@@ -11,5 +11,14 @@ static class LINK_GLOBALS
 
   public static int PUSH_STATE_ID = 4;
 
+  public static int BOOMERANG_STATE_ID = 5;
+
   public static string CONSUMIBLE_TAG = "Item_Consumible";
+}
+
+public enum LINK_TOOLS
+{
+  k_BOOMERANG,
+  k_LAMP,
+  k_EMPTY
 }

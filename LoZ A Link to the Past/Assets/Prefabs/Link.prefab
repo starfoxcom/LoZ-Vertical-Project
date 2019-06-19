@@ -120,7 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_has_boomerang: 0
-  m_has_sword: 0
+  m_active_item: 0
+  m_lamp_fire_prefab: {fileID: 2644178544166685984, guid: 8e9f95fa832d6b3438469fb2a5520d85,
+    type: 3}
+  m_ui: {fileID: 0}
 --- !u!114 &6771614637876415579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_active_displacement: 1
   m_direction: {x: 0, y: 0}
+  m_raw_direction: {x: 0, y: 0}
 --- !u!70 &1076784816
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -28,6 +28,13 @@ public class Link_Controller : MonoBehaviour
 
   public GameObject m_boomerang_prefab;
 
+  public void
+  ThrowBoomerang(Vector2 _swapn_position)
+  {
+    m_boomerang_cntr.Throw(_swapn_position);        
+    return;
+  }
+
   /************************************************************************/
   /* Private                                                              */
   /************************************************************************/
@@ -48,6 +55,7 @@ public class Link_Controller : MonoBehaviour
     m_fsm.AddState(new Link_Pull(gameObject, m_fsm));
     m_fsm.AddState(new Link_Push(gameObject, m_fsm));
     m_fsm.AddState(new Link_Idle(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Boomerang(gameObject, m_fsm));
 
     m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
@@ -60,16 +68,34 @@ public class Link_Controller : MonoBehaviour
   void 
   Update()
   {
-      
-    if(Input.GetButtonDown("Button_A"))
-    {
-      if(m_data.m_has_boomerang)
-      {
-        m_boomerang_cntr.Throw();
-      }
 
+    m_fsm.Update();
+
+    InputDebug();
+  }
+
+  private void
+  InputDebug()
+  {
+    if(Input.GetKeyDown(KeyCode.Alpha1))
+    {
+      m_data.AddRupiah(1);
     }
 
+    if(Input.GetKeyDown(KeyCode.Alpha2))
+    {
+      m_data.AddKey(1);
+    }
+
+    if(Input.GetKeyDown(KeyCode.Alpha3))
+    {
+      m_data.AddHealth(1);
+    }
+
+    if(Input.GetKeyDown(KeyCode.Alpha4))
+    {
+      m_data.AddFuel(10);
+    }
   }
 
   private void 

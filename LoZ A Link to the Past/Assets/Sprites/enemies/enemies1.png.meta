@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7cbb1be01f1cad49838a9380bc9114b
+guid: 44074fcf7996bc54e8b5a655c9bb93fc
 TextureImporter:
   fileIDToRecycleName:
     21300000: enemies1_0
@@ -8569,7 +8569,7 @@ TextureImporter:
       - {x: 113, y: 450}
     physicsShape: []
     bones: []
-    spriteID: 40021a02c2f004044ae0bed9697b1304
+    spriteID: 4d14abc4ef7ed1b449a64716cade7b38
     vertices: []
     indices: 
     edges: []

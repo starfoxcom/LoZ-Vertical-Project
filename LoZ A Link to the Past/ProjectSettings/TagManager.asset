@@ -8,6 +8,8 @@ TagManager:
   - Item_Tool
   - Block_High
   - Link
+  - Block
+  - Lamp_Fire
   layers:
   - Default
   - TransparentFX

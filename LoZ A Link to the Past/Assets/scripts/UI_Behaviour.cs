@@ -8,9 +8,19 @@ using UnityEngine.UI;
 public class UI_Behaviour : MonoBehaviour
 {
     
-    public Text m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
-    bool bHideKey; //placeholder bool to test hide and show keys function
-    
+    public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
+
+    public int health;
+    //Image with the heart sprites from left to right, the sprite loaded will be changed depending of links health
+    public Image m_Heart0;
+    public Image m_Heart1;
+    public Image m_Heart2;
+
+    //Sprites of hearts
+    public Sprite m_FullHeart;
+    public Sprite m_HalfHeart;
+    public Sprite m_EmptyHeart;
+
     //Hud Text where it shows the stats passed by link Data--------------------------------------------
     public Text m_ShowRupees;
     public Text m_ShowBombs;
@@ -19,41 +29,41 @@ public class UI_Behaviour : MonoBehaviour
     public Text m_ShowwHearts;
     public Text m_showMagic;
     //--------------------------------------------------------------------------------------------
-
+   
 
     //function that disables keys hud, only use when link is not in a dungeon
     public void HideKeys()
     {
-        if(bHideKey)
-        {
-            m_Key.gameObject.SetActive(false);
-            m_ShowKeys.gameObject.SetActive(false);
-        }
+        m_Key.gameObject.SetActive(false);
+        m_ShowKeys.gameObject.SetActive(false);
     }
 
     //function that enables key hud, only use it when link is in a dungeon
     public void ShowKeys()
     {
-        if(!bHideKey)
-        {
-            m_Key.gameObject.SetActive(true);
-            m_ShowKeys.gameObject.SetActive(true);
-        }
+        m_Key.gameObject.SetActive(true);
+        m_ShowKeys.gameObject.SetActive(true);
+    }
+
+    private void Start()
+    {
+        ChangeHealth(ref health);
     }
 
 
     //change rupees on HUD, ref int passed by Link Data
     public void ChangeRupees(ref int _rupees)
     {
+        m_ShowRupees.text = "";
         if (_rupees < 100)
         {
-            m_ShowRupees.text = "0";
+            m_ShowRupees.text += "0";
             if (_rupees < 10)
             {
                 m_ShowRupees.text += "0";
             }
         }
-        m_ShowRupees.text = _rupees.ToString();
+        m_ShowRupees.text += _rupees.ToString();
     } 
 
     //change keys on HUD, ref int passed by Link Data
@@ -64,7 +74,49 @@ public class UI_Behaviour : MonoBehaviour
 
     public void ChangeHealth(ref int _health)
     {
-        m_ShowwHearts.text = _health.ToString();
+        switch(_health)
+        {
+            case 6:
+                m_Heart0.sprite = m_FullHeart;
+                m_Heart1.sprite = m_FullHeart;
+                m_Heart2.sprite = m_FullHeart;
+                break;
+            case 5:
+                m_Heart0.sprite = m_FullHeart;
+                m_Heart1.sprite = m_FullHeart;
+                m_Heart2.sprite = m_HalfHeart;
+                break;
+            case 4:
+                m_Heart0.sprite = m_FullHeart;
+                m_Heart1.sprite = m_FullHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+            case 3:
+                m_Heart0.sprite = m_FullHeart;
+                m_Heart1.sprite = m_HalfHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+            case 2:
+                m_Heart0.sprite = m_FullHeart;
+                m_Heart1.sprite = m_EmptyHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+            case 1:
+                m_Heart0.sprite = m_HalfHeart;
+                m_Heart1.sprite = m_EmptyHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+            case 0:
+                m_Heart0.sprite = m_EmptyHeart;
+                m_Heart1.sprite = m_EmptyHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+            default:
+                m_Heart0.sprite = m_EmptyHeart;
+                m_Heart1.sprite = m_EmptyHeart;
+                m_Heart2.sprite = m_EmptyHeart;
+                break;
+        }
     }
 
     public void ChangeFuel(ref int _fuel)
