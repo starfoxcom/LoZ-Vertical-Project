@@ -46,6 +46,7 @@ namespace Assets.Item_Scripts
     private void OnTriggerEnter2D(Collider2D Col)
     {
       Link_Data Link;
+
       GameObject Temp = GameObject.FindWithTag("Link");
       Link = Temp.GetComponent<Link_Data>();
 
