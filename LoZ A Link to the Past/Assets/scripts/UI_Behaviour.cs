@@ -10,26 +10,52 @@ public class UI_Behaviour : MonoBehaviour
     
     public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
 
-    public int health;
+    public Image m_MagicBar; // reference to magic bar in hud canvas to change its sprite when use changefuel()
+
     //Image with the heart sprites from left to right, the sprite loaded will be changed depending of links health
     public Image m_Heart0;
     public Image m_Heart1;
     public Image m_Heart2;
+    //--------------------------------------------------------------------------------------------------------------
 
-    //Sprites of hearts
+    //sprites of every instance of magic bar
+    public Sprite m_emptybar;
+    public Sprite m_magicbar1;
+    public Sprite m_magicbar2;
+    public Sprite m_magicbar3;
+    public Sprite m_magicbar4;
+    public Sprite m_magicbar5;
+    public Sprite m_magicbar6;
+    public Sprite m_magicbar7;
+    public Sprite m_magicbar8;
+    public Sprite m_magicbar9;
+    public Sprite m_magicbar10;
+    public Sprite m_magicbar11;
+    public Sprite m_magicbar12;
+    public Sprite m_magicbar13;
+    public Sprite m_magicbar14;
+    public Sprite m_magicbar15;
+    public Sprite m_magicbar16;
+   
+
+    //Sprites of hearts-------------------------------------------------------
     public Sprite m_FullHeart;
     public Sprite m_HalfHeart;
     public Sprite m_EmptyHeart;
+    //------------------------------------------------------------------------
 
     //Hud Text where it shows the stats passed by link Data--------------------------------------------
     public Text m_ShowRupees;
     public Text m_ShowBombs;
     public Text m_ShowArrows;
     public Text m_ShowKeys;
-    public Text m_ShowwHearts;
-    public Text m_showMagic;
     //--------------------------------------------------------------------------------------------
-   
+
+    //private int to help changefuel()
+    private float fueldiv;
+
+    //TODO: Erase this int when changefuel() is complete
+    public int fuel;
 
     //function that disables keys hud, only use when link is not in a dungeon
     public void HideKeys()
@@ -38,16 +64,12 @@ public class UI_Behaviour : MonoBehaviour
         m_ShowKeys.gameObject.SetActive(false);
     }
 
+    
     //function that enables key hud, only use it when link is in a dungeon
     public void ShowKeys()
     {
         m_Key.gameObject.SetActive(true);
         m_ShowKeys.gameObject.SetActive(true);
-    }
-
-    private void Start()
-    {
-        ChangeHealth(ref health);
     }
 
 
@@ -72,6 +94,7 @@ public class UI_Behaviour : MonoBehaviour
         m_ShowKeys.text = _keys.ToString();
     }
 
+    //function switch 
     public void ChangeHealth(ref int _health)
     {
         switch(_health)
@@ -119,8 +142,19 @@ public class UI_Behaviour : MonoBehaviour
         }
     }
 
-    public void ChangeFuel(ref int _fuel)
+    public void ChangeFuel(ref int _fuel) // every 8 fuel will load another bar
     {
-        m_showMagic.text = _fuel.ToString();
+        fueldiv = (float)_fuel;
+        fueldiv /= 8;
+        Debug.Log(fueldiv);
+
+        if(_fuel == 126)
+        {
+            m_MagicBar.sprite = m_FullHeart;
+        }
+
+
     }
+
+    
 }
