@@ -10,12 +10,23 @@ public class CameraController : MonoBehaviour
 
   public GameObject m_link_gm;
 
-  public Camera m_camera;
+  public void
+  setRoomPoints(Vector2 m_vec_1, Vector2 m_vec_2)
+  {
+
+  }
+
 
   /************************************************************************/
   /* PRIVATE                                                              */
   /************************************************************************/
-    
+
+  private Camera m_camera;
+
+  private Vector2 m_vec_1;
+
+  private Vector2 m_vec_2;
+
   void 
   Start()
   {
