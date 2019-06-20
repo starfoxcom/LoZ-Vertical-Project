@@ -58,10 +58,14 @@ namespace Assets.Item_Scripts.Chest_Clases
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      Link_Controller Link;
+      Link_Controller m_LinkController;
+      Link_Data m_LinkData;
 
       GameObject Temp = GameObject.FindWithTag("Link");
-      Link = Temp.GetComponent<Link_Controller>();
+      m_LinkController = Temp.GetComponent<Link_Controller>();
+      m_LinkData = Temp.GetComponent<Link_Data>();
+
+
 
       if (Col.tag == "Link")
       {
@@ -71,15 +75,21 @@ namespace Assets.Item_Scripts.Chest_Clases
           switch (m_ItemType)
           {
             case (ItemTypePlayerUse.Boomerang):
-              if (IsBoomerangInChest )
+              if (IsBoomerangInChest)
               {
-                Link.GetBoomerang();
+                m_LinkController.GetBoomerang();
                 IsBoomerangInChest = false;
               }
 
               break;
             case (ItemTypePlayerUse.Lamp):
+              if (IsLampInChest)
+              {
+                m_LinkData.GetLampFire();
+                IsLampInChest = false;
+              }
               break;
+            
           }
 
           IsChestUsed = true;
