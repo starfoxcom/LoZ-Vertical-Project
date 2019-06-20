@@ -148,6 +148,13 @@ public class UI_Behaviour : MonoBehaviour
         fueldiv /= 8;
         Debug.Log(fueldiv);
 
+        if(fuel > _fuel)
+        {
+
+        }
+
+
+
         if(_fuel == 126)
         {
             m_MagicBar.sprite = m_FullHeart;
