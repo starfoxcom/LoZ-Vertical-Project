@@ -117,8 +117,6 @@ public class Link_Data : MonoBehaviour
       m_fuel_percent = 0;
     }
 
-    m_ui.ChangeFuel(ref m_fuel_percent);
-
     return;
   }
 
@@ -209,7 +207,7 @@ public class Link_Data : MonoBehaviour
     
     m_ui.ChangeKeys(ref m_num_keys);
     m_ui.ChangeHealth(ref m_health);        
-    m_ui.ChangeFuel(ref m_fuel_percent);
+    //m_ui.ChangeFuel(ref m_fuel_percent);
     m_ui.ChangeRupees(ref m_num_rupiahs);
 
     //////////////////////////////////////////
