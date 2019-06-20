@@ -1,0 +1,4 @@
+﻿enum CAMERA_STATE
+{
+  k_FOLLOW_LINK
+}
