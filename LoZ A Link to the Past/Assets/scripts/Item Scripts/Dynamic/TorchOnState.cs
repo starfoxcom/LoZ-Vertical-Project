@@ -10,7 +10,7 @@ namespace Assets.scripts.Item_Scripts.Dynamic
   class TorchOnState : BaseDynamicItem
   {
     // This controls how much time the torch take to turn off 
-    public const float m_TorchTime = 5.0f;
+    public const float m_TorchTime = 13.0f;
     //! how much time the torch is going to be on until it stops
     float m_RemainingTime = m_TorchTime;
 
@@ -24,16 +24,9 @@ namespace Assets.scripts.Item_Scripts.Dynamic
       {
         m_RemainingTime = m_TorchTime;
         IsTorchON = false;
-        return false;
+        return IsTorchON;
       }
-      return true;
-    }
-
-    //! this is used to know when to change state.
-    public bool CheckTorch()
-    {
       return IsTorchON;
     }
-
   }
 }
