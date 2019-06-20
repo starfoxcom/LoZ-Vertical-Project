@@ -1,10 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1f4ca9ddc49af4942952b93819648691
 TextureImporter:
   fileIDToRecycleName:
     21300000: hearts_0
     21300002: hearts_1
     21300004: hearts_2
+=======
+guid: 69b60f8d3df8a1e43893b42ff4b80a47
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> animations
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -34,7 +40,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> animations
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -43,7 +53,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> animations
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,6 +86,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+<<<<<<< HEAD
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -183,6 +198,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: bba3589ec517e484c8cb8e0b65c73432
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1c52abc9e31443c4783080ffd1415394
+>>>>>>> animations
     vertices: []
     indices: 
     edges: []

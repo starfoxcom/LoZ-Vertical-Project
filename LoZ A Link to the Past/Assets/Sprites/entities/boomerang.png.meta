@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 133e43f904fcdec40a2ac9f8aab75326
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +11,11 @@ TextureImporter:
     21300010: boomerang_5
     21300012: boomerang_6
     21300014: boomerang_7
+=======
+guid: 32b454284861f0148bb84c6a9c8faa07
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> animations
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -39,7 +45,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> animations
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -48,7 +58,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> animations
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -77,6 +91,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+<<<<<<< HEAD
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -288,6 +303,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 6ff15e53d8eac354a99e122511abbf52
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b475d153d91cfbe48ae0cd026498e469
+>>>>>>> animations
     vertices: []
     indices: 
     edges: []

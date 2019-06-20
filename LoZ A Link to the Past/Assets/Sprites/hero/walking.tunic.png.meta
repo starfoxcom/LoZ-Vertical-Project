@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: cb24b228252f38841a427638e7ce0d37
 TextureImporter:
   fileIDToRecycleName:
@@ -158,6 +159,11 @@ TextureImporter:
     21300306: walking.tunic_153
     21300308: walking.tunic_154
     21300310: walking.tunic_155
+=======
+guid: 395c15b86c317e64c9ec58448278946d
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> animations
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -187,7 +193,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> animations
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -196,7 +206,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> animations
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -225,6 +239,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+<<<<<<< HEAD
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -3396,6 +3411,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 85ef211b9b4afc745a4c5e4e63ae183c
+=======
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 78cc1f5c63889ad4e85de96afafc3162
+>>>>>>> animations
     vertices: []
     indices: 
     edges: []

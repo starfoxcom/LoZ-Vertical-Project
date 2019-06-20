@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 60645a94229ad4848b303b08e1a7a5c0
+=======
+guid: 54bad840ba7410f47bd9b647c69f4707
+>>>>>>> animations
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
