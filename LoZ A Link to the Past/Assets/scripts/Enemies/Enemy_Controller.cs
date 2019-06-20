@@ -38,7 +38,7 @@ public class Enemy_Controller : MonoBehaviour
     m_directions.Add(new Vector2(0, -1));
 
     m_fsm.AddState(new Enemy_Idle(gameObject, m_fsm));
-    m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions));
+    m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions, m_sword));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -49,8 +49,9 @@ public class Enemy_Controller : MonoBehaviour
   {
     if (collision.gameObject.tag == "Block")
     {
+      gameObject.transform.position += 
+        (gameObject.transform.position - collision.gameObject.transform.position) * .01f;
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
-      Debug.Log(m_fsm.m_messages.Peek().m_type);
     }
   }
 
@@ -70,4 +71,9 @@ public class Enemy_Controller : MonoBehaviour
   private FSM m_fsm;
 
   private List<Vector2> m_directions;
+
+  private Vector3 m_backDirection, m_backOffset;
+
+  [SerializeField]
+  private bool m_sword = false;
 }
