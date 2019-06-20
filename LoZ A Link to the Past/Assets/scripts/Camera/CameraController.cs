@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
 
   public GameObject m_link_gm;
 
+  public Camera m_camera;
+
   /************************************************************************/
   /* PRIVATE                                                              */
   /************************************************************************/
@@ -22,6 +24,13 @@ public class CameraController : MonoBehaviour
     m_fsm.AddState(new FollowLink_State(gameObject, m_fsm));
 
     m_fsm.SetState((int)CAMERA_STATE.k_FOLLOW_LINK);
+
+    //////////////////////////////////////////
+    // Tech Aspect
+
+    m_camera = gameObject.GetComponent<Camera>();
+
+    m_camera.aspect = 1.1428f;
 
     return;
   }
