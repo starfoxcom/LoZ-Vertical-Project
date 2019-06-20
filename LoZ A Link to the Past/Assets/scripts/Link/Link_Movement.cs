@@ -13,7 +13,7 @@ public class Link_Movement : MonoBehaviour
   // Flag: Puede link moverse?
   public bool m_active_displacement;
 
-  public Vector2 m_direction;
+  public Vector2 m_direction = new Vector2(1.0f,0.0f);
 
   public Vector2 m_raw_direction;
   
@@ -57,6 +57,19 @@ public class Link_Movement : MonoBehaviour
     return;
   }
 
+  public void
+  UpdateDisplacement(Vector2 _direction)
+  {
+    m_link_rigidbody.velocity = _direction * LINK_N_SPEED;
+
+    if (_direction.magnitude != 0)
+    {
+      m_direction = _direction;
+    }
+
+    return;
+  }
+
   // Controla el desplazamiento de link 
   public void
   UpdateDisplacement()
@@ -86,11 +99,11 @@ public class Link_Movement : MonoBehaviour
   /*
    * Velocidad normal de link.
    * */
-  static float LINK_N_SPEED = 0.9f;
+  public static float LINK_N_SPEED = 0.9f;
 
   /*
    * Velocidad lenta de link.
    * */
-  static float LINK_L_SPEED = 0.9f;
+  public static float LINK_L_SPEED = 0.9f;
 
 }

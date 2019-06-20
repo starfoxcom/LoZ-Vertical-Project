@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class Link_Controller : MonoBehaviour
 {
-
-
-
   /************************************************************************/
   /* Public                                                               */
   /************************************************************************/
@@ -35,6 +32,23 @@ public class Link_Controller : MonoBehaviour
     return;
   }
 
+  public Portal
+  GetExitPortal()
+  {
+    return m_exit_portal;
+  }
+
+  public void
+  EnterPortal(Portal _exit_portal)
+  {   
+    if(m_fsm.getActiveStateID() != (int)LINK_GLOBALS.TRANSITION_STATE_ID)
+    {
+      m_exit_portal = _exit_portal;
+      m_fsm.SetState(LINK_GLOBALS.TRANSITION_STATE_ID);
+    }
+    return;
+  }
+
   /************************************************************************/
   /* Private                                                              */
   /************************************************************************/
@@ -56,6 +70,7 @@ public class Link_Controller : MonoBehaviour
     m_fsm.AddState(new Link_Push(gameObject, m_fsm));
     m_fsm.AddState(new Link_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Link_Boomerang(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Transition(gameObject, m_fsm));
 
     m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
@@ -68,10 +83,10 @@ public class Link_Controller : MonoBehaviour
   void 
   Update()
   {
-
     m_fsm.Update();
-
     InputDebug();
+
+    return;
   }
 
   private void
@@ -148,4 +163,6 @@ public class Link_Controller : MonoBehaviour
   private Link_Movement m_movement_controller;
 
   private Boomerang_Controller m_boomerang_cntr;
+
+  private Portal m_exit_portal;
 }

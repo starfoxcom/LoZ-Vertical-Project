@@ -19,6 +19,24 @@ public class CameraController : MonoBehaviour
     return;
   }
 
+  public void
+  EnterPortal(Vector2 _direction)
+  {
+    Vector2 position = gameObject.transform.position;
+    m_target_position =  position + (_direction * 2 * m_vec_defase.x);
+
+    m_fsm.SetState((int)CAMERA_STATE.k_TRANSTION);
+    return;
+  }
+
+  public Vector2 TARGET_POSITION
+  {
+    get
+    {
+      return m_target_position;
+    }
+  }
+
   public Vector2 VECTOR_1
   {
     get
@@ -48,12 +66,15 @@ public class CameraController : MonoBehaviour
 
   private Vector2 m_vec_defase;
 
+  private Vector2 m_target_position;
+
   void 
   Start()
   {
     m_fsm = new FSM();
 
     m_fsm.AddState(new FollowLink_State(gameObject, m_fsm));
+    m_fsm.AddState(new CamTransition_State(gameObject, m_fsm));
 
     m_fsm.SetState((int)CAMERA_STATE.k_FOLLOW_LINK);
 

@@ -13,6 +13,8 @@ static class LINK_GLOBALS
 
   public static int BOOMERANG_STATE_ID = 5;
 
+  public static int TRANSITION_STATE_ID = 6;
+
   public static string CONSUMIBLE_TAG = "Item_Consumible";
 }
 
