@@ -36,10 +36,16 @@ public class UI_Behaviour : MonoBehaviour
     //--------------------------------------------------------------------------------------------
 
     //private int to help changefuel()
-    private float m_fueldiv;
-    private int m_latestfuel;
-    private static int m_fuelindex;
-    private int m_numofchhanges;
+    private static int m_last_total; // last fuel 
+    private static float current;
+    private static int target;
+    private static bool m_animation = false;
+    private static float unit;
+
+    private static int index;
+    private static float m_trigger_time;
+    private static float m_duration_time = 0.4f;
+
     //TODO: Erase this int when changefuel is tested
     public int magic_fuel;
     //function that disables keys hud, only use when link is not in a dungeon
@@ -127,50 +133,57 @@ public class UI_Behaviour : MonoBehaviour
         }
     }
 
+    void AnimBar()
+    {
+        unit = target - current;
+        current += 1 * Mathf.Sign(unit);
+
+        if(current == target)
+        {
+            m_animation = false;
+        }
+        else
+        {
+            m_animation = true;
+            m_trigger_time = Time.time + m_duration_time;
+        }
+        index = (int)current;
+        m_MagicBar.sprite = m_MagicBarSprites[index];
+    }
+
+    //TODO: if half not change
     public void ChangeFuel(ref int _fuel) // every 8 fuel will load another bar
     {
-        m_fueldiv = (float)m_latestfuel;
-        m_fueldiv *= 0.125f; // this operation means the index of the sprite of magic bar on hud
-        m_fueldiv = Mathf.FloorToInt(m_fueldiv);
-        Debug.Log(m_fueldiv);
-        m_fuelindex = (int)m_fueldiv;
-        
+        current = m_last_total / 8;
+        current = Mathf.Floor(current);
+        target = _fuel / 8;
 
-        //add fuel
-        if(m_latestfuel < _fuel)
+        m_animation = true;
+
+        if(current != target)
         {
-            m_numofchhanges = Mathf.FloorToInt((_fuel - m_latestfuel) * 0.125f);
-            while (m_numofchhanges > 0)
-            {
-                m_fuelindex += 1;
-                m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
-                m_numofchhanges--;
-                
-            }
-            m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
-        }
-
-        
-        //consume fuel
-        if (m_latestfuel > _fuel)
+            AnimBar();
+        } 
+        else
         {
-            m_numofchhanges = Mathf.FloorToInt((m_latestfuel - _fuel) * 0.125f);
-            while (m_numofchhanges > 0)
-            {
-                m_fuelindex -= 1;
-                m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
-                m_numofchhanges--;
-            }
-            m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
+            m_animation = true;
         }
-
-
         
     }
-
+    private void Update()
+    {
+        if(m_animation)
+        {
+            if(Time.time >= m_trigger_time)
+            {
+                AnimBar();
+            }
+        }
+    }
     private void Start()
     {
-        m_latestfuel = 4;
+        m_last_total = 0;
         ChangeFuel(ref magic_fuel);
     }
+
 }

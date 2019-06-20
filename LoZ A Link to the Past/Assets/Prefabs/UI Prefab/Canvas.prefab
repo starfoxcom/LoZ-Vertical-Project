@@ -221,7 +221,7 @@ MonoBehaviour:
   m_ShowBombs: {fileID: 1833042866494663413}
   m_ShowArrows: {fileID: 1833042866193395075}
   m_ShowKeys: {fileID: 1833042865866629747}
-  magic_fuel: 8
+  magic_fuel: 0
 --- !u!1 &954263038
 GameObject:
   m_ObjectHideFlags: 0
