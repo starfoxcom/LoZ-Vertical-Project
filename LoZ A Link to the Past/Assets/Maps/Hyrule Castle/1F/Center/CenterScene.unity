@@ -567,12 +567,12 @@ PrefabInstance:
     - target: {fileID: 4551654760612470494, guid: 16d7117c1d16bb64bb17664cfc270e0e,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -395818305
+      value: 1354938441
       objectReference: {fileID: 0}
     - target: {fileID: 4551654760612470494, guid: 16d7117c1d16bb64bb17664cfc270e0e,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7117c1d16bb64bb17664cfc270e0e, type: 3}
@@ -2396,6 +2396,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2273413948760407288, guid: 390a53b638c6f184a834e3ad66e57c0f,
+        type: 3}
+      propertyPath: m_room_texture
+      value: 
+      objectReference: {fileID: 1347563476}
     - target: {fileID: 6652368529385156360, guid: 390a53b638c6f184a834e3ad66e57c0f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2451,11 +2456,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2273413948760407288, guid: 390a53b638c6f184a834e3ad66e57c0f,
-        type: 3}
-      propertyPath: m_room_texture
-      value: 
-      objectReference: {fileID: 1347563476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390a53b638c6f184a834e3ad66e57c0f, type: 3}
 --- !u!1 &6771614637876415574 stripped
