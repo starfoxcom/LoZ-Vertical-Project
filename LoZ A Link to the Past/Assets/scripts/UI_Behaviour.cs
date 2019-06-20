@@ -7,33 +7,48 @@ using UnityEngine.UI;
 //Class that changes the text of every consumable of link when 
 public class UI_Behaviour : MonoBehaviour
 {
-    
+
     public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
 
-    public int health;
+    public Image m_Boomerang;
+    public Image m_Lantern;
     //Image with the heart sprites from left to right, the sprite loaded will be changed depending of links health
     public Image m_Heart0;
     public Image m_Heart1;
     public Image m_Heart2;
-
+         
     //Sprites of hearts
     public Sprite m_FullHeart;
     public Sprite m_HalfHeart;
     public Sprite m_EmptyHeart;
     //------------------------------------------------------------------------
 
+    //--------------------------------------
+    public Image m_MagicBar;
+
+    public Sprite[] m_MagicBarSprites = new Sprite[17];
+    //private int to help changefuel()
+    private static int m_last_total; // last fuel 
+    private static float current;
+    private static int target;
+    private static bool m_animation = false;
+    private static float unit;
+
+    private static int index;
+    private static float m_trigger_time;
+    private static float m_duration_time = 0.4f;
+
+
+
+
     //Hud Text where it shows the stats passed by link Data--------------------------------------------
     public Text m_ShowRupees;
     public Text m_ShowBombs;
     public Text m_ShowArrows;
     public Text m_ShowKeys;
-    public Text m_ShowwHearts;
-    public Text m_showMagic;
     //--------------------------------------------------------------------------------------------
-   
 
-    //TODO: Erase this int when changefuel is tested
-    public int magic_fuel;
+
     //function that disables keys hud, only use when link is not in a dungeon
     public void HideKeys()
     {
@@ -41,17 +56,12 @@ public class UI_Behaviour : MonoBehaviour
         m_ShowKeys.gameObject.SetActive(false);
     }
 
-    
+
     //function that enables key hud, only use it when link is in a dungeon
     public void ShowKeys()
     {
         m_Key.gameObject.SetActive(true);
         m_ShowKeys.gameObject.SetActive(true);
-    }
-
-    private void Start()
-    {
-        ChangeHealth(ref health);
     }
 
     //change rupees on HUD, ref int passed by Link Data
@@ -67,7 +77,7 @@ public class UI_Behaviour : MonoBehaviour
             }
         }
         m_ShowRupees.text += _rupees.ToString();
-    } 
+    }
 
     //change keys on HUD, ref int passed by Link Data
     public void ChangeKeys(ref int _keys)
@@ -77,7 +87,7 @@ public class UI_Behaviour : MonoBehaviour
 
     public void ChangeHealth(ref int _health)
     {
-        switch(_health)
+        switch (_health)
         {
             case 6:
                 m_Heart0.sprite = m_FullHeart;
@@ -122,10 +132,7 @@ public class UI_Behaviour : MonoBehaviour
         }
     }
 
-    public void ChangeFuel(ref int _fuel)
-    {
-        m_showMagic.text = _fuel.ToString();
-    }
+
 
     //TODO: if half not change
     public void ChangeFuel(ref int _fuel) // every 8 fuel will load another bar
@@ -136,116 +143,36 @@ public class UI_Behaviour : MonoBehaviour
 
         m_animation = true;
 
-        if(current != target)
+        if (current != target)
         {
             AnimBar();
-        } 
+        }
         else
         {
             m_animation = true;
         }
-        
+
     }
+
     private void Update()
     {
-        if(m_animation)
+        if (m_animation)
         {
-            if(Time.time >= m_trigger_time)
+            if (Time.time >= m_trigger_time)
             {
                 AnimBar();
             }
         }
     }
-    private void Start()
-    {
-        m_last_total = 0;
-        ChangeFuel(ref magic_fuel);
-    }
 
-}
+   
 
-{
-
-    public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
-
-    public Image m_MagicBar; // reference to magic bar in hud canvas to change its sprite when use changefuel()
-
-    //Image with the heart sprites from left to right, the sprite loaded will be changed depending of links health
-    public Image m_Heart0;
-    public Image m_Heart1;
-    public Image m_Heart2;
-    //--------------------------------------------------------------------------------------------------------------
-
-    
-    //
-    public Sprite[] m_MagicBarSprites=new Sprite[17];
-
-    //Sprites of hearts-------------------------------------------------------
-    public Text m_ShowKeys;
-    //--------------------------------------------------------------------------------------------
-
-    //private int to help changefuel()
-    private static int m_last_total; // last fuel 
-    private static float current;
-    private static int target;
-    private static bool m_animation = false;
-    private static float unit;
-
-    private static int index;
-    private static float m_trigger_time;
-    private static float m_duration_time = 0.4f;
-    //function switch 
-    public void ChangeHealth(ref int _health)
-    {
-        switch(_health)
-        {
-            case 6:
-                m_Heart0.sprite = m_FullHeart;
-                m_Heart1.sprite = m_FullHeart;
-                m_Heart2.sprite = m_FullHeart;
-                break;
-            case 5:
-                m_Heart0.sprite = m_FullHeart;
-                m_Heart1.sprite = m_FullHeart;
-                m_Heart2.sprite = m_HalfHeart;
-                break;
-            case 4:
-                m_Heart0.sprite = m_FullHeart;
-                m_Heart1.sprite = m_FullHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-            case 3:
-                m_Heart0.sprite = m_FullHeart;
-                m_Heart1.sprite = m_HalfHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-            case 2:
-                m_Heart0.sprite = m_FullHeart;
-                m_Heart1.sprite = m_EmptyHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-            case 1:
-                m_Heart0.sprite = m_HalfHeart;
-                m_Heart1.sprite = m_EmptyHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-            case 0:
-                m_Heart0.sprite = m_EmptyHeart;
-                m_Heart1.sprite = m_EmptyHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-            default:
-                m_Heart0.sprite = m_EmptyHeart;
-                m_Heart1.sprite = m_EmptyHeart;
-                m_Heart2.sprite = m_EmptyHeart;
-                break;
-        }
     void AnimBar()
     {
         unit = target - current;
         current += 1 * Mathf.Sign(unit);
 
-        if(current == target)
+        if (current == target)
         {
             m_animation = false;
         }
@@ -255,4 +182,30 @@ public class UI_Behaviour : MonoBehaviour
             m_trigger_time = Time.time + m_duration_time;
         }
         index = (int)current;
-        m_MagicBar.sprite = m_MagicBarSprites[index];
+        m_MagicBar.sprite = m_MagicBarSprites[index];
+        return;
+    }
+
+    private void Start()
+    {
+        m_last_total = 0;
+    }
+
+    public void EquipBoomerang()
+    {
+        m_Boomerang.gameObject.SetActive(true);
+        m_Lantern.gameObject.SetActive(false);
+    }
+
+    public void EquipLantern()
+    {
+        m_Lantern.gameObject.SetActive(true);
+        m_Boomerang.gameObject.SetActive(false);
+    }
+
+    public void Unequip() //unequip everything
+    {
+        m_Boomerang.gameObject.SetActive(false);
+        m_Lantern.gameObject.SetActive(false);
+    }
+}
