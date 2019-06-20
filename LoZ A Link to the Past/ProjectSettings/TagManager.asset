@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item_Consumible
+  - Item_Tool
+  - Block_High
+  - Link
+  - Block
+  - Lamp_Fire
   layers:
   - Default
   - TransparentFX
