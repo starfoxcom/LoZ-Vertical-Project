@@ -75,7 +75,7 @@ public class Link_Data : MonoBehaviour
   AddRupiah(int _rupiah)
   {
     m_num_rupiahs += _rupiah;
-    if (m_num_rupiahs > 0)
+    if (m_num_rupiahs < 0)
     {
       m_num_rupiahs = 0;
     }
@@ -106,7 +106,7 @@ public class Link_Data : MonoBehaviour
   public void
   AddFuel(int _fuel_percent)
   {
-    m_fuel_percent += m_fuel_percent;
+    m_fuel_percent += _fuel_percent;
 
     if (m_fuel_percent > MAX_FUEL_PERCENT)
     {
@@ -116,8 +116,6 @@ public class Link_Data : MonoBehaviour
     {
       m_fuel_percent = 0;
     }
-
-    m_ui.ChangeFuel(ref m_fuel_percent);
 
     return;
   }
@@ -196,14 +194,24 @@ public class Link_Data : MonoBehaviour
    * */
   private void Start()
   {
-    m_health = 6;
-    m_num_keys = 0;
-    m_num_master_keys = 0;
-    m_fuel_percent = MAX_FUEL_PERCENT;
-    m_num_rupiahs = 0;
-    m_num_arrow = 0;
 
-    // lamp fire pool
+    //////////////////////////////////////////
+    // Stats
+
+    m_health =          MAX_HEALTH;
+    m_num_keys =        2;
+    m_num_master_keys = 0;
+    m_fuel_percent =    MAX_FUEL_PERCENT;
+    m_num_rupiahs =     10;
+    m_num_arrow =       0;
+    
+    m_ui.ChangeKeys(ref m_num_keys);
+    m_ui.ChangeHealth(ref m_health);        
+    //m_ui.ChangeFuel(ref m_fuel_percent);
+    m_ui.ChangeRupees(ref m_num_rupiahs);
+
+    //////////////////////////////////////////
+    // Fire Lamp Pool
 
     m_lamp_pool = new List<GameObject>();
     for (int index = 0; index < 4; ++index)
@@ -230,4 +238,3 @@ public class Link_Data : MonoBehaviour
   {
   }
 }
-//>>>>>>> origin/feature/link_behaviour
