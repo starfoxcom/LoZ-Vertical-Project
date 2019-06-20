@@ -75,7 +75,7 @@ public class Link_Data : MonoBehaviour
   AddRupiah(int _rupiah)
   {
     m_num_rupiahs += _rupiah;
-    if (m_num_rupiahs > 0)
+    if (m_num_rupiahs < 0)
     {
       m_num_rupiahs = 0;
     }
@@ -106,7 +106,7 @@ public class Link_Data : MonoBehaviour
   public void
   AddFuel(int _fuel_percent)
   {
-    m_fuel_percent += m_fuel_percent;
+    m_fuel_percent += _fuel_percent;
 
     if (m_fuel_percent > MAX_FUEL_PERCENT)
     {
@@ -116,8 +116,6 @@ public class Link_Data : MonoBehaviour
     {
       m_fuel_percent = 0;
     }
-
-    m_ui.ChangeFuel(ref m_fuel_percent);
 
     return;
   }
@@ -209,7 +207,7 @@ public class Link_Data : MonoBehaviour
     
     m_ui.ChangeKeys(ref m_num_keys);
     m_ui.ChangeHealth(ref m_health);        
-    m_ui.ChangeFuel(ref m_fuel_percent);
+    //m_ui.ChangeFuel(ref m_fuel_percent);
     m_ui.ChangeRupees(ref m_num_rupiahs);
 
     //////////////////////////////////////////
