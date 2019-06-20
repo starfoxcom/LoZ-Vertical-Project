@@ -18,7 +18,7 @@ public class Enemy_Wander : State
 
     m_sword = _sword;
 
-    m_speed = 0.5f;
+    m_speed = 1f;
 
     m_sprint = m_speed * 2;
   }
