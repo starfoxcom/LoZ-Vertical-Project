@@ -44,7 +44,7 @@ namespace Assets.Item_Scripts
       m_fireTime = 0.05f;
       m_fireTimeAmount = m_fireTime;
 
-      Debug.Log("Item" + m_ItemName);
+      Debug.Log("m_Item" + m_ItemName);
     }// end function
     /// <summary>
     /// make the sprite of the fire disappear after it invoked.

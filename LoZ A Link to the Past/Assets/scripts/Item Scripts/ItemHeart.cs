@@ -10,20 +10,23 @@ using UnityEngine;
 /// </summary>
 namespace Assets.Item_Scripts
 {
-  class ItemHeart : ItemBaseCollectible<int>
+  public class ItemHeart : ItemBaseCollectible<int>
   {
     //TODO: find out the actual limit later 
     int m_Limit = 10;
+    int m_Value = 1;
+
     private void Start()
     {
       m_ItemType = ItemTypeCollectible.Heart;
+      GetLinkData();
     }
 
     public override bool ItemEffect(ref int HitPoints)
     {
       if (HitPoints < m_Limit)
       {
-        HitPoints += 1;
+        HitPoints += m_Value;
         Debug.Log("Here is the heart Count now " + HitPoints.ToString());
         return true;
       }
@@ -32,7 +35,19 @@ namespace Assets.Item_Scripts
 
     public override int GetValue()
     {
-      return 1;
+      return m_Value;
+    }
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if (Col.tag == "Link")
+      {
+        m_link.AddHealth(m_Value);
+        Destroy(this);
+        // make the sprite 
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
+      }
     }
   }
 }

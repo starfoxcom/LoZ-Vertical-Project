@@ -12,7 +12,8 @@ namespace Assets.Item_Scripts
 {
   class ItemRuby : ItemBaseCollectible<int>
   {
-    enum RubyColor
+    //! the colors correspond to the value of the ruby's
+    public enum RubyColor
     {
       Green = 1,
       Blue = 5,
@@ -20,7 +21,7 @@ namespace Assets.Item_Scripts
     }
 
     RubyColor m_rubyColor;
-
+    //! how much a ruby is valued at (how many ruby's link get from this ruby)
     int m_Value;
 
     int m_Limit = 999;
@@ -33,9 +34,18 @@ namespace Assets.Item_Scripts
         m_rubyColor = RubyColor.Green;
         m_Value = 1;
       }
+      else if(m_rubyColor == RubyColor.Blue)
+      {
+        m_Value = 5;
+      }
+      else if(m_rubyColor == RubyColor.Red)
+      {
+        m_Value = 20;
+      }
       m_Limit = 999;
       // this is to identify the ruby class 
       m_ItemType = ItemTypeCollectible.Rubys;
+      GetLinkData();
     }
     /// <summary>
     /// use to set the value of the ruby's denoted by there color 
@@ -67,6 +77,17 @@ namespace Assets.Item_Scripts
         RubyCount += m_Value;
       }
       return true;
+    }// end function 
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if(Col.tag == "Link")
+      {
+        m_link.AddRupiah(m_Value);
+        Destroy(this);
+        SpriteRenderer temp = GetComponent<SpriteRenderer>();
+        temp.sprite = null;
+      }
     }
   }
 }
