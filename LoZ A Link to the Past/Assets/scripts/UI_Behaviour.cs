@@ -36,10 +36,10 @@ public class UI_Behaviour : MonoBehaviour
     //--------------------------------------------------------------------------------------------
 
     //private int to help changefuel()
-    private float fueldiv;
+    private float m_fueldiv;
     private int m_latestfuel;
     private static int m_fuelindex;
-
+    private int m_numofchhanges;
     //TODO: Erase this int when changefuel is tested
     public int magic_fuel;
     //function that disables keys hud, only use when link is not in a dungeon
@@ -129,32 +129,37 @@ public class UI_Behaviour : MonoBehaviour
 
     public void ChangeFuel(ref int _fuel) // every 8 fuel will load another bar
     {
-        fueldiv = (float)m_latestfuel;
-        fueldiv *= 0.125f; // this operation means the index of the final sprite to load in magic bar
-        fueldiv = Mathf.FloorToInt(fueldiv);
-        Debug.Log(fueldiv);
-        m_fuelindex = (int)fueldiv;
+        m_fueldiv = (float)m_latestfuel;
+        m_fueldiv *= 0.125f; // this operation means the index of the sprite of magic bar on hud
+        m_fueldiv = Mathf.FloorToInt(m_fueldiv);
+        Debug.Log(m_fueldiv);
+        m_fuelindex = (int)m_fueldiv;
+        
 
         //add fuel
         if(m_latestfuel < _fuel)
         {
-            while (m_latestfuel <= _fuel)
+            m_numofchhanges = Mathf.FloorToInt((_fuel - m_latestfuel) * 0.125f);
+            while (m_numofchhanges > 0)
             {
                 m_fuelindex += 1;
                 m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
-                m_latestfuel += 8;
+                m_numofchhanges--;
+                
             }
             m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
         }
 
+        
         //consume fuel
         if (m_latestfuel > _fuel)
         {
-            while (m_latestfuel > _fuel)
+            m_numofchhanges = Mathf.FloorToInt((m_latestfuel - _fuel) * 0.125f);
+            while (m_numofchhanges > 0)
             {
                 m_fuelindex -= 1;
                 m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
-                m_latestfuel -= 8;
+                m_numofchhanges--;
             }
             m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
         }
@@ -165,7 +170,7 @@ public class UI_Behaviour : MonoBehaviour
 
     private void Start()
     {
-        m_latestfuel = 0;
+        m_latestfuel = 4;
         ChangeFuel(ref magic_fuel);
     }
 }
