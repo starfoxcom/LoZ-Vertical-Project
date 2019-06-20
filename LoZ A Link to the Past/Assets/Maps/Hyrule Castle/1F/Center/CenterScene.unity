@@ -636,6 +636,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4551654760612470494, guid: 16d7117c1d16bb64bb17664cfc270e0e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551654760612470494, guid: 16d7117c1d16bb64bb17664cfc270e0e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7117c1d16bb64bb17664cfc270e0e, type: 3}
 --- !u!4 &521427055 stripped
@@ -1243,8 +1253,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206612539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.008, y: -0.058, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1762224980}
   - {fileID: 733658408}
@@ -1784,7 +1794,10 @@ PolygonCollider2D:
       - {x: -0.11916751, y: 1.9462779}
       - {x: -1.5871004, y: 1.943639}
       - {x: -2.150063, y: 1.3922913}
-      - {x: -2.1533296, y: 0.9924603}
+      - {x: -2.1524296, y: 1.2478821}
+      - {x: -2.5185475, y: 1.2486002}
+      - {x: -2.5316796, y: 1.0653712}
+      - {x: -2.1533296, y: 1.0629587}
       - {x: -1.7589158, y: 0.992619}
       - {x: -1.7589577, y: 0.91081613}
       - {x: -1.6825963, y: 0.911053}
