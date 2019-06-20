@@ -1,16 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: b3668dff6a238304581718fbeeb9567b
-=======
-guid: d57a54a1ef47be54981af002419fccfd
->>>>>>> animations
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -38,13 +34,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
-  nPOTScale: 0
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,9 +49,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
-  spriteTessellationDetail: 0
-  textureType: 8
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -76,18 +72,10 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline:
-    - - {x: -45.29222, y: 11.615055}
-      - {x: -45.29222, y: 34.874565}
-      - {x: -24.031576, y: 34.874565}
-      - {x: -24.031576, y: 11.615055}
+    outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: 11fd81bfac3d27c4387979b3eeb95b4e
-=======
-    spriteID: 6adebfc00dc3ab34ead55bf868f6cb6a
->>>>>>> animations
+    spriteID: 
     vertices: []
     indices: 
     edges: []

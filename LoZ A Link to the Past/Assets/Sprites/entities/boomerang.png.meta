@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 133e43f904fcdec40a2ac9f8aab75326
 TextureImporter:
   fileIDToRecycleName:
@@ -11,14 +10,6 @@ TextureImporter:
     21300010: boomerang_5
     21300012: boomerang_6
     21300014: boomerang_7
-<<<<<<< HEAD
-=======
-guid: 32b454284861f0148bb84c6a9c8faa07
-TextureImporter:
-  fileIDToRecycleName: {}
->>>>>>> animations
-=======
->>>>>>> link_behaviour
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -48,32 +39,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
     filterMode: 0
-=======
-    filterMode: -1
->>>>>>> animations
-=======
-    filterMode: 0
->>>>>>> link_behaviour
     aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
-<<<<<<< HEAD
   spriteMode: 2
-=======
-  spriteMode: 1
->>>>>>> animations
-=======
-  spriteMode: 2
->>>>>>> link_behaviour
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -102,10 +77,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> link_behaviour
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -168,11 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: a08e0844a3167ff4fa5377dcca4b937e
-=======
-      spriteID: 53c05532c1429e74a825627f20ebaf40
->>>>>>> link_behaviour
+      spriteID: 0e0f5ff0b9badec4181462266e6a76cc
       vertices: []
       indices: 
       edges: []
@@ -192,11 +159,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 3aea0a94f62806745b8e3249f50f30cf
-=======
-      spriteID: 8064602aa4ddc93499a479ec8ad360e3
->>>>>>> link_behaviour
+      spriteID: 11b1491de0a6ea647ac31494f8294e87
       vertices: []
       indices: 
       edges: []
@@ -216,11 +179,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 9d1ea4bbc98f96148a95304fa4e4a660
-=======
-      spriteID: 82b3690c4021a01408a07408c4139c87
->>>>>>> link_behaviour
+      spriteID: d0275c73cc25ea949bb8121c774f8524
       vertices: []
       indices: 
       edges: []
@@ -240,11 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 1e37f589c45d02c4cad8406ea394733f
-=======
-      spriteID: ff47444a3c9d2544692806174f68bf53
->>>>>>> link_behaviour
+      spriteID: 53ca00d2d84b7e446af0cecc6f5f24bb
       vertices: []
       indices: 
       edges: []
@@ -264,11 +219,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 8f60baad0992b9e4ebdde4b0d279765a
-=======
-      spriteID: cb280dd97dd679b47be1f4c19e671b0c
->>>>>>> link_behaviour
+      spriteID: acee559ea764ec04b92e95eea5f8347b
       vertices: []
       indices: 
       edges: []
@@ -288,11 +239,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: ff756c79e2288e0438f911ff824152f9
-=======
-      spriteID: adc1acdb28fa6ee4dafc6216a6fff3ba
->>>>>>> link_behaviour
+      spriteID: dde3168e35119f244b7973dc532475b3
       vertices: []
       indices: 
       edges: []
@@ -312,11 +259,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 064323f05690c63488592dae15e53c80
-=======
-      spriteID: 4542f3908c003f142bf04a62123c2171
->>>>>>> link_behaviour
+      spriteID: 621251f4bc2276949bd0165241931274
       vertices: []
       indices: 
       edges: []
@@ -336,11 +279,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
-      spriteID: 6ace0c7b38a38de45bda33def98ab0be
-=======
-      spriteID: fc10c1e9bb2956b46a1f771d61d61650
->>>>>>> link_behaviour
+      spriteID: 40e3c1f1120129f4f976eadeb5c7a448
       vertices: []
       indices: 
       edges: []
@@ -348,16 +287,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6ff15e53d8eac354a99e122511abbf52
-=======
-  spriteSheet:
-    serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: b475d153d91cfbe48ae0cd026498e469
->>>>>>> animations
+    spriteID: 960f46ea26c68cf4d83a12802a925cb4
     vertices: []
     indices: 
     edges: []

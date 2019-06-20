@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 9305bf892746a4d47b71b7fedbc24431
 TextureImporter:
   fileIDToRecycleName:
@@ -10,11 +9,6 @@ TextureImporter:
     21300008: fire_4
     21300010: fire_5
     21300012: fire_6
-=======
-guid: 5db78fd0e82b33043a8a1ed078eb3fc4
-TextureImporter:
-  fileIDToRecycleName: {}
->>>>>>> animations
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -44,12 +38,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -73,11 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-    maxTextureSize: 1024
->>>>>>> animations
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -88,11 +78,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-    maxTextureSize: 1024
->>>>>>> animations
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -103,11 +89,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: iPhone
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-    maxTextureSize: 1024
->>>>>>> animations
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -118,11 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-    maxTextureSize: 1024
->>>>>>> animations
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -133,11 +111,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: WebGL
-<<<<<<< HEAD
     maxTextureSize: 2048
-=======
-    maxTextureSize: 1024
->>>>>>> animations
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -148,24 +122,23 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: fire_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c7c772f5cbee4a498a0cd0ffe862c84
+      spriteID: 4a539218a3b9a3b4dadb50c1df9c65b6
       vertices: []
       indices: 
       edges: []
@@ -179,13 +152,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74c69d1b53c37274081340e790faada8
+      spriteID: f9d9cda1cb60e5f4094953cb4e3cd315
       vertices: []
       indices: 
       edges: []
@@ -199,13 +172,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e61986b64de682e4ab61ce453f74f6c2
+      spriteID: 7d43cdc2413a07746a72afcc5f9bad3f
       vertices: []
       indices: 
       edges: []
@@ -219,13 +192,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f4966c56fa43c842972452b2f588fc6
+      spriteID: 58fde8952429585468c64692afe4f63b
       vertices: []
       indices: 
       edges: []
@@ -239,13 +212,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b62003b98a0c08446a903e981d4424ea
+      spriteID: fb2a6eb0decba4a4da7065a78d6e55d9
       vertices: []
       indices: 
       edges: []
@@ -259,13 +232,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4e1d5f88ef700e4b9b9bca6f0572d7d
+      spriteID: 7223ac3aa0031f741a7e76006be7f1a6
       vertices: []
       indices: 
       edges: []
@@ -279,13 +252,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5adea6bb709f3540b967e853ec39ae5
+      spriteID: d244d549541e64f4290d9507f78cfd0f
       vertices: []
       indices: 
       edges: []
@@ -293,14 +266,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4a9024b725edfb24a9f700304daab452
-=======
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: b88332d211e3dbd4489d85a3ad9854bf
->>>>>>> animations
+    spriteID: fc72780ee246fa742983d72a77a48283
     vertices: []
     indices: 
     edges: []
