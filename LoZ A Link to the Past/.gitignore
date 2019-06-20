@@ -9,6 +9,8 @@ Server/
 
 .vs
 
+*/.vs
+
 # Visual Studio Stuff
 .ide
 .ide-shm

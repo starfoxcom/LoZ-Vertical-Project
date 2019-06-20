@@ -11,9 +11,28 @@ public class CameraController : MonoBehaviour
   public GameObject m_link_gm;
 
   public void
-  setRoomPoints(Vector2 m_vec_1, Vector2 m_vec_2)
+  setRoomPoints(Vector2 _vec_1, Vector2 _vec_2)
   {
+    m_vec_1 = _vec_1;
+    m_vec_2 = _vec_2;
 
+    return;
+  }
+
+  public Vector2 VECTOR_1
+  {
+    get
+    {
+      return m_vec_1;
+    }
+  }
+
+  public Vector2 VECTOR_2
+  {
+    get
+    {
+      return m_vec_2;
+    }
   }
 
 
@@ -26,6 +45,8 @@ public class CameraController : MonoBehaviour
   private Vector2 m_vec_1;
 
   private Vector2 m_vec_2;
+
+  private Vector2 m_vec_defase;
 
   void 
   Start()
@@ -42,7 +63,7 @@ public class CameraController : MonoBehaviour
     m_camera = gameObject.GetComponent<Camera>();
 
     m_camera.aspect = 1.1428f;
-
+        
     return;
   }
     

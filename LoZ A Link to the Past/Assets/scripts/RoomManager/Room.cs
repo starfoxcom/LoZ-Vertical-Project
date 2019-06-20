@@ -58,7 +58,7 @@ public class Room : MonoBehaviour
     float spr_h_height = spr_height * 0.5f;
 
     Vector2 room_center_pos = m_room_texture.gameObject.transform.position;
-    Vector2 vec_defase = new Vector2(spr_h_width, spr_height);
+    Vector2 vec_defase = new Vector2(spr_h_width, spr_h_height);
 
     m_vector_1 = room_center_pos - vec_defase;
     m_vector_2 = room_center_pos + vec_defase;
