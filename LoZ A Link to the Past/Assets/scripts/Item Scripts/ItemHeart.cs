@@ -20,6 +20,7 @@ namespace Assets.Item_Scripts
     {
       m_ItemType = ItemTypeCollectible.Heart;
       GetLinkData();
+
     }
 
     public override bool ItemEffect(ref int HitPoints)

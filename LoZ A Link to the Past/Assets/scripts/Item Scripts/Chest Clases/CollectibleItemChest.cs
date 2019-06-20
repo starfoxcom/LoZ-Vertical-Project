@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
-///  this class will be able 
+///  this class will give one of the children of "ItemBaseCollectible"
 /// </summary>
 namespace Assets.Item_Scripts
 {
