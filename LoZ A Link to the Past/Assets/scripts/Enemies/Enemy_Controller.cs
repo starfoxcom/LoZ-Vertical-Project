@@ -45,12 +45,12 @@ public class Enemy_Controller : MonoBehaviour
     return;
   }
 
-  private void OnCollisionEnter2D(Collision2D collision)
+  private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.gameObject.tag == "Block")
     {
-      gameObject.transform.position += 
-        (gameObject.transform.position - collision.gameObject.transform.position) * .01f;
+      gameObject.transform.position +=
+        (gameObject.transform.position - collision.gameObject.transform.position) * .03f;
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
   }
