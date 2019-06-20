@@ -75,7 +75,7 @@ public class Link_Data : MonoBehaviour
   AddRupiah(int _rupiah)
   {
     m_num_rupiahs += _rupiah;
-    if (m_num_rupiahs > 0)
+    if (m_num_rupiahs < 0)
     {
       m_num_rupiahs = 0;
     }
@@ -106,7 +106,7 @@ public class Link_Data : MonoBehaviour
   public void
   AddFuel(int _fuel_percent)
   {
-    m_fuel_percent += m_fuel_percent;
+    m_fuel_percent += _fuel_percent;
 
     if (m_fuel_percent > MAX_FUEL_PERCENT)
     {
