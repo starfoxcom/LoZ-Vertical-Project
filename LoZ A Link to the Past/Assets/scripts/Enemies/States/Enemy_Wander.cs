@@ -17,6 +17,10 @@ public class Enemy_Wander : State
     m_maxTime = 150;
 
     m_sword = _sword;
+
+    m_speed = 0.5f;
+
+    m_sprint = m_speed * 2;
   }
 
   public override void
@@ -41,6 +45,37 @@ public class Enemy_Wander : State
     {
       if(onCollisionWith(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION))
       {
+
+        if (m_sword)
+        {
+
+          if (m_directionIndex == 0)
+          {
+
+            m_directionIndex = 2;
+          }
+          else if (m_directionIndex == 1)
+          {
+
+            m_directionIndex = 3;
+          }
+          else if (m_directionIndex == 2)
+          {
+
+            m_directionIndex = 0;
+          }
+          else
+          {
+
+            m_directionIndex = 1;
+          }
+
+          m_gameObject.GetComponent<Rigidbody2D>().velocity = m_directions[m_directionIndex] * m_speed;
+
+          m_fsm.m_messages.Clear();
+
+          return;
+        }
 
         stopDirection();
 
@@ -115,19 +150,17 @@ public class Enemy_Wander : State
         inverse = 1;
       }
 
-      //TODO: While inverse == m_directionIndex
+      while(temp == inverse)
+      {
+        temp = Random.Range(0, m_directions.Count);
+      }
+
+      m_directionIndex = temp;
     }
     else
     {
 
-      if (temp == 0)
-      {
-        Debug.Log("<---");
-      }
-      else
-      {
-        Debug.Log("--->");
-      }
+      temp = Random.Range(0, 2);
 
       if (m_directionIndex != 0 && m_directionIndex != m_directions.Count - 1)
       {
@@ -150,7 +183,7 @@ public class Enemy_Wander : State
       }
     }
 
-    m_gameObject.GetComponent<Rigidbody2D>().velocity = m_directions[m_directionIndex];
+    m_gameObject.GetComponent<Rigidbody2D>().velocity = m_directions[m_directionIndex] * m_speed;
   }
 
   void stopDirection()
@@ -159,6 +192,8 @@ public class Enemy_Wander : State
   }
 
   int m_timer, m_maxTime, m_standBy, m_maxStandBy, m_directionIndex;
+
+  float m_speed, m_sprint;
   List<Vector2> m_directions;
 
   bool m_sword = false;
