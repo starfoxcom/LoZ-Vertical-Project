@@ -73,7 +73,7 @@ public class Link_Boomerang
       bool left = m_link_animator.GetBool("left");
       bool right = m_link_animator.GetBool("right");
 
-      float m_half_sprite = 0.60f;
+      float m_half_sprite = 0.08f;
       spawn_position += m_link_move.m_direction * m_half_sprite;
 
       m_link_cntrl.ThrowBoomerang(spawn_position);
