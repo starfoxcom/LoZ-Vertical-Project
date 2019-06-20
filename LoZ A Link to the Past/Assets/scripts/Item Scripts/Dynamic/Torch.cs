@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +15,46 @@ namespace Assets.scripts.Item_Scripts.Dynamic
     {
       UNKNOWN,//unknown
       ON,
-      OFF
+      OFF,
+      FOREVER
     }
     //! represent the state thats being used.
     BaseDynamicItem m_CurrentTorchState = null;
     //! to keep track of the state of the torch 
-    TorchState m_CurrentState = TorchState.UNKNOWN;
+    public TorchState m_CurrentState;
 
-    Torch()
+    private void Start()
     {
-      if(m_CurrentTorchState == null)
+      // assign the initial torch state.
+      if (m_CurrentState != TorchState.FOREVER)
       {
-        m_CurrentTorchState = new TorchOffState();
-        m_CurrentState = TorchState.OFF;
+        switch (m_CurrentState)
+        {
+          case (TorchState.OFF):
+            m_CurrentTorchState = gameObject.AddComponent<TorchOnState>();
+            break;
+          case (TorchState.ON):
+            m_CurrentTorchState = gameObject.AddComponent<TorchOffState>();
+            break;
+          default:
+            m_CurrentState = TorchState.OFF;
+            m_CurrentTorchState = gameObject.AddComponent<TorchOffState>();
+            break;
+        }
       }
+      else
+      {
+        m_CurrentTorchState = gameObject.AddComponent<TorchForeverState>();
+      }
+    }
+    /// <summary>
+    /// USED THIS TO DICTATE WHAT TYPE OF 
+    /// TORCH TO USE IN THE SCENE.
+    /// </summary>
+    /// <returns></returns>
+    public TorchState GetTorchState()
+    {
+      return m_CurrentState;
     }
 
     void ChangeState()
@@ -36,12 +63,12 @@ namespace Assets.scripts.Item_Scripts.Dynamic
       {
         case (TorchState.OFF):
           m_CurrentTorchState = null;
-          m_CurrentTorchState = new TorchOnState();
+          m_CurrentTorchState = this.gameObject.AddComponent<TorchOnState>();
           m_CurrentState = TorchState.ON;
           break;
         case (TorchState.ON):
           m_CurrentTorchState = null;
-          m_CurrentTorchState = new TorchOffState();
+          m_CurrentTorchState = this.gameObject.AddComponent<TorchOffState>();
           m_CurrentState = TorchState.OFF;
           break;
       }
@@ -50,11 +77,11 @@ namespace Assets.scripts.Item_Scripts.Dynamic
 
     private void Update()
     {
-      if(!m_CurrentTorchState.DynamicAcction())
+      if (!m_CurrentTorchState.DynamicAcction())
       {
         ChangeState();
       }
-  
+
     }
 
 
@@ -67,18 +94,12 @@ namespace Assets.scripts.Item_Scripts.Dynamic
         {
           case (TorchState.OFF):
             m_CurrentTorchState = null;
-            m_CurrentTorchState = new TorchOnState();
+            m_CurrentTorchState = this.gameObject.AddComponent<TorchOnState>();
             m_CurrentState = TorchState.ON;
-            break;
-          case (TorchState.ON):
-            m_CurrentTorchState = null;
-            m_CurrentTorchState = new TorchOffState();
-            m_CurrentState = TorchState.OFF;
             break;
         }
       }
     }
-
-
+   
   }
 }
