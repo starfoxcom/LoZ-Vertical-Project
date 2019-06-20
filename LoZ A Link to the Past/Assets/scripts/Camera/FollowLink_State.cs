@@ -36,9 +36,15 @@ public class FollowLink_State
   {
     Vector3 new_pos = new Vector3
       (
+<<<<<<< HEAD
       m_link_gm.transform.position.x,
       m_link_gm.transform.position.y,
       m_gameObject.transform.position.z
+=======
+        m_link_gm.transform.position.x,
+        m_link_gm.transform.position.y,
+        m_gameObject.transform.position.z
+>>>>>>> link_behaviour
       );
 
     m_gameObject.transform.position = new_pos;
