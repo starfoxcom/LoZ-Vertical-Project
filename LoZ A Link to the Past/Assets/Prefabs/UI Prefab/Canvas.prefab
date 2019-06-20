@@ -196,23 +196,24 @@ MonoBehaviour:
   m_Heart0: {fileID: 954263040}
   m_Heart1: {fileID: 431756541}
   m_Heart2: {fileID: 1592439498}
-  m_emptybar: {fileID: 21300000, guid: 3b2da34651e923a40bf4dbaf380faa51, type: 3}
-  m_magicbar1: {fileID: 21300000, guid: 7c99fdadb19b5c8458ebddba337575fc, type: 3}
-  m_magicbar2: {fileID: 21300000, guid: 900ca34fdda177149acbcf9ba9bea264, type: 3}
-  m_magicbar3: {fileID: 21300000, guid: 6eeec6b47cc10914ab52d441cc46489b, type: 3}
-  m_magicbar4: {fileID: 21300000, guid: 92eb1a80c0da2f642a57f848b7bab9b3, type: 3}
-  m_magicbar5: {fileID: 21300000, guid: 3e352acd3d6b55b4d9ba9517191ff6a3, type: 3}
-  m_magicbar6: {fileID: 21300000, guid: a918207ae27a1ca4db0b4a53e9689286, type: 3}
-  m_magicbar7: {fileID: 21300000, guid: 34220d7c65e30a747bb622b489cfb32e, type: 3}
-  m_magicbar8: {fileID: 21300000, guid: ad6fc309ab3263146a44abb133644223, type: 3}
-  m_magicbar9: {fileID: 21300000, guid: ac060752d87c0244eb01e77f9f0de990, type: 3}
-  m_magicbar10: {fileID: 21300000, guid: bcf9dc5b4bf58d942bc20b7bce72b32c, type: 3}
-  m_magicbar11: {fileID: 21300000, guid: 949f8c5b1b4b5fc4ea4f8498bdfbc4be, type: 3}
-  m_magicbar12: {fileID: 21300000, guid: 2e8e86aafd4126045bc782f89a70aaf0, type: 3}
-  m_magicbar13: {fileID: 21300000, guid: 864d7c9466caef440911cbd637121e8c, type: 3}
-  m_magicbar14: {fileID: 21300000, guid: 8140da38e2e7c104487d7b6afc6371be, type: 3}
-  m_magicbar15: {fileID: 21300000, guid: 4a0dfeddf34717447a74256247c2d1eb, type: 3}
-  m_magicbar16: {fileID: 21300000, guid: 01539148409316d4d8405302913be579, type: 3}
+  m_MagicBarSprites:
+  - {fileID: 21300000, guid: 3b2da34651e923a40bf4dbaf380faa51, type: 3}
+  - {fileID: 21300000, guid: 7c99fdadb19b5c8458ebddba337575fc, type: 3}
+  - {fileID: 21300000, guid: 900ca34fdda177149acbcf9ba9bea264, type: 3}
+  - {fileID: 21300000, guid: 6eeec6b47cc10914ab52d441cc46489b, type: 3}
+  - {fileID: 21300000, guid: 92eb1a80c0da2f642a57f848b7bab9b3, type: 3}
+  - {fileID: 21300000, guid: 3e352acd3d6b55b4d9ba9517191ff6a3, type: 3}
+  - {fileID: 21300000, guid: a918207ae27a1ca4db0b4a53e9689286, type: 3}
+  - {fileID: 21300000, guid: 34220d7c65e30a747bb622b489cfb32e, type: 3}
+  - {fileID: 21300000, guid: ad6fc309ab3263146a44abb133644223, type: 3}
+  - {fileID: 21300000, guid: ac060752d87c0244eb01e77f9f0de990, type: 3}
+  - {fileID: 21300000, guid: bcf9dc5b4bf58d942bc20b7bce72b32c, type: 3}
+  - {fileID: 21300000, guid: 949f8c5b1b4b5fc4ea4f8498bdfbc4be, type: 3}
+  - {fileID: 21300000, guid: 2e8e86aafd4126045bc782f89a70aaf0, type: 3}
+  - {fileID: 21300000, guid: 864d7c9466caef440911cbd637121e8c, type: 3}
+  - {fileID: 21300000, guid: 8140da38e2e7c104487d7b6afc6371be, type: 3}
+  - {fileID: 21300000, guid: 4a0dfeddf34717447a74256247c2d1eb, type: 3}
+  - {fileID: 21300000, guid: 01539148409316d4d8405302913be579, type: 3}
   m_FullHeart: {fileID: 21300000, guid: 1f4ca9ddc49af4942952b93819648691, type: 3}
   m_HalfHeart: {fileID: 21300002, guid: 1f4ca9ddc49af4942952b93819648691, type: 3}
   m_EmptyHeart: {fileID: 21300004, guid: 1f4ca9ddc49af4942952b93819648691, type: 3}
@@ -220,6 +221,7 @@ MonoBehaviour:
   m_ShowBombs: {fileID: 1833042866494663413}
   m_ShowArrows: {fileID: 1833042866193395075}
   m_ShowKeys: {fileID: 1833042865866629747}
+  magic_fuel: 17
 --- !u!1 &954263038
 GameObject:
   m_ObjectHideFlags: 0

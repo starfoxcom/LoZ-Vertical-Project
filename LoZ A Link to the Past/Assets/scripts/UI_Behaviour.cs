@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //Class that changes the text of every consumable of link when 
 public class UI_Behaviour : MonoBehaviour
 {
-    
+
     public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
 
     public Image m_MagicBar; // reference to magic bar in hud canvas to change its sprite when use changefuel()
@@ -18,25 +18,9 @@ public class UI_Behaviour : MonoBehaviour
     public Image m_Heart2;
     //--------------------------------------------------------------------------------------------------------------
 
-    //sprites of every instance of magic bar
-    public Sprite m_emptybar;
-    public Sprite m_magicbar1;
-    public Sprite m_magicbar2;
-    public Sprite m_magicbar3;
-    public Sprite m_magicbar4;
-    public Sprite m_magicbar5;
-    public Sprite m_magicbar6;
-    public Sprite m_magicbar7;
-    public Sprite m_magicbar8;
-    public Sprite m_magicbar9;
-    public Sprite m_magicbar10;
-    public Sprite m_magicbar11;
-    public Sprite m_magicbar12;
-    public Sprite m_magicbar13;
-    public Sprite m_magicbar14;
-    public Sprite m_magicbar15;
-    public Sprite m_magicbar16;
-   
+    
+    //
+    public Sprite[] m_MagicBarSprites=new Sprite[17];
 
     //Sprites of hearts-------------------------------------------------------
     public Sprite m_FullHeart;
@@ -53,10 +37,11 @@ public class UI_Behaviour : MonoBehaviour
 
     //private int to help changefuel()
     private float fueldiv;
+    private int m_latestfuel;
+    private static int m_fuelindex;
 
-    //TODO: Erase this int when changefuel() is complete
-    public int fuel;
-
+    //TODO: Erase this int when changefuel is tested
+    public int magic_fuel;
     //function that disables keys hud, only use when link is not in a dungeon
     public void HideKeys()
     {
@@ -144,24 +129,43 @@ public class UI_Behaviour : MonoBehaviour
 
     public void ChangeFuel(ref int _fuel) // every 8 fuel will load another bar
     {
-        fueldiv = (float)_fuel;
-        fueldiv /= 8;
+        fueldiv = (float)m_latestfuel;
+        fueldiv *= 0.125f; // this operation means the index of the final sprite to load in magic bar
+        fueldiv = Mathf.FloorToInt(fueldiv);
         Debug.Log(fueldiv);
+        m_fuelindex = (int)fueldiv;
 
-        if(fuel > _fuel)
+        //add fuel
+        if(m_latestfuel < _fuel)
         {
+            while (m_latestfuel <= _fuel)
+            {
+                m_fuelindex += 1;
+                m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
+                m_latestfuel += 8;
+            }
+            m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
+        }
 
+        //consume fuel
+        if (m_latestfuel > _fuel)
+        {
+            while (m_latestfuel > _fuel)
+            {
+                m_fuelindex -= 1;
+                m_MagicBar.sprite = m_MagicBarSprites[m_fuelindex];
+                m_latestfuel -= 8;
+            }
+            m_latestfuel = _fuel; // // get the latest fuel saved in a private member of this class
         }
 
 
-
-        if(_fuel == 126)
-        {
-            m_MagicBar.sprite = m_FullHeart;
-        }
-
-
+        
     }
 
-    
+    private void Start()
+    {
+        m_latestfuel = 0;
+        ChangeFuel(ref magic_fuel);
+    }
 }
