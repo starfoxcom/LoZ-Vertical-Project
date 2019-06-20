@@ -12,7 +12,7 @@ public class Boomerang_Controller : MonoBehaviour
 
   public float m_boom_radius = 5.0f;
 
-  public float m_boom_speed = 5.0f;
+  public float m_boom_speed = 0.6f;
 
   public void
   Throw(Vector2 _spawn_position)
