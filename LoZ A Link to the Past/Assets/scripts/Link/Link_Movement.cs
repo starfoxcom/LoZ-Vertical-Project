@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+public enum USER_CONTROLLER
+{
+  K_LOGITECH,
+  K_XBOX
+};
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Link_Movement : MonoBehaviour
 {
   /************************************************************************/
@@ -13,9 +18,23 @@ public class Link_Movement : MonoBehaviour
   // Flag: Puede link moverse?
   public bool m_active_displacement;
 
-  public Vector2 m_direction;
+  public Vector2 m_direction = new Vector2(1.0f,0.0f);
 
   public Vector2 m_raw_direction;
+
+  public USER_CONTROLLER m_active_controller = USER_CONTROLLER.K_LOGITECH;
+
+  public void 
+  SetLogitechController()
+  {
+    m_active_controller = USER_CONTROLLER.K_LOGITECH;
+  }
+
+  public void 
+  SetXBoxController()
+  {
+    m_active_controller = USER_CONTROLLER.K_XBOX;
+  }
   
   /************************************************************************/
   /* PRIVATE                                                              */
@@ -42,16 +61,22 @@ public class Link_Movement : MonoBehaviour
   void 
   Update()
   {
+  }
 
-    // Movimiento en los 4 ejes. 
+  public void
+  Stop()
+  {
+    m_link_rigidbody.velocity = new Vector2(0.0f, 0.0f);
+  }
 
-    if (m_active_displacement)
+  public void
+  UpdateDisplacement(Vector2 _direction)
+  {
+    m_link_rigidbody.velocity = _direction * LINK_N_SPEED;
+
+    if (_direction.magnitude != 0)
     {
-      UpdateDisplacement();
-    }
-    else
-    {
-      m_link_rigidbody.velocity = new Vector2(0.0f, 0.0f);
+      m_direction = _direction;
     }
 
     return;
@@ -61,8 +86,8 @@ public class Link_Movement : MonoBehaviour
   public void
   UpdateDisplacement()
   {
-    float h_value = Input.GetAxis("Horizontal");
-    float v_value = Input.GetAxis("Vertical");
+    float h_value = GetHorizontalAxis();
+    float v_value = GetVerticalAxis();
 
     Vector2 direction = new Vector2(h_value, v_value);
     direction.Normalize();
@@ -77,6 +102,34 @@ public class Link_Movement : MonoBehaviour
     return;
   }
 
+  private float
+  GetHorizontalAxis()
+  {
+    switch(m_active_controller)
+    {
+      case USER_CONTROLLER.K_LOGITECH:
+        return Input.GetAxis("Horizontal");
+      case USER_CONTROLLER.K_XBOX:
+        return Input.GetAxis("XBOX_Horizontal");
+      default:
+        return 0.0f;
+    }
+  }
+
+  private float
+  GetVerticalAxis()
+  {
+    switch (m_active_controller)
+    {
+      case USER_CONTROLLER.K_LOGITECH:
+        return Input.GetAxis("Vertical");
+      case USER_CONTROLLER.K_XBOX:
+        return Input.GetAxis("XBOX_Vertical");
+      default:
+        return 0.0f;
+    }
+  }
+
   // velocidad en el movimiento de los 4 ejes.
 
   Rigidbody2D m_link_rigidbody;
@@ -86,11 +139,11 @@ public class Link_Movement : MonoBehaviour
   /*
    * Velocidad normal de link.
    * */
-  static float LINK_N_SPEED = 0.9f;
+  public static float LINK_N_SPEED = 0.9f;
 
   /*
    * Velocidad lenta de link.
    * */
-  static float LINK_L_SPEED = 0.9f;
+  public static float LINK_L_SPEED = 0.9f;
 
 }
