@@ -39,6 +39,8 @@ public class Link_Idle
   public override void
   Update()
   {
+    m_link_move.UpdateDisplacement();
+
     if (Input.GetButtonDown("Button_A"))
     {
       switch(m_link_data.m_active_item)

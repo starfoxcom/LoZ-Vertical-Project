@@ -55,6 +55,8 @@ public class Link_Boomerang
     Link_Movement link_Move = m_gameObject.GetComponent<Link_Movement>();
     link_Move.m_active_displacement = false;
 
+    link_Move.Stop();
+
     return;
   }
 
