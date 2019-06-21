@@ -19,6 +19,8 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
   // this a reference to a link 
   public Link_Data m_link;
 
+  public bool IsInChest = false;
+
   void Start()
   {
     Debug.Log("Collectible item BASE");
@@ -46,9 +48,4 @@ public abstract class ItemBaseCollectible<T> : MonoBehaviour
   public abstract int GetValue();
   //! this method will increase (or possible decrease) some stat
   public abstract bool ItemEffect(ref T Stat);
-
-
-
-
-
 }

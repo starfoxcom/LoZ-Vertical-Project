@@ -41,10 +41,10 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddHealth(m_Value);
-        Destroy(this);
+        Destroy(gameObject);
         // make the sprite 
         SpriteRenderer temp = GetComponent<SpriteRenderer>();
         temp.sprite = null;

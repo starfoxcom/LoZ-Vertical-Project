@@ -16,11 +16,11 @@ namespace Assets.Item_Scripts.Chest_Clases
     /// <summary>
     /// For keeping track of the Lamp 
     /// </summary>
-    public static bool IsLampInChest = false;
+    public static bool IsLampInChest = true;
     /// <summary>
     /// For keeping track of the boomerang 
     /// </summary>
-    public static bool IsBoomerangInChest = false;
+    public static bool IsBoomerangInChest = true;
 
     /// <summary>
     /// this returns the type dictated by the m_ItemType Filed
@@ -35,17 +35,9 @@ namespace Assets.Item_Scripts.Chest_Clases
     // add the class map when it's made             // 
     private void Start()
     {
-      switch (m_ItemType)
+      if (!InitChest())
       {
-        case (ItemTypePlayerUse.Boomerang):
-          m_Item = new ItemBomerang();
-          IsBoomerangInChest = true;
-          break;
-
-        case (ItemTypePlayerUse.Lamp):
-          m_Item = new ItemLamp();
-          IsLampInChest = true;
-          break;
+        Debug.LogError("Game object needs Collider ");
       }
     }// end function 
 
@@ -65,9 +57,7 @@ namespace Assets.Item_Scripts.Chest_Clases
       m_LinkController = Temp.GetComponent<Link_Controller>();
       m_LinkData = Temp.GetComponent<Link_Data>();
 
-
-
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && isLinkFacingChest(m_LinkData))
       {
         if (IsChestUsed == false)
         {
@@ -92,7 +82,7 @@ namespace Assets.Item_Scripts.Chest_Clases
             
           }
 
-          IsChestUsed = true;
+          SetChestUsed();
         }
 
       }// end function
@@ -100,5 +90,5 @@ namespace Assets.Item_Scripts.Chest_Clases
     }// end class  
 
   }
-}// names space 
+}// end names space 
 
