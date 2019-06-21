@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1583739447073558533}
   - component: {fileID: 1583739447073558535}
   - component: {fileID: 1583739447073558534}
+  - component: {fileID: 8139998603835901038}
   m_Layer: 0
   m_Name: KeyChest
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583739447073558530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.5, y: -1.1, z: 0}
-  m_LocalScale: {x: 28.17822, y: 28.17822, z: 28.17822}
+  m_LocalPosition: {x: 15.696, y: -2.505, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsChestUsed: 0
+  m_OpeanbleDir: 0
   m_ItemClass: 0
   m_ItemType: 4
 --- !u!61 &1583739447073558535
@@ -144,3 +146,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &8139998603835901038
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583739447073558530}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.00010550022}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.04, y: 0.04}
+    newSize: {x: 0.04, y: 0.04}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.038734436, y: 0.038944483}
+  m_EdgeRadius: 0

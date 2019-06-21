@@ -84,8 +84,6 @@ namespace Assets.scripts.Item_Scripts.Dynamic
 
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D Col)
     {
       if (Col.tag == "Link")
