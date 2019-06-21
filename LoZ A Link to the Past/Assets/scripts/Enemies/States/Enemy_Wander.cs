@@ -19,6 +19,7 @@ public class Enemy_Wander : State
     m_maxTime = 150;
 
     m_sword = _sword;
+
   }
 
   public override void
