@@ -29,7 +29,7 @@ namespace Assets.Item_Scripts
 
     private void Start()
     {
-      if (m_rubyColor != RubyColor.Blue || m_rubyColor != RubyColor.Red)
+      if (m_rubyColor != RubyColor.Blue && m_rubyColor != RubyColor.Red)
       {
         m_rubyColor = RubyColor.Green;
         m_Value = 1;
@@ -84,7 +84,7 @@ namespace Assets.Item_Scripts
       if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddRupiah(m_Value);
-        Destroy(this);
+        Destroy(gameObject);
         SpriteRenderer temp = GetComponent<SpriteRenderer>();
         temp.sprite = null;
       }

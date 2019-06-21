@@ -41,7 +41,7 @@ namespace Assets.Item_Scripts
       if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddFuel(m_Value);
-        Destroy(this);
+        Destroy(gameObject);
         SpriteRenderer temp = GetComponent<SpriteRenderer>();
         temp.sprite = null;
       }
