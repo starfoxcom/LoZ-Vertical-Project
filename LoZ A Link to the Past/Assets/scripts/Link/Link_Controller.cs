@@ -35,7 +35,13 @@ public class Link_Controller : MonoBehaviour
   public Portal
   GetExitPortal()
   {
-    return m_exit_portal;
+    return m_to_portal;
+  }
+
+  public Portal
+  GetFromPortal()
+  {
+    return m_from_portal;
   }
 
   public void
@@ -43,16 +49,43 @@ public class Link_Controller : MonoBehaviour
   {   
     if(m_fsm.getActiveStateID() != (int)LINK_GLOBALS.TRANSITION_STATE_ID)
     {
+      //////////////////////////////////////////
+      // Set New Room
+
       GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
       room_mng.GetComponent<RoomManager>().SetActiveRoom(_from.m_exit_room);
 
+      //////////////////////////////////////////
+      // Set Camera State
+
       GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
       CameraController cam_cntrl = camera.GetComponent<CameraController>();
-      cam_cntrl.EnterPortal(_from.m_direction);
 
-      m_exit_portal = _to;
+      cam_cntrl.SetPortals(_from, _to);
+      cam_cntrl.SetState(CAMERA_STATE.k_TRANSTION);
+
+      //////////////////////////////////////////
+      // Set Link
+
+      m_from_portal = _from;
+      m_to_portal =   _to;
+
       m_fsm.SetState(LINK_GLOBALS.TRANSITION_STATE_ID);
     }
+    return;
+  }
+
+  public void
+  ExitPortal()
+  {
+    //////////////////////////////////////////
+    // Set Camera State
+
+    GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+    CameraController cam_cntrl = camera.GetComponent<CameraController>();
+
+    cam_cntrl.SetState(CAMERA_STATE.k_FOLLOW_LINK);
+
     return;
   }
 
@@ -171,5 +204,7 @@ public class Link_Controller : MonoBehaviour
 
   private Boomerang_Controller m_boomerang_cntr;
 
-  private Portal m_exit_portal;
+  private Portal m_to_portal;
+
+  private Portal m_from_portal;
 }
