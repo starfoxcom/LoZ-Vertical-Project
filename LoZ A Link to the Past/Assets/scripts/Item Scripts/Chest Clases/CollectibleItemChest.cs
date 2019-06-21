@@ -55,7 +55,7 @@ namespace Assets.Item_Scripts
 
       GameObject Temp = GameObject.FindWithTag("Link");
       Link = Temp.GetComponent<Link_Data>();
-      SetItemInChest(ref m_Item);
+      SetItemInChest(m_Item);
 
       if (Col.tag == "Link" && isLinkFacingChest(Link))
       {

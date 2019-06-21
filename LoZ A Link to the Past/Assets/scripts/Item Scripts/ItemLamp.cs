@@ -12,6 +12,7 @@ namespace Assets.Item_Scripts
   /// </summary>
   public class ItemLamp : ItemBasePlayerUsable
   {
+    
     //*********************Variables ***********//
     // use this to render the fire from the lamp 
     SpriteRenderer spriteRenderer;

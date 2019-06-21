@@ -31,7 +31,7 @@ namespace Assets.Item_Scripts
       if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddMasterKey(1);
-        Destroy(this);
+        Destroy(gameObject);
         SpriteRenderer temp = GetComponent<SpriteRenderer>();
         temp.sprite = null;
       }
