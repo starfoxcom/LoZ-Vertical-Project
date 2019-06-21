@@ -12,15 +12,13 @@ public class Enemy_Wander : State
 
     m_directions = _directions;
 
-    m_maxStandBy = 10;
+    m_rigidBody = m_gameObject.GetComponent<Rigidbody2D>();
+
+    m_maxStandBy = 50;
 
     m_maxTime = 150;
 
     m_sword = _sword;
-
-    m_speed = 1f;
-
-    m_sprint = m_speed * 2;
   }
 
   public override void
@@ -70,7 +68,16 @@ public class Enemy_Wander : State
             m_directionIndex = 1;
           }
 
-          m_gameObject.GetComponent<Rigidbody2D>().velocity = m_directions[m_directionIndex] * m_speed;
+         m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
+
+          GameObject link = GameObject.FindGameObjectWithTag("Link");
+
+          Vector3 distance = link.transform.position - m_gameObject.transform.position;
+
+          if (distance.magnitude <= 1)
+          {
+            m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+          }
 
           m_fsm.m_messages.Clear();
 
@@ -183,19 +190,39 @@ public class Enemy_Wander : State
       }
     }
 
-    m_gameObject.GetComponent<Rigidbody2D>().velocity = m_directions[m_directionIndex] * m_speed;
+    GameObject link = GameObject.FindGameObjectWithTag("Link");
+
+    Vector3 distance = link.transform.position - m_gameObject.transform.position;
+
+    if(distance.magnitude <= 1)
+    {
+      m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+
+      if(m_sword)
+      {
+        return;
+      }
+    }
+
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
+
+
+
+
+    
   }
 
   void stopDirection()
   {
-    m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    m_rigidBody.velocity = Vector2.zero;
   }
 
   int m_timer, m_maxTime, m_standBy, m_maxStandBy, m_directionIndex;
 
-  float m_speed, m_sprint;
   List<Vector2> m_directions;
 
   bool m_sword = false;
+
+  Rigidbody2D m_rigidBody;
 
 }

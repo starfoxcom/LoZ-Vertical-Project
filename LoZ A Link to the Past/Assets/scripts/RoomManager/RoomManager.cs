@@ -19,7 +19,7 @@ public class RoomManager : MonoBehaviour
   public Room[] m_room_list;
 
   public void
-  SetActiveRoom(int _id)
+  SetActiveRoom(ROOM_ID _id)
   {
     foreach(Room room in m_room_list)
     {
@@ -33,6 +33,12 @@ public class RoomManager : MonoBehaviour
     }
 
     return;
+  }
+
+  public Room
+  GetActiveRoom()
+  {
+    return m_active_room;
   }
 
   /************************************************************************/

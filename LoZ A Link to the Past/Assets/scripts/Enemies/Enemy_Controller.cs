@@ -39,6 +39,7 @@ public class Enemy_Controller : MonoBehaviour
 
     m_fsm.AddState(new Enemy_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions, m_sword));
+    m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_directions, m_sword));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -47,10 +48,21 @@ public class Enemy_Controller : MonoBehaviour
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
+
+    float backOffset = 0;
     if (collision.gameObject.tag == "Block")
     {
+
+      if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
+      {
+        backOffset = 0.04f;
+      }
+      else
+      {
+        backOffset = 0.035f;
+      }
       gameObject.transform.position +=
-        (gameObject.transform.position - collision.gameObject.transform.position) * .03f;
+        (gameObject.transform.position - collision.gameObject.transform.position) * backOffset;
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
   }
@@ -59,8 +71,11 @@ public class Enemy_Controller : MonoBehaviour
   void
   Update()
   {
+    if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
+    {
 
-    if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.IDLE_STATE_ID)
+    }
+    else if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.IDLE_STATE_ID)
     {
       m_fsm.SetState(ENEMY_GLOBALS.WANDER_STATE_ID);
     }
@@ -71,8 +86,6 @@ public class Enemy_Controller : MonoBehaviour
   private FSM m_fsm;
 
   private List<Vector2> m_directions;
-
-  private Vector3 m_backDirection, m_backOffset;
 
   [SerializeField]
   private bool m_sword = false;
