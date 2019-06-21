@@ -17,6 +17,8 @@ public class UI_Behaviour : MonoBehaviour
     public Image m_Heart1;
     public Image m_Heart2;
          
+
+
     //Sprites of hearts
     public Sprite m_FullHeart;
     public Sprite m_HalfHeart;
@@ -26,7 +28,10 @@ public class UI_Behaviour : MonoBehaviour
     //--------------------------------------
     public Image m_MagicBar;
 
+    //sprites for every possible magic bar appearance
     public Sprite[] m_MagicBarSprites = new Sprite[17];
+    //Images for the Select Menu
+    public Image[] m_SelectMenuImage = new Image[2];
     //private int to help changefuel()
     private static int m_last_total; // last fuel 
     private static float current;
