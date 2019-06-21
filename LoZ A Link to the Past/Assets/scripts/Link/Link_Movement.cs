@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+public enum USER_CONTROLLER
+{
+  K_LOGITECH,
+  K_XBOX
+};
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Link_Movement : MonoBehaviour
 {
   /************************************************************************/
@@ -16,6 +21,20 @@ public class Link_Movement : MonoBehaviour
   public Vector2 m_direction = new Vector2(1.0f,0.0f);
 
   public Vector2 m_raw_direction;
+
+  public USER_CONTROLLER m_active_controller = USER_CONTROLLER.K_LOGITECH;
+
+  public void 
+  SetLogitechController()
+  {
+    m_active_controller = USER_CONTROLLER.K_LOGITECH;
+  }
+
+  public void 
+  SetXBoxController()
+  {
+    m_active_controller = USER_CONTROLLER.K_XBOX;
+  }
   
   /************************************************************************/
   /* PRIVATE                                                              */
@@ -67,8 +86,8 @@ public class Link_Movement : MonoBehaviour
   public void
   UpdateDisplacement()
   {
-    float h_value = Input.GetAxis("Horizontal");
-    float v_value = Input.GetAxis("Vertical");
+    float h_value = GetHorizontalAxis();
+    float v_value = GetVerticalAxis();
 
     Vector2 direction = new Vector2(h_value, v_value);
     direction.Normalize();
@@ -81,6 +100,34 @@ public class Link_Movement : MonoBehaviour
     }
     
     return;
+  }
+
+  private float
+  GetHorizontalAxis()
+  {
+    switch(m_active_controller)
+    {
+      case USER_CONTROLLER.K_LOGITECH:
+        return Input.GetAxis("Horizontal");
+      case USER_CONTROLLER.K_XBOX:
+        return Input.GetAxis("XBOX_Horizontal");
+      default:
+        return 0.0f;
+    }
+  }
+
+  private float
+  GetVerticalAxis()
+  {
+    switch (m_active_controller)
+    {
+      case USER_CONTROLLER.K_LOGITECH:
+        return Input.GetAxis("Vertical");
+      case USER_CONTROLLER.K_XBOX:
+        return Input.GetAxis("XBOX_Vertical");
+      default:
+        return 0.0f;
+    }
   }
 
   // velocidad en el movimiento de los 4 ejes.
