@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7395541321962785318}
   m_Layer: 0
   m_Name: Boomerang
-  m_TagString: Item_Tool
+  m_TagString: Boomerang
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
