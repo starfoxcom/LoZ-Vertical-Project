@@ -272,11 +272,11 @@ public class UI_Behaviour : MonoBehaviour
             bPointerUp = false;
         }
 
-        if(Input.GetButtonDown("Button_B")  & bPointerUp) //Continue Game 
+        if((Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_Start") | Input.GetButtonDown("Button_X") | Input.GetButtonDown("Button_Y"))  & bPointerUp) //Continue Game 
         {
             DeActivateSelectScreen();
         }
-        else if(Input.GetButtonDown("Button_B") & !bPointerUp) // Save & Quit
+        else if((Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_Start") | Input.GetButtonDown("Button_X") | Input.GetButtonDown("Button_Y")) & !bPointerUp) // Save & Quit
         {
             DeActivateSelectScreen();
         }
