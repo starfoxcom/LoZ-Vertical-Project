@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 921829056672399492}
   - component: {fileID: 921829056672399490}
   - component: {fileID: 921829056672399491}
-  - component: {fileID: 921829056672399489}
+  - component: {fileID: 6921307704343996831}
   m_Layer: 0
-  m_Name: MasterKeyChest (1)
+  m_Name: LampChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921829056672399488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: -3.64, z: 0}
+  m_LocalPosition: {x: 18.51, y: -4.01, z: 0}
   m_LocalScale: {x: 28.17822, y: 28.17822, z: 28.17822}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ded67e3e4d1223546b748a8c2a6670ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73f8110d540684f428352562db4e34ce, type: 3}
   m_Color: {r: 0.8679245, g: 0.77947587, b: 0.1760413, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &921829056672399489
+--- !u!114 &6921307704343996831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,9 +138,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 921829056672399488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15869e190c07d1049b6a2df3017dcad1, type: 3}
+  m_Script: {fileID: 11500000, guid: eb768036ffc643a47a4dc3d7b7c9b1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IsChestUsed: 0
   m_ItemClass: 0
-  m_ItemType: 1
+  m_ItemType: 2

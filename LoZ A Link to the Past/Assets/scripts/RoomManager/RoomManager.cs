@@ -39,13 +39,12 @@ public class RoomManager : MonoBehaviour
   /* PRIVATE                                                              */
   /************************************************************************/
 
-  private Room m_active_room;
+  private Room m_active_room = null;
 
   // Start is called before the first frame update
   void 
   Start()
-  {
-    SetActiveRoom(m_room_list[0].getID());
+  {    
     return;
   }
   
@@ -53,6 +52,11 @@ public class RoomManager : MonoBehaviour
   void 
   Update()
   {
-      
+    if(m_active_room == null)
+    {
+      SetActiveRoom(m_room_list[0].getID());
+    }
+
+    return;
   }
 }
