@@ -28,7 +28,7 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddMasterKey(1);
         Destroy(this);
