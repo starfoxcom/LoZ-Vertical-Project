@@ -92,5 +92,5 @@ public class CamTransition_State
 
   private Rigidbody2D m_link_rb;
 
-  private float m_cam_speed = 1.2f;
+  private float m_cam_speed = 1.6f;
 }

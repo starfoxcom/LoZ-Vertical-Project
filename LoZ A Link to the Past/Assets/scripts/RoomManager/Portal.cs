@@ -26,17 +26,10 @@ public class Portal : MonoBehaviour
   OnTriggerEnter2D(Collider2D collision)
   {
     if(collision.gameObject.tag == "Link")
-    {
-
-      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
-      room_mng.GetComponent<RoomManager>().SetActiveRoom(m_exit_room);
+    {    
 
       Link_Controller link_cntrl = collision.gameObject.GetComponent<Link_Controller>();
-      link_cntrl.EnterPortal(m_exit_portal);
-
-      GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
-      CameraController cam_cntrl = camera.GetComponent<CameraController>();
-      cam_cntrl.EnterPortal(m_direction);      
+      link_cntrl.EnterPortal(this, m_exit_portal);        
 
       return;
     }

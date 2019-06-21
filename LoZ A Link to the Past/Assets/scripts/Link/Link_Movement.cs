@@ -42,19 +42,12 @@ public class Link_Movement : MonoBehaviour
   void 
   Update()
   {
+  }
 
-    // Movimiento en los 4 ejes. 
-
-    if (m_active_displacement)
-    {
-      UpdateDisplacement();
-    }
-    else
-    {
-      m_link_rigidbody.velocity = new Vector2(0.0f, 0.0f);
-    }
-
-    return;
+  public void
+  Stop()
+  {
+    m_link_rigidbody.velocity = new Vector2(0.0f, 0.0f);
   }
 
   public void

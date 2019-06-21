@@ -84,7 +84,13 @@ public class CameraController : MonoBehaviour
     m_camera = gameObject.GetComponent<Camera>();
 
     m_camera.aspect = 1.1428f;
-        
+
+    m_vec_defase = new Vector2
+   (
+   m_camera.orthographicSize * m_camera.aspect,
+   m_camera.orthographicSize
+   );
+
     return;
   }
     

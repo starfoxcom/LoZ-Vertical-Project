@@ -39,11 +39,18 @@ public class Link_Controller : MonoBehaviour
   }
 
   public void
-  EnterPortal(Portal _exit_portal)
+  EnterPortal(Portal _from, Portal _to)
   {   
     if(m_fsm.getActiveStateID() != (int)LINK_GLOBALS.TRANSITION_STATE_ID)
     {
-      m_exit_portal = _exit_portal;
+      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
+      room_mng.GetComponent<RoomManager>().SetActiveRoom(_from.m_exit_room);
+
+      GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+      CameraController cam_cntrl = camera.GetComponent<CameraController>();
+      cam_cntrl.EnterPortal(_from.m_direction);
+
+      m_exit_portal = _to;
       m_fsm.SetState(LINK_GLOBALS.TRANSITION_STATE_ID);
     }
     return;
