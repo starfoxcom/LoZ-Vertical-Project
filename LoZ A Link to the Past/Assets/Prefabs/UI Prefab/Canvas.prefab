@@ -220,8 +220,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a0dfeddf34717447a74256247c2d1eb, type: 3}
   - {fileID: 21300000, guid: 01539148409316d4d8405302913be579, type: 3}
   m_SelectMenuImage:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1801434703461988770}
+  - {fileID: 8578056549645007975}
+  bSelectScreenActivated: 0
+  bSelectScreenCenter: 0
   m_ShowRupees: {fileID: 1833042866033759042}
   m_ShowBombs: {fileID: 1833042866494663413}
   m_ShowArrows: {fileID: 1833042866193395075}
@@ -852,7 +854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268.84, y: -200}
+  m_AnchoredPosition: {x: -252, y: -147}
   m_SizeDelta: {x: 23, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6452762898433890495
@@ -1433,7 +1435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
+  m_AnchoredPosition: {x: 15, y: -200}
   m_SizeDelta: {x: 600, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6444613962856006226

@@ -7,7 +7,8 @@ using UnityEngine.UI;
 //Class that changes the text of every consumable of link when 
 public class UI_Behaviour : MonoBehaviour
 {
-
+    private  Vector3 movePointer = new Vector3(0.0f,53.0f,0.0f); //vector used to move the select screen pointer
+    private Vector3 moveSelectScreen = new Vector3(0.0f, 212.0f, 0.0f); //vector used to move every component to load the screen at the center of the screen
     public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
 
     public Image m_Boomerang;
@@ -31,7 +32,7 @@ public class UI_Behaviour : MonoBehaviour
     //sprites for every possible magic bar appearance
     public Sprite[] m_MagicBarSprites = new Sprite[17];
     //Images for the Select Menu
-    public Image[] m_SelectMenuImage = new Image[2];
+    public Image[] m_SelectMenuImage = new Image[2]; //Array[0] Options, Array[1] Pointer 
     //private int to help changefuel()
     private static int m_last_total; // last fuel 
     private static float current;
@@ -42,12 +43,16 @@ public class UI_Behaviour : MonoBehaviour
     private static int index;
     private static float m_trigger_time;
     private static float m_duration_time = 0.4f;
+    
+    //bools for Select Screen
+    private static bool bPointerUp;
+    public bool bSelectScreenActivated; // if select screen is on screen
+    public bool bSelectScreenCenter;//if the select screen needs to be loaded at the center
+    
 
 
-
-
-    //Hud Text where it shows the stats passed by link Data--------------------------------------------
-    public Text m_ShowRupees;
+   //Hud Text where it shows the stats passed by link Data--------------------------------------------
+   public Text m_ShowRupees;
     public Text m_ShowBombs;
     public Text m_ShowArrows;
     public Text m_ShowKeys;
@@ -161,17 +166,29 @@ public class UI_Behaviour : MonoBehaviour
 
     private void Update()
     {
-        if (m_animation)
+        if (m_animation) //if a change of the magic bar its supposed to show on screen
         {
             if (Time.time >= m_trigger_time)
             {
                 AnimBar();
             }
         }
+
+        if(Input.GetButtonDown("Button_Select") & !bSelectScreenActivated)
+        {
+            bSelectScreenActivated = true;
+            ActivateSelectScreen();
+           
+        }
+
+        if (bSelectScreenActivated)
+        {
+            MoveSelectPointer();
+        }
+
     }
 
    
-
     void AnimBar()
     {
         unit = target - current;
@@ -193,7 +210,9 @@ public class UI_Behaviour : MonoBehaviour
 
     private void Start()
     {
-        m_last_total = 0;
+        m_last_total = 0; //starting 0 fuel
+        bPointerUp = true; //pointer always start by the side of continue game 
+        bSelectScreenActivated = false; 
     }
 
     public void EquipBoomerang()
@@ -212,5 +231,54 @@ public class UI_Behaviour : MonoBehaviour
     {
         m_Boomerang.gameObject.SetActive(false);
         m_Lantern.gameObject.SetActive(false);
+    }
+
+    public void ActivateSelectScreen()
+    {
+        m_SelectMenuImage[0].gameObject.SetActive(true);
+        m_SelectMenuImage[1].gameObject.SetActive(true);
+        bSelectScreenActivated = true;
+        if(bSelectScreenCenter)
+        {
+            m_SelectMenuImage[0].transform.position += moveSelectScreen;
+            m_SelectMenuImage[1].transform.position += moveSelectScreen;
+        }
+      
+    }
+
+    public void DeActivateSelectScreen()
+    {
+        if (bSelectScreenCenter)
+        {
+            m_SelectMenuImage[0].transform.position -= moveSelectScreen;
+            m_SelectMenuImage[1].transform.position -= moveSelectScreen;
+        }
+        m_SelectMenuImage[0].gameObject.SetActive(false);
+        m_SelectMenuImage[1].gameObject.SetActive(false);
+        bSelectScreenActivated = false;
+     
+    }
+
+    public void MoveSelectPointer() // When the Select screen is activated This function control the inputs handled
+    {
+        if(Input.GetAxis("Vertical") > 0 & !bPointerUp) 
+        {
+            m_SelectMenuImage[1].transform.position += movePointer;
+            bPointerUp = true;
+        }
+        else if(Input.GetAxis("Vertical") < 0 & bPointerUp)
+        {
+            m_SelectMenuImage[1].transform.position -= movePointer;
+            bPointerUp = false;
+        }
+
+        if(Input.GetButtonDown("Button_B")  & bPointerUp) //Continue Game 
+        {
+            DeActivateSelectScreen();
+        }
+        else if(Input.GetButtonDown("Button_B") & !bPointerUp) // Save & Quit
+        {
+            DeActivateSelectScreen();
+        }
     }
 }
