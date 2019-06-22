@@ -22,9 +22,14 @@ namespace Assets.Item_Scripts
     public OpenableDir m_OpeanbleDir = OpenableDir.Down;
     /// <summary>
     /// This variable is so all chest class can became solid ofter 
-    /// 
     /// </summary>
     protected Collider2D m_collider;
+
+    /// <summary>
+    /// This will be used to represent if the 
+    /// Chest is open or closed
+    /// </summary>
+    public Sprite m_OpenSprite;
 
     // used to know where link is 
     const float ThreeFourthsPi = (0.75f * Mathf.PI);
@@ -45,7 +50,7 @@ namespace Assets.Item_Scripts
     {
       Right = 0,
       Up = 1,
-      Left =2 ,
+      Left = 2,
       Down = 3
     }
 
@@ -54,7 +59,7 @@ namespace Assets.Item_Scripts
     {
       Vector2 Dir;
       Vector2 Pos = this.transform.position;
-      Vector2 LinkPos =  Link.transform.position;
+      Vector2 LinkPos = Link.transform.position;
       Dir = (Pos - LinkPos);
       Dir.Normalize();
       float angle = Mathf.Atan2(Dir.y, Dir.x);
@@ -75,14 +80,14 @@ namespace Assets.Item_Scripts
       // Right 
       if (Angle > ThreeFourthsPi || Angle < -ThreeFourthsPi)
       {
-          if(m_OpeanbleDir == OpenableDir.Right)
+        if (m_OpeanbleDir == OpenableDir.Right)
         { return true; }
         return false;
       }
       // Up
       else if (Angle < -OneFourthsPi && Angle > -ThreeFourthsPi)
       {
-        if(m_OpeanbleDir == OpenableDir.Up)
+        if (m_OpeanbleDir == OpenableDir.Up)
         { return true; }
         return false;
       }
@@ -92,7 +97,7 @@ namespace Assets.Item_Scripts
         if (m_OpeanbleDir == OpenableDir.Left)
         { return true; }
         return false;
-        
+
       }
       // down 
       else
@@ -122,9 +127,11 @@ namespace Assets.Item_Scripts
     {
       IsChestUsed = true;
       m_collider.isTrigger = false;
+      SpriteRenderer Temp = GetComponent<SpriteRenderer>();
+      Temp.sprite = this.m_OpenSprite;
     }
 
-    protected void SetItemInChest(ref ItemBaseCollectible<int> item)
+    protected void SetItemInChest(ItemBaseCollectible<int> item)
     {
       item.IsInChest = true;
     }
