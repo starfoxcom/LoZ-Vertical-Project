@@ -7,17 +7,24 @@ using UnityEngine;
 
 namespace Assets.scripts.Item_Scripts.Spawner_s
 {
+  //! this script needs prefabs to work 
+  [RequireComponent(typeof(GameObject[]))]
+
   class Spawner : MonoBehaviour
   {
+    //! making sure 
     const int m_MinItems = 3;
-
+    //! this is used to select the item 
     public SpawnableItems m_SelectedSpawn = SpawnableItems.RANDOM;
     ///<summary>
     ///Here Goes the prefabs of Item that the games spawns from 
-    ///the Pots, when destroyed
+    ///Any breakable thing 
     ///</summary>
     public GameObject[] m_SpanwableItems;
 
+    /// <summary>
+    ///  need to make sure this script is used with an array of Objects 
+    /// </summary>
     private void Start()
     {
       Debug.AssertFormat(m_SpanwableItems.Length >= m_MinItems, "Error not enoughs Prefabs need at least {0}", m_MinItems);
@@ -34,9 +41,12 @@ namespace Assets.scripts.Item_Scripts.Spawner_s
       }
     }
 
+    /// <summary>
+    /// This function takes care 
+    /// </summary>
     public void StartSpawn()
     {
-      Spawn((int)m_SelectedSpawn);
+      Spawn((sbyte)m_SelectedSpawn);
     }
 
     /*      // collectible items 
@@ -54,10 +64,14 @@ namespace Assets.scripts.Item_Scripts.Spawner_s
     /// Takes care of making instances of all the items of the Game 
     /// </summary>
     /// <param name="Index"></param>
-    void Spawn(int Index)
+    void Spawn(sbyte Index)
     {
       switch (Index)
       {
+        // this case spawns nothing 
+        case ((sbyte)SpawnableItems.NULL):
+          break;
+
         case AllSpawnbleItem.Collec_Unknown:
           RandomSpawn();
           break;

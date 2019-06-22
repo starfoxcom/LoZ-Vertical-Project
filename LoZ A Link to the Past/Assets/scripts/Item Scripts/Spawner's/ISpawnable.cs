@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.scripts.Item_Scripts.Spawner_s
 {
-  public enum SpawnableItems 
+  public enum SpawnableItems : sbyte
   {
+    NULL = -128,
     RANDOM = -1,
     HEART = 0,
     GREEN_POTION = 1,
