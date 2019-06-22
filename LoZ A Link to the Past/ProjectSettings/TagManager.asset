@@ -14,6 +14,8 @@ TagManager:
   - RoomManager
   - Boomerang
   - Enemy
+  - lvl_jump
+  - halfBlock
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Level 0
+  - Level 1
   - 
   - 
   - 
