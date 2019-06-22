@@ -78,7 +78,6 @@ public class StationaryKnight : MonoBehaviour
     // left 
     else if (Angle < OneFourthsPi || Angle < -OneFourthsPi)
     {
-     // Debug.Log("Left Side");
       m_Renderer.sprite = m_sprites[2];
     }
     // down 
