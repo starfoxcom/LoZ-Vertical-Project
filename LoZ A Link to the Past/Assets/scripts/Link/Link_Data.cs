@@ -117,6 +117,8 @@ public class Link_Data : MonoBehaviour
       m_fuel_percent = 0;
     }
 
+    m_ui.ChangeFuel(ref m_fuel_percent);
+
     return;
   }
 
@@ -150,6 +152,8 @@ public class Link_Data : MonoBehaviour
   /************************************************************************/
   /* Private                                                              */
   /************************************************************************/
+
+  private AudioSource m_audio;
 
   /*
    * Vida actual de link. Ejemplo:
@@ -188,6 +192,8 @@ public class Link_Data : MonoBehaviour
 
   private List<GameObject> m_lamp_pool;
 
+  private bool m_low_snd_playing = false;
+
 
   /*
    * Inicialización del personaje
@@ -198,16 +204,16 @@ public class Link_Data : MonoBehaviour
     //////////////////////////////////////////
     // Stats
 
-    m_health =          MAX_HEALTH;
+    m_health =          2;
     m_num_keys =        2;
     m_num_master_keys = 0;
-    m_fuel_percent =    MAX_FUEL_PERCENT;
+    m_fuel_percent =    0;
     m_num_rupiahs =     10;
     m_num_arrow =       0;
     
     m_ui.ChangeKeys(ref m_num_keys);
     m_ui.ChangeHealth(ref m_health);        
-    //m_ui.ChangeFuel(ref m_fuel_percent);
+    m_ui.ChangeFuel(ref m_fuel_percent);
     m_ui.ChangeRupees(ref m_num_rupiahs);
 
     //////////////////////////////////////////
@@ -231,10 +237,30 @@ public class Link_Data : MonoBehaviour
       m_lamp_pool.Add(lamp);
     }
 
+    m_audio = gameObject.GetComponent<AudioSource>();
+
     return;
   }
 
   private void Update()
   {
+    if(!m_low_snd_playing)
+    {
+      if(m_health <= 2)
+      {
+        m_low_snd_playing = true;
+        m_audio.Play();
+      }
+    }
+    else
+    {
+      if(m_health > 2)
+      {
+        m_low_snd_playing = false;
+        m_audio.Stop();
+      }
+    }
+
+    return;
   }
 }

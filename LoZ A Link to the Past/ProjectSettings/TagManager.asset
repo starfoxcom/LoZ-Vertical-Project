@@ -12,6 +12,7 @@ TagManager:
   - Lamp_Fire
   - Portal
   - RoomManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX
