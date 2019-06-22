@@ -40,5 +40,5 @@ namespace Assets.scripts.Item_Scripts.Dynamic
 
     }//end function
 
-  }
+  }// end class 
 }
