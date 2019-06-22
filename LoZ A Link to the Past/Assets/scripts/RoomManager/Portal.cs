@@ -11,14 +11,29 @@ public class Portal : MonoBehaviour
   public ROOM_ID m_exit_room;
 
   public Portal m_exit_portal;
-
+  
   public Vector2 m_direction;
 
-  private void Start()
+  public Transform m_spawn_transform;
+
+  public Vector2 SPAWN_POSITION
+  {
+    get
+    {
+      return m_spawn_transform.position;
+    }
+  }
+
+  private void 
+  Start()
   {
     m_direction 
       = m_exit_portal.gameObject.transform.position - gameObject.transform.position;
     m_direction.Normalize();
+
+    SpriteRenderer spr_rnd = m_spawn_transform.gameObject.GetComponent<SpriteRenderer>();
+    spr_rnd.enabled = false;
+
     return;
   }
 

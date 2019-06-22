@@ -19,6 +19,7 @@ public class Enemy_Wander : State
     m_maxTime = 150;
 
     m_sword = _sword;
+
   }
 
   public override void
@@ -39,9 +40,9 @@ public class Enemy_Wander : State
   Update()
   {
 
-    if(m_fsm.m_messages.Count != 0)
+    if (m_fsm.m_messages.Count != 0)
     {
-      if(onCollisionWith(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION))
+      if (onCollisionWith(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION))
       {
 
         if (m_sword)
@@ -68,52 +69,78 @@ public class Enemy_Wander : State
             m_directionIndex = 1;
           }
 
-         m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
+          m_gameObject.transform.position +=
+          new Vector3(m_directions[m_directionIndex].x * -1 * .015f, m_directions[m_directionIndex].y * -1 * .015f);
 
-          GameObject link = GameObject.FindGameObjectWithTag("Link");
+          startMovement();
 
-          Vector3 distance = link.transform.position - m_gameObject.transform.position;
+          //CApsule this in a function to select if is a simple soldier or a sword soldier
+          //if (linkOnView())
+          //{
 
-          if (distance.magnitude <= 1)
-          {
-            m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
-          }
+          //  m_fsm.m_messages.Dequeue();
 
-          m_fsm.m_messages.Clear();
+          //  return;
+          //}
+          m_fsm.m_messages.Dequeue();
 
           return;
+
         }
 
-        stopDirection();
+        m_gameObject.transform.position +=
+          new Vector3(m_directions[m_directionIndex].x * -1 * .015f, m_directions[m_directionIndex].y * -1 * .015f);
 
-        m_timer = m_maxTime;
+        setNewDirection(m_sword);
+
+        stopMovement();
+
+        //if (linkOnView())
+        //{
+
+
+        //  return;
+        //}
+
+        m_standBy = 40;
+        if(m_timer >= 0)
+        {
+          m_timer -= 5;
+        }
+        else
+        {
+          m_timer = 0;
+        }
 
         return;
       }
     }
 
-    if (m_timer >= m_maxTime)
-    {
+    Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex] * .1f);
 
-      if (m_standBy <= m_maxStandBy)
+    if (m_standBy >= m_maxStandBy)
+    {
+      startMovement();
+
+      if (m_timer >= m_maxTime)
       {
 
-        stopDirection();
+        stopMovement();
 
-        ++m_standBy;
+        m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
         return;
       }
 
-      m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
+      ++m_timer;
     }
 
-    ++m_timer;
+    ++m_standBy;
   }
 
   bool onCollisionWith(Message.MESSAGE_TYPE _type)
   {
-    if(m_fsm.m_messages.Peek().m_type == _type)
+    if (m_fsm.m_messages.Peek().m_type == _type)
     {
 
       m_fsm.m_messages.Dequeue();
@@ -133,34 +160,6 @@ public class Enemy_Wander : State
     {
 
       temp = Random.Range(0, m_directions.Count);
-
-      int inverse = 0;
-
-      if(m_directionIndex == 0)
-      {
-
-        inverse = 2;
-      }
-      else if(m_directionIndex == 1)
-      {
-
-        inverse = 3;
-      }
-      else if(m_directionIndex == 2)
-      {
-
-        inverse = 0;
-      }
-      else
-      {
-
-        inverse = 1;
-      }
-
-      while(temp == inverse)
-      {
-        temp = Random.Range(0, m_directions.Count);
-      }
 
       m_directionIndex = temp;
     }
@@ -190,31 +189,41 @@ public class Enemy_Wander : State
       }
     }
 
-    GameObject link = GameObject.FindGameObjectWithTag("Link");
+    //if (linkOnView())
+    //{
 
-    Vector3 distance = link.transform.position - m_gameObject.transform.position;
+    //  return;
+    //}
+  }
 
-    if(distance.magnitude <= 1)
+  void stopMovement()
+  {
+    m_rigidBody.velocity = Vector2.zero;
+  }
+
+  void startMovement()
+  {
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
+  }
+
+  bool linkOnView()
+  {
+    if (GameObject.FindGameObjectWithTag("Link"))
     {
-      m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
-      if(m_sword)
+      GameObject link = GameObject.FindGameObjectWithTag("Link");
+
+      Vector3 distance = link.transform.position - m_gameObject.transform.position;
+
+      if (distance.magnitude <= 1)
       {
-        return;
+        m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+
+        return true;
       }
     }
 
-    m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
-
-
-
-
-    
-  }
-
-  void stopDirection()
-  {
-    m_rigidBody.velocity = Vector2.zero;
+    return false;
   }
 
   int m_timer, m_maxTime, m_standBy, m_maxStandBy, m_directionIndex;

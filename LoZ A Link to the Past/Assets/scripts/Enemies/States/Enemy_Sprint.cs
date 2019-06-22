@@ -30,6 +30,8 @@ public class Enemy_Sprint : State
   {
 
     m_timer = m_standBy = 0;
+
+
   }
 
   public override void Update()
@@ -40,32 +42,58 @@ public class Enemy_Sprint : State
       if (onCollisionWith(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION))
       {
 
-        if(!m_sword)
+        if (!m_sword)
         {
           m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
-          return;
         }
+
+        m_fsm.m_messages.Dequeue();
+
+        return;
       }
     }
 
-    if (m_timer >= m_maxTime)
+    if (m_standBy >= m_maxStandBy)
     {
+      startMovement();
 
-      if (m_standBy <= m_maxStandBy)
+      if (m_timer >= m_maxTime)
       {
 
-        stopDirection();
+        stopMovement();
 
-        ++m_standBy;
+        m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
         return;
       }
 
-      m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
+      ++m_timer;
     }
 
-    ++m_timer;
+    ++m_standBy;
+  }
+
+  bool onCollisionWith(Message.MESSAGE_TYPE _type)
+  {
+    if (m_fsm.m_messages.Peek().m_type == _type)
+    {
+
+      m_fsm.m_messages.Dequeue();
+      return true;
+    }
+
+    m_fsm.m_messages.Dequeue();
+    return false;
+  }
+
+  void stopMovement()
+  {
+    m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+  }
+
+  void startMovement()
+  {
 
     GameObject link = GameObject.FindGameObjectWithTag("Link");
 
@@ -83,24 +111,6 @@ public class Enemy_Sprint : State
       direction.Normalize();
       m_rigidBody.velocity = direction * .5f;
     }
-  }
-
-  bool onCollisionWith(Message.MESSAGE_TYPE _type)
-  {
-    if (m_fsm.m_messages.Peek().m_type == _type)
-    {
-
-      m_fsm.m_messages.Dequeue();
-      return true;
-    }
-
-    m_fsm.m_messages.Dequeue();
-    return false;
-  }
-
-  void stopDirection()
-  {
-    m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
   }
 
   int m_timer, m_maxTime, m_standBy, m_maxStandBy, m_directionIndex;

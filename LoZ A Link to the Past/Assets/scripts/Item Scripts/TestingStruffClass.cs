@@ -24,17 +24,15 @@ namespace Assets.Item_Scripts
     {
       GameObject Temp = GameObject.FindWithTag("Link");
       m_link = Temp.GetComponent<Link_Data>();
-      GameObject TempOther = GameObject.FindGameObjectWithTag("Item_Tool");
-      m_Bomerang = TempOther.GetComponent<ItemBomerang>();
     }
 
 
     private void Update()
     {
-      if (Input.GetButtonDown("Button_A"))
+      if (Input.GetKeyDown(KeyCode.Alpha1))
       {
-        m_Bomerang.ItemAcction(new Vector2(-1, 0), m_link.transform.position);
-
+        Spawner Span = GetComponent<Spawner>();
+        Span.StartSpawn();
       }
       else if (Input.GetKey(KeyCode.A))
       {

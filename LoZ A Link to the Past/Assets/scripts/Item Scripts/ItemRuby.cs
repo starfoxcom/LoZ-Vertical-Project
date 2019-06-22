@@ -12,15 +12,20 @@ namespace Assets.Item_Scripts
 {
   class ItemRuby : ItemBaseCollectible<int>
   {
+
+    public AudioClip m_rup;
+
+    private SoundManager m_snd_mng;
+
     //! the colors correspond to the value of the ruby's
-    public enum RubyColor
+    public enum RubyColor : sbyte
     {
       Green = 1,
       Blue = 5,
       Red = 20
     }
 
-    RubyColor m_rubyColor;
+   public RubyColor m_rubyColor = RubyColor.Green;
     //! how much a ruby is valued at (how many ruby's link get from this ruby)
     int m_Value;
 
@@ -29,6 +34,9 @@ namespace Assets.Item_Scripts
 
     private void Start()
     {
+      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
+      m_snd_mng = room_mng.GetComponent<SoundManager>();
+
       if (m_rubyColor != RubyColor.Blue || m_rubyColor != RubyColor.Red)
       {
         m_rubyColor = RubyColor.Green;
@@ -81,12 +89,15 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if(Col.tag == "Link")
+      if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddRupiah(m_Value);
-        Destroy(this);
-        SpriteRenderer temp = GetComponent<SpriteRenderer>();
-        temp.sprite = null;
+
+        m_snd_mng.PlayOneShot(m_rup);
+
+        Destroy(gameObject);
+
+        return;
       }
     }
   }

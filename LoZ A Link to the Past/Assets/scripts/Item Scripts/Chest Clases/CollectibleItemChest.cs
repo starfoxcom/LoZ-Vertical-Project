@@ -21,8 +21,14 @@ namespace Assets.Item_Scripts
       return m_Item;
     }
 
+    
     private void Start()
     {
+      if (!InitChest())
+      {
+        Debug.LogError("chest needs Collider ");
+      }
+
 
       switch (m_ItemType)
       {
@@ -31,13 +37,13 @@ namespace Assets.Item_Scripts
           throw new NotImplementedException();
           break;
         case (ItemTypeCollectible.Rubys):
-          m_Item = new ItemRuby();
+          m_Item = gameObject.AddComponent<ItemRuby>();
           break;
         case (ItemTypeCollectible.Key):
-          m_Item = new ItemKey();
+          m_Item = gameObject.AddComponent<ItemKey>();
           break;
         case (ItemTypeCollectible.MasterKey):
-          m_Item = new ItemMasterKey();
+          m_Item = gameObject.AddComponent<ItemMasterKey>();
           break;
       }
 
@@ -49,12 +55,12 @@ namespace Assets.Item_Scripts
 
       GameObject Temp = GameObject.FindWithTag("Link");
       Link = Temp.GetComponent<Link_Data>();
+      SetItemInChest(m_Item);
 
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && isLinkFacingChest(Link))
       {
         if (IsChestUsed == false)
         {
-
           switch (m_ItemType)
           {
             case (ItemTypeCollectible.Rubys):
@@ -67,11 +73,11 @@ namespace Assets.Item_Scripts
               Link.AddMasterKey(m_Item.GetValue());
               break;
           }
-
-          IsChestUsed = true;
+          
+          SetChestUsed();
         }
-      }// end function
+      }
+    }// end function
 
-    }// end class 
-  }
+  }// end class 
 }

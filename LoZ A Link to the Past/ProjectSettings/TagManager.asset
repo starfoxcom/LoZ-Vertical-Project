@@ -12,6 +12,8 @@ TagManager:
   - Lamp_Fire
   - Portal
   - RoomManager
+  - Boomerang
+  - Enemy
   layers:
   - Default
   - TransparentFX

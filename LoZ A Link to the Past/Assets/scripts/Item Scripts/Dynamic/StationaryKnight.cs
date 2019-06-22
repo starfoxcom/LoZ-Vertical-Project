@@ -48,6 +48,7 @@ public class StationaryKnight : MonoBehaviour
     //Debug.Log(GetAngleFromLink());
     SetSprite();
   }
+
   //! find out which angle from this knight
   protected float GetAngleFromLink()
   {
@@ -65,19 +66,18 @@ public class StationaryKnight : MonoBehaviour
     // Right 
     if (Angle > ThreeFourthsPi || Angle < -ThreeFourthsPi)
     {
-      Debug.Log("right side");
+      //Debug.Log("right side");
       m_Renderer.sprite = m_sprites[0];
     }
     // Up
     else if (Angle < -OneFourthsPi && Angle > -ThreeFourthsPi)
     {
-      Debug.Log("Font Side");
+      //Debug.Log("Font Side");
       m_Renderer.sprite = m_sprites[1];
     }
     // left 
     else if (Angle < OneFourthsPi || Angle < -OneFourthsPi)
     {
-      Debug.Log("Left Side");
       m_Renderer.sprite = m_sprites[2];
     }
     // down 
