@@ -2,28 +2,28 @@ fileFormatVersion: 2
 guid: f12cd4d5a96a326409a257e2499aca08
 TextureImporter:
   fileIDToRecycleName:
-    21300000: blue_soldier_0
-    21300002: blue_soldier_1
-    21300004: blue_soldier_2
-    21300006: blue_soldier_3
-    21300008: blue_soldier_4
-    21300010: blue_soldier_5
-    21300012: blue_soldier_6
-    21300014: blue_soldier_7
-    21300016: blue_soldier_8
-    21300018: blue_soldier_9
-    21300020: blue_soldier_10
-    21300022: blue_soldier_11
-    21300024: blue_soldier_12
-    21300026: blue_soldier_13
-    21300028: blue_soldier_14
-    21300030: blue_soldier_15
-    21300032: blue_soldier_16
-    21300034: blue_soldier_17
-    21300036: blue_soldier_18
-    21300038: blue_soldier_19
-    21300040: blue_soldier_20
-    21300042: blue_soldier_21
+    21300000: Left1
+    21300002: Left2
+    21300004: Left3
+    21300006: LeftLookUp
+    21300008: LeftLookDown
+    21300010: Down1
+    21300012: Down2
+    21300014: Down3
+    21300016: Down4
+    21300018: DownLookLeft
+    21300020: DownLookRight
+    21300022: Up1
+    21300024: Up2
+    21300026: Up3
+    21300028: Up4
+    21300030: UpLookLeft
+    21300032: UpLookRight
+    21300034: Right1
+    21300036: Right2
+    21300038: Right3
+    21300040: RightLookDown
+    21300042: RightLookUp
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blue_soldier_0
+      name: Left1
       rect:
         serializedVersion: 2
         x: 0
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_1
+      name: Left2
       rect:
         serializedVersion: 2
         x: 32
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_2
+      name: Left3
       rect:
         serializedVersion: 2
         x: 62
@@ -199,7 +199,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_3
+      name: LeftLookUp
       rect:
         serializedVersion: 2
         x: 101
@@ -219,7 +219,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_4
+      name: LeftLookDown
       rect:
         serializedVersion: 2
         x: 131
@@ -239,7 +239,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_5
+      name: Down1
       rect:
         serializedVersion: 2
         x: 7
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_6
+      name: Down2
       rect:
         serializedVersion: 2
         x: 35
@@ -279,7 +279,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_7
+      name: Down3
       rect:
         serializedVersion: 2
         x: 65
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_8
+      name: Down4
       rect:
         serializedVersion: 2
         x: 92
@@ -319,7 +319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_9
+      name: DownLookLeft
       rect:
         serializedVersion: 2
         x: 119
@@ -339,7 +339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_10
+      name: DownLookRight
       rect:
         serializedVersion: 2
         x: 147
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_11
+      name: Up1
       rect:
         serializedVersion: 2
         x: 5
@@ -379,7 +379,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_12
+      name: Up2
       rect:
         serializedVersion: 2
         x: 33
@@ -399,7 +399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_13
+      name: Up3
       rect:
         serializedVersion: 2
         x: 61
@@ -419,7 +419,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_14
+      name: Up4
       rect:
         serializedVersion: 2
         x: 89
@@ -439,7 +439,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_15
+      name: UpLookLeft
       rect:
         serializedVersion: 2
         x: 117
@@ -459,7 +459,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_16
+      name: UpLookRight
       rect:
         serializedVersion: 2
         x: 142
@@ -479,7 +479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_17
+      name: Right1
       rect:
         serializedVersion: 2
         x: 6
@@ -499,7 +499,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_18
+      name: Right2
       rect:
         serializedVersion: 2
         x: 38
@@ -519,7 +519,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_19
+      name: Right3
       rect:
         serializedVersion: 2
         x: 69
@@ -539,7 +539,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_20
+      name: RightLookDown
       rect:
         serializedVersion: 2
         x: 107
@@ -559,7 +559,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_soldier_21
+      name: RightLookUp
       rect:
         serializedVersion: 2
         x: 139
