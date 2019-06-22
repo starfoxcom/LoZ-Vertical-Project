@@ -18,7 +18,7 @@ namespace Assets.Item_Scripts
     private SoundManager m_snd_mng;
 
     //! the colors correspond to the value of the ruby's
-    public enum RubyColor
+    public enum RubyColor : sbyte
     {
       Green = 1,
       Blue = 5,
