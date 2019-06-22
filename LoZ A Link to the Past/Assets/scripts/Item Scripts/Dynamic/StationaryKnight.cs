@@ -48,6 +48,7 @@ public class StationaryKnight : MonoBehaviour
     //Debug.Log(GetAngleFromLink());
     SetSprite();
   }
+
   //! find out which angle from this knight
   protected float GetAngleFromLink()
   {
