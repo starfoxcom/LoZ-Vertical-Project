@@ -8,6 +8,8 @@ public class Boomerang_Controller : MonoBehaviour
   // Public Methods                                                       //
   //////////////////////////////////////////////////////////////////////////
 
+  public AudioClip m_boomerang_snd;
+
   public Vector2 m_spawn_position;
 
   public float m_boom_radius = 5.0f;

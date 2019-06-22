@@ -46,23 +46,32 @@ public class Enemy_Controller : MonoBehaviour
     return;
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
+  private void OnCollisionEnter2D(Collision2D collision)
   {
-
-    float backOffset = 0;
+    //float backOffset = 0;
     if (collision.gameObject.tag == "Block")
     {
 
-      if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
-      {
-        backOffset = 0.04f;
-      }
-      else
-      {
-        backOffset = 0.035f;
-      }
-      gameObject.transform.position +=
-        (gameObject.transform.position - collision.gameObject.transform.position) * backOffset;
+      //if (m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
+      //{
+      //  backOffset = 0.04f;
+      //}
+      //else
+      //{
+      //  backOffset = 0.035f;
+      //}
+      //gameObject.transform.position +=
+      //  (gameObject.transform.position - collision.gameObject.transform.position) * backOffset;
+      m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
+    }
+  }
+
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+
+    if (collision.gameObject.tag == "Block")
+    {
+
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
   }
