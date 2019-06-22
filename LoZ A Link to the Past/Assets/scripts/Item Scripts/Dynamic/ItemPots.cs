@@ -27,13 +27,25 @@ namespace Assets.scripts.Item_Scripts.Dynamic
 
     public override bool DynamicAcction()
     {
-      System.Random randomNumber = new System.Random();
-      int Index = randomNumber.Next(0, m_SpanwableItems.Length);
-      // make one of the items spawn in the same place the pot was.
-      Instantiate(m_SpanwableItems[Index], transform.position, Quaternion.identity);
-
+      Spawner_s.Spawner Temp = GetComponentInChildren<Spawner_s.Spawner>();
+      if (Temp == null)
+      {
+        Debug.LogAssertion("Needs a child component for this script to work");
+      }
+      Temp.StartSpawn();
       return true;
     }// end function 
+
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if (Col.tag == "Link")
+      {
+        DynamicAcction();
+        SelfDestory();
+      }
+
+    }//end function
 
   }// end class 
 }

@@ -13,7 +13,7 @@ namespace Assets.Item_Scripts
   class ItemRuby : ItemBaseCollectible<int>
   {
     //! the colors correspond to the value of the ruby's
-    public enum RubyColor
+    public enum RubyColor : sbyte
     {
       Green = 1,
       Blue = 5,
