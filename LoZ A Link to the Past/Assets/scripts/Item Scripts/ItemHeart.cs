@@ -12,12 +12,20 @@ namespace Assets.Item_Scripts
 {
   public class ItemHeart : ItemBaseCollectible<int>
   {
+
+    private SoundManager m_snd_mng;
+
+    public AudioClip m_heart_snd;
+
     //TODO: find out the actual limit later 
     int m_Limit = 10;
     int m_Value = 1;
 
     private void Start()
     {
+      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
+      m_snd_mng = room_mng.GetComponent<SoundManager>();
+
       m_ItemType = ItemTypeCollectible.Heart;
       GetLinkData();
 
@@ -41,13 +49,13 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddHealth(m_Value);
-        Destroy(this);
-        // make the sprite 
-        SpriteRenderer temp = GetComponent<SpriteRenderer>();
-        temp.sprite = null;
+
+        m_snd_mng.PlayOneShot(m_heart_snd);
+
+        Destroy(gameObject);
       }
     }
   }

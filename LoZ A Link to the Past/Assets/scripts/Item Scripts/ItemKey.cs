@@ -10,8 +10,15 @@ namespace Assets.Item_Scripts
   class ItemKey : ItemBaseCollectible<int>
   {
 
+    private SoundManager m_snd_mng;
+
+    public AudioClip m_key_snd;
+
     private void Start()
     {
+      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
+      m_snd_mng = room_mng.GetComponent<SoundManager>();
+
       m_ItemType = ItemTypeCollectible.Key;
       GetLinkData();
     }
@@ -29,12 +36,15 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if(Col.tag == "Link")
+
+      if(Col.tag == "Link" && !IsInChest)
       {
         m_link.AddKey(1);
-        Destroy(this);
-        SpriteRenderer temp = GetComponent<SpriteRenderer>();
-        temp.sprite = null;
+
+        m_snd_mng.PlayOneShot(m_key_snd);
+
+        Destroy(gameObject);
+        
       }
 
     }

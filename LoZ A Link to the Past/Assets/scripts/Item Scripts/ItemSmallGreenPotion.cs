@@ -9,12 +9,20 @@ namespace Assets.Item_Scripts
 {
   class ItemSmallGreenPotion : ItemBaseCollectible<int>
   {
+
+    private SoundManager m_snd_mng;
+
+    public AudioClip m_posicion;
+
     //TODO: find out the actual limit later 
     int m_MagicaLimit = 10;
-    int m_Value = 1;
+    int m_Value = 4;
 
     private void Start()
     {
+      GameObject room_mng = GameObject.FindGameObjectWithTag("RoomManager");
+      m_snd_mng = room_mng.GetComponent<SoundManager>();
+
       m_ItemType = ItemTypeCollectible.SmallGreenPotion;
       GetLinkData();
     }
@@ -25,7 +33,7 @@ namespace Assets.Item_Scripts
       if (Magica < m_MagicaLimit)
       {
         Magica += m_Value;
-        Debug.Log("Here is the magica now " + Magica.ToString());
+        //Debug.Log("Here is the magica now " + Magica.ToString());
         return true;
       }
       return false;
@@ -38,12 +46,14 @@ namespace Assets.Item_Scripts
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-      if (Col.tag == "Link")
+      if (Col.tag == "Link" && !IsInChest)
       {
         m_link.AddFuel(m_Value);
-        Destroy(this);
-        SpriteRenderer temp = GetComponent<SpriteRenderer>();
-        temp.sprite = null;
+
+        m_snd_mng.PlayOneShot(m_posicion);
+
+        Destroy(gameObject);
+        
       }
     }
   }

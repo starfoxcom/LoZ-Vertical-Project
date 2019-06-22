@@ -8,25 +8,68 @@ public class CameraController : MonoBehaviour
   /* PUBLIC                                                               */
   /************************************************************************/
 
+  public AudioClip m_music_intro;
+
+  public AudioClip m_music_loop;
+
   public GameObject m_link_gm;
+
+  public void 
+  SetState(CAMERA_STATE _cam_state)
+  {
+    m_fsm.SetState((int)_cam_state);
+    return;
+  }
 
   public void
   setRoomPoints(Vector2 _vec_1, Vector2 _vec_2)
   {
     m_vec_1 = _vec_1;
     m_vec_2 = _vec_2;
-
     return;
   }
 
   public void
-  EnterPortal(Vector2 _direction)
+  SetPortals(Portal _from, Portal _to)
   {
-    Vector2 position = gameObject.transform.position;
-    m_target_position =  position + (_direction * 2 * m_vec_defase.x);
-
-    m_fsm.SetState((int)CAMERA_STATE.k_TRANSTION);
+    m_from  = _from;
+    m_to    = _to;
     return;
+  }
+
+  public bool
+  LockInsideRoom(Vector2 _cam_position, ref Vector2 _lock_vector)
+  {
+    Vector2 cam_to_room_1 = VECTOR_1 - _cam_position;
+    Vector2 cam_to_room_2 = VECTOR_2 - _cam_position;
+
+    cam_to_room_1.x = Mathf.Abs(cam_to_room_1.x);
+    cam_to_room_1.y = Mathf.Abs(cam_to_room_1.y);
+    cam_to_room_2.x = Mathf.Abs(cam_to_room_2.x);
+    cam_to_room_2.y = Mathf.Abs(cam_to_room_2.y);
+
+    _lock_vector.x = 0;
+    _lock_vector.y = 0;
+
+    if (cam_to_room_1.x < m_vec_defase.x)
+    {
+      _lock_vector.x = (m_vec_defase.x - cam_to_room_1.x);
+    }
+    else if (cam_to_room_2.x < m_vec_defase.x)
+    {
+      _lock_vector.x = -1 * (m_vec_defase.x - cam_to_room_2.x);
+    }
+
+    if (cam_to_room_1.y < m_vec_defase.y)
+    {
+      _lock_vector.y = (m_vec_defase.y - cam_to_room_1.y);
+    }
+    else if (cam_to_room_2.y < m_vec_defase.y)
+    {
+      _lock_vector.y = -1 * (m_vec_defase.y - cam_to_room_2.y);
+    }
+
+    return (_lock_vector.magnitude == 0);
   }
 
   public Vector2 TARGET_POSITION
@@ -58,6 +101,8 @@ public class CameraController : MonoBehaviour
   /* PRIVATE                                                              */
   /************************************************************************/
 
+  private AudioSource m_audioSource;
+
   private Camera m_camera;
 
   private Vector2 m_vec_1;
@@ -68,6 +113,12 @@ public class CameraController : MonoBehaviour
 
   private Vector2 m_target_position;
 
+  private Portal m_from;
+
+  private Portal m_to;
+
+  private bool m_playing_intro = true;
+
   void 
   Start()
   {
@@ -75,13 +126,18 @@ public class CameraController : MonoBehaviour
 
     m_fsm.AddState(new FollowLink_State(gameObject, m_fsm));
     m_fsm.AddState(new CamTransition_State(gameObject, m_fsm));
+    m_fsm.AddState(new CameraPause_State(gameObject, m_fsm));
 
     m_fsm.SetState((int)CAMERA_STATE.k_FOLLOW_LINK);
 
     //////////////////////////////////////////
     // Tech Aspect
 
-    m_camera = gameObject.GetComponent<Camera>();
+    m_camera =      gameObject.GetComponent<Camera>();
+    m_audioSource = gameObject.GetComponent<AudioSource>();
+
+    m_audioSource.loop = false;
+    m_audioSource.PlayOneShot(m_music_intro);
 
     m_camera.aspect = 1.1428f;
 
@@ -98,6 +154,18 @@ public class CameraController : MonoBehaviour
   Update()
   {
     m_fsm.Update();
+
+    if(m_playing_intro)
+    {
+      if(!m_audioSource.isPlaying)
+      {
+        m_audioSource.loop = true;
+        m_audioSource.clip = m_music_loop;
+        m_audioSource.Play();
+
+        m_playing_intro = false;
+      }
+    }
   }
 
   private FSM m_fsm;
