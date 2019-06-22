@@ -8,6 +8,10 @@ public class CameraController : MonoBehaviour
   /* PUBLIC                                                               */
   /************************************************************************/
 
+  public AudioClip m_music_intro;
+
+  public AudioClip m_music_loop;
+
   public GameObject m_link_gm;
 
   public void 
@@ -97,6 +101,8 @@ public class CameraController : MonoBehaviour
   /* PRIVATE                                                              */
   /************************************************************************/
 
+  private AudioSource m_audioSource;
+
   private Camera m_camera;
 
   private Vector2 m_vec_1;
@@ -110,6 +116,8 @@ public class CameraController : MonoBehaviour
   private Portal m_from;
 
   private Portal m_to;
+
+  private bool m_playing_intro = true;
 
   void 
   Start()
@@ -125,7 +133,11 @@ public class CameraController : MonoBehaviour
     //////////////////////////////////////////
     // Tech Aspect
 
-    m_camera = gameObject.GetComponent<Camera>();
+    m_camera =      gameObject.GetComponent<Camera>();
+    m_audioSource = gameObject.GetComponent<AudioSource>();
+
+    m_audioSource.loop = false;
+    m_audioSource.PlayOneShot(m_music_intro);
 
     m_camera.aspect = 1.1428f;
 
@@ -142,6 +154,18 @@ public class CameraController : MonoBehaviour
   Update()
   {
     m_fsm.Update();
+
+    if(m_playing_intro)
+    {
+      if(!m_audioSource.isPlaying)
+      {
+        m_audioSource.loop = true;
+        m_audioSource.clip = m_music_loop;
+        m_audioSource.Play();
+
+        m_playing_intro = false;
+      }
+    }
   }
 
   private FSM m_fsm;

@@ -2,28 +2,28 @@ fileFormatVersion: 2
 guid: 5a25a837583a3424b83c8164f3aac4ab
 TextureImporter:
   fileIDToRecycleName:
-    21300000: green_soldier_0
-    21300002: green_soldier_1
-    21300004: green_soldier_2
-    21300006: green_soldier_3
-    21300008: green_soldier_4
-    21300010: green_soldier_5
-    21300012: green_soldier_6
-    21300014: green_soldier_7
-    21300016: green_soldier_8
-    21300018: green_soldier_9
-    21300020: green_soldier_10
-    21300022: green_soldier_11
-    21300024: green_soldier_12
-    21300026: green_soldier_13
-    21300028: green_soldier_14
-    21300030: green_soldier_15
-    21300032: green_soldier_16
-    21300034: green_soldier_17
-    21300036: green_soldier_18
-    21300038: green_soldier_19
-    21300040: green_soldier_20
-    21300042: green_soldier_21
+    21300000: Left1
+    21300002: Left2
+    21300004: Left3
+    21300006: LeftLookUp
+    21300008: LeftLookDown
+    21300010: Down1
+    21300012: Down2
+    21300014: Down3
+    21300016: Down4
+    21300018: DownLookLeft
+    21300020: DownLookRight
+    21300022: Up1
+    21300024: Up2
+    21300026: Up3
+    21300028: Up4
+    21300030: UpLookLeft
+    21300032: UpLookRight
+    21300034: Right1
+    21300036: Right2
+    21300038: Right3
+    21300040: RightLookDown
+    21300042: RightLookUp
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,441 +139,441 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: green_soldier_0
+      name: Left1
       rect:
         serializedVersion: 2
         x: 0
         y: 126
         width: 27
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.7000001, y: 0.059259485}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f5441d63a2012548b24a65feca505a8
+      spriteID: a7e48a8dc4e0b3a4aacaa1c5166c6a42
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_1
+      name: Left2
       rect:
         serializedVersion: 2
         x: 32
         y: 126
         width: 27
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.70074093, y: 0.0600002}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76c49cdb48bd0e248b66cec852555fa5
+      spriteID: e5caa64d5dedf90448beb5fc36364cad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_2
+      name: Left3
       rect:
         serializedVersion: 2
         x: 62
         y: 126
         width: 32
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.74937534, y: 0.06296342}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16499ae2a9501854eb31cdcb74ef4001
+      spriteID: 1a90e72291fc6944fbabf5e5f6a891c8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_3
+      name: LeftLookUp
       rect:
         serializedVersion: 2
         x: 101
         y: 127
         width: 26
         height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.71923125, y: 0.016800232}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0ddf8e72b8066e4088549fc0bd9a925
+      spriteID: 3d7a6a51ff4ea2542a49b9ed5ff4b0b7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_4
+      name: LeftLookDown
       rect:
         serializedVersion: 2
         x: 131
         y: 127
         width: 26
         height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.70000046, y: 0.020000305}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 367abd968ef817f458e353b9ee90db5f
+      spriteID: be55bd44be859d648a367033e2e32095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_5
+      name: Down1
       rect:
         serializedVersion: 2
         x: 7
         y: 79
         width: 22
         height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.315}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65047b44c53c44945a5839030caec522
+      spriteID: e8a92a81de6b2a24a8f08aa36f87389f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_6
+      name: Down2
       rect:
         serializedVersion: 2
         x: 35
         y: 80
         width: 22
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd1a9da844308d6458c7afd30c24a9c1
+      spriteID: c5ac693a0c5a9f04e8adfb9f943bf402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_7
+      name: Down3
       rect:
         serializedVersion: 2
         x: 65
         y: 76
         width: 22
         height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.37}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18b17ac4c841cee468b2dcb3a35a549e
+      spriteID: f17b5ac300120bc47b6ae0cde8c6c092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_8
+      name: Down4
       rect:
         serializedVersion: 2
         x: 92
         y: 79
         width: 22
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.325}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f750d8e02160734b90eef0fb9fcd07e
+      spriteID: 068e1f318f7a9314caba3876724acfc9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_9
+      name: DownLookLeft
       rect:
         serializedVersion: 2
         x: 119
         y: 80
         width: 22
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8472ca3e8c6f38245b385a8bfb2c54cd
+      spriteID: 49e5e478ff65b8d4ab387f4e8a38bf88
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_10
+      name: DownLookRight
       rect:
         serializedVersion: 2
         x: 147
         y: 80
         width: 22
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57a417ddf3271fd4eae75e4c856ab99c
+      spriteID: 6326f20296fa0cd4dac196ea82ec7a5f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_11
+      name: Up1
       rect:
         serializedVersion: 2
         x: 5
         y: 42
         width: 22
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 832cfa7c00e38b14ca3e63a2dbc935ba
+      spriteID: 2747ed36c4aa88643b0c714f8dfc118a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_12
+      name: Up2
       rect:
         serializedVersion: 2
         x: 33
         y: 41
         width: 22
         height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83b7f127a888cad4e9aefc18b28c3ddf
+      spriteID: 286cc60ac76316845b3ddba5549e0a44
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_13
+      name: Up3
       rect:
         serializedVersion: 2
         x: 61
         y: 41
         width: 22
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ce19c753ff6de04588146ff0c448f52
+      spriteID: 589a6fd811169fe418348815fd1e7a29
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_14
+      name: Up4
       rect:
         serializedVersion: 2
-        x: 89
-        y: 41
+        x: 90
+        y: 42
         width: 22
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b443ca93e753a649bde3cd119550de8
+      spriteID: d53d485c863f69548a54c9b87a356e2b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_15
+      name: UpLookLeft
       rect:
         serializedVersion: 2
         x: 117
         y: 41
         width: 22
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f17d091d24ce4224b868c7ba981f2109
+      spriteID: 31e94dc965a718d44bcff771611163ea
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_16
+      name: UpLookRight
       rect:
         serializedVersion: 2
         x: 142
         y: 41
         width: 22
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.035}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e67b9d13caf1c2d40b82c0a7024e027e
+      spriteID: b0b723dd6826ac94c9d7d870b21745c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_17
+      name: Right1
       rect:
         serializedVersion: 2
         x: 6
         y: 1
         width: 29
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.2693104, y: 0.056923058}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aee80cb899ca6d4cbb80ca416078882
+      spriteID: 306b4a073c89fe3428baa3a54e5332da
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_18
+      name: Right2
       rect:
         serializedVersion: 2
         x: 38
         y: 1
         width: 29
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.2679313, y: 0.06333332}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61df2fba5a5f08649851e0005e473299
+      spriteID: e2781acd0eec6b842b395bd5e52eae47
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_19
+      name: Right3
       rect:
         serializedVersion: 2
         x: 69
         y: 1
         width: 32
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.24562502, y: 0.059629615}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c237121f3e5d05a478c98becb5381bf1
+      spriteID: 2ab7c324a72b9604e8dcbe6faa546e17
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_20
+      name: RightLookDown
       rect:
         serializedVersion: 2
         x: 107
         y: 1
         width: 28
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.2511433, y: 0.05461537}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1081e95a406fe2044ba61987765aea4f
+      spriteID: 14bcead432a90e74fb8e0fa81dd84a63
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: green_soldier_21
+      name: RightLookUp
       rect:
         serializedVersion: 2
         x: 139
         y: 1
         width: 28
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.24571446, y: 0.05615383}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e93e94987f1de8a4189128f7f48ccde2
+      spriteID: b130090646374fc459a52ed935cb9f59
       vertices: []
       indices: 
       edges: []
