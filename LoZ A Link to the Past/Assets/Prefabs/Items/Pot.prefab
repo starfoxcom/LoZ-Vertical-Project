@@ -11,13 +11,10 @@ GameObject:
   - component: {fileID: 2888077743645211089}
   - component: {fileID: 2888077743645211088}
   - component: {fileID: 2888077743645211091}
-  - component: {fileID: 2888077743645211090}
-  - component: {fileID: 2888077743645211093}
-  - component: {fileID: 2888077743645211092}
   - component: {fileID: 2888077743645211095}
   - component: {fileID: 2888077743645210926}
   m_Layer: 0
-  m_Name: Pot-Test
+  m_Name: Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,50 +104,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2888077743645211090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2888077743645211094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0c028496f605674eb095e12a43af03b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_active_displacement: 0
-  m_direction: {x: 0, y: 0}
-  m_raw_direction: {x: 0, y: 0}
---- !u!114 &2888077743645211093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2888077743645211094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5436253443287384aac6a3051ed47f74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_has_boomerang: 1
-  m_active_item: 0
-  m_lamp_fire_prefab: {fileID: 0}
-  m_ui: {fileID: 0}
---- !u!114 &2888077743645211092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2888077743645211094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a708fc7727ec7848a54a589f343ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_boomerang_prefab: {fileID: 0}
 --- !u!114 &2888077743645211095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Renderer: {fileID: 0}
   m_ItemID: -1
-  m_SpanwableItems: []
+  m_SpawnableItems: []
 --- !u!61 &2888077743645210926
 BoxCollider2D:
   m_ObjectHideFlags: 0
