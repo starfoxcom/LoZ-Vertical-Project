@@ -205,10 +205,10 @@ public class Link_Data : MonoBehaviour
     // Stats
 
     m_health =          2;
-    m_num_keys =        2;
+    m_num_keys =        0;
     m_num_master_keys = 0;
     m_fuel_percent =    0;
-    m_num_rupiahs =     10;
+    m_num_rupiahs =     0;
     m_num_arrow =       0;
     
     m_ui.ChangeKeys(ref m_num_keys);
