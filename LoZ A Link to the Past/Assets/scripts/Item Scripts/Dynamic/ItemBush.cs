@@ -20,7 +20,7 @@ namespace Assets.scripts.Item_Scripts.Dynamic
     public override bool DynamicAcction()
     {
 
-      Spawner_s.Spawner Temp = GetComponentInChildren<Spawner_s.Spawner>();
+      Spawner Temp = GetComponentInChildren<Spawner>();
       if (Temp == null)
       {
         Debug.LogAssertion("Needs a child component for this script to work");
