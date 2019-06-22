@@ -9,9 +9,12 @@ using UnityEngine;
 /// Examples : the bushes and pots
 /// </summary>
 
+  [RequireComponent(typeof(SpriteRenderer))]
+  [RequireComponent(typeof(Link_Controller))]
 
 public abstract class BaseDynamicItem : MonoBehaviour
 {
+
   //! for later identifying which type of Dynamic item that's used
   public enum DynamicItemID :sbyte
   {
@@ -43,7 +46,7 @@ public abstract class BaseDynamicItem : MonoBehaviour
   public void SelfDestory()
   {
     m_Renderer.sprite = null;
-    Destroy(this);
+    Destroy(gameObject);
   }
 
   //! first check if link can do it THEN do it.

@@ -20,8 +20,25 @@ namespace Assets.scripts.Item_Scripts.Dynamic
     public override bool DynamicAcction()
     {
 
-
+      Spawner_s.Spawner Temp = GetComponentInChildren<Spawner_s.Spawner>();
+      if (Temp == null)
+      {
+        Debug.LogAssertion("Needs a child component for this script to work");
+      }
+      Temp.StartSpawn();
       return true;
-    }
-  }
+    }// end function 
+
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+      if (Col.tag == "Link")
+      {
+        DynamicAcction();
+        SelfDestory();
+      }
+
+    }//end function
+
+  }// end class 
 }
