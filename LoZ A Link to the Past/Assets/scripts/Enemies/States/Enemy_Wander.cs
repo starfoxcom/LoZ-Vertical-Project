@@ -20,6 +20,8 @@ public class Enemy_Wander : State
 
     m_sword = _sword;
 
+    m_animator = m_gameObject.GetComponent<Animator>();
+
   }
 
   public override void
@@ -33,7 +35,11 @@ public class Enemy_Wander : State
   {
     m_timer = m_standBy = 0;
 
-    setNewDirection(m_sword);
+    //if(!m_sword)
+    //{
+      setNewDirection(m_sword);
+
+    //}
 
     m_checked = false;
   }
@@ -80,7 +86,7 @@ public class Enemy_Wander : State
           {
             if (!m_sword)
             {
-              startMovement();
+              startMovementNoAnim();
             }
 
             Debug.Log("I see link");
@@ -106,7 +112,7 @@ public class Enemy_Wander : State
         {
           if (!m_sword)
           {
-            startMovement();
+            startMovementNoAnim();
           }
           Debug.Log("I see link");
           m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
@@ -168,7 +174,7 @@ public class Enemy_Wander : State
       {
         if (!m_sword)
         {
-          startMovement();
+          startMovementNoAnim();
         }
 
         Debug.Log("I see link");
@@ -232,6 +238,18 @@ public class Enemy_Wander : State
 
       temp = Random.Range(0, 2);
 
+      m_animator.SetInteger("Direction", temp);
+
+      m_animator.SetBool("Up", false);
+
+      m_animator.SetBool("Down", false);
+
+      m_animator.SetBool("Left", false);
+
+      m_animator.SetBool("Right", false);
+
+
+
       if (m_directionIndex != 0 && m_directionIndex != m_directions.Count - 1)
       {
 
@@ -257,7 +275,7 @@ public class Enemy_Wander : State
   void stepBack()
   {
     m_gameObject.transform.position +=
-         new Vector3(m_directions[m_directionIndex].x * -1 * .04f, m_directions[m_directionIndex].y * -1 * .04f);
+         new Vector3(m_directions[m_directionIndex].x * -1 * .05f, m_directions[m_directionIndex].y * -1 * .05f);
   }
 
   void stopMovement()
@@ -267,8 +285,22 @@ public class Enemy_Wander : State
 
   void startMovement()
   {
-    m_rigidBody.velocity = m_directions[m_directionIndex] * .4f;
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .5f;
 
+    m_animator.SetInteger("Direction", -1);
+
+    m_animator.SetBool("Up", (m_directionIndex == 1));
+
+    m_animator.SetBool("Down", m_directionIndex == 3);
+
+    m_animator.SetBool("Left", m_directionIndex == 2);
+
+    m_animator.SetBool("Right", m_directionIndex == 0);
+  }
+
+  void startMovementNoAnim()
+  {
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .5f;
   }
 
   bool linkOnView()
@@ -357,5 +389,7 @@ public class Enemy_Wander : State
   bool m_checked = false;
 
   Rigidbody2D m_rigidBody;
+
+  Animator m_animator;
 
 }

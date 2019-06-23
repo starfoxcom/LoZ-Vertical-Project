@@ -17,6 +17,8 @@ public class Enemy_Sprint : State
     m_maxTime = 150;
 
     m_sword = _sword;
+
+    m_animator = m_gameObject.GetComponent<Animator>();
   }
 
   public override void OnExit()
@@ -55,7 +57,7 @@ public class Enemy_Sprint : State
         {
 
           m_gameObject.transform.position +=
-         new Vector3(m_rigidBody.velocity.normalized.x * -1 * .04f, m_rigidBody.velocity.normalized.y * -1 * .04f);
+         new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
 
           m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -119,12 +121,24 @@ public class Enemy_Sprint : State
     {
       m_direction = link.transform.position - m_gameObject.transform.position;
       m_direction.Normalize();
-      m_rigidBody.velocity = m_direction * .6f;
+      m_rigidBody.velocity = m_direction * .7f;
     }
     else
     {
       m_direction.Normalize();
-      m_rigidBody.velocity = m_direction * .6f;
+
+      m_rigidBody.velocity = m_direction * .7f;
+
+      m_animator.SetInteger("Direction", -1);
+
+
+      m_animator.SetBool("Up", (m_direction.y == 1));
+
+      m_animator.SetBool("Down", m_direction.y == -1);
+
+      m_animator.SetBool("Left", m_direction.x == -1);
+
+      m_animator.SetBool("Right", m_direction.x == 1);
     }
   }
 
@@ -135,4 +149,6 @@ public class Enemy_Sprint : State
   bool m_sword = false;
 
   Rigidbody2D m_rigidBody;
+
+  Animator m_animator;
 }
