@@ -18,6 +18,14 @@ public class Enemy_On_Damage : State
 
     m_renderer = m_gameObject.GetComponent<SpriteRenderer>();
 
+    foreach (var sound in m_gameObject.GetComponents<AudioSource>())
+    {
+      if (sound.clip.name == "LTTP_Enemy_Hit")
+      {
+        m_sound = sound;
+      }
+    }
+
     m_colors = new List<Color>();
 
     m_sword = _sword;
@@ -49,12 +57,12 @@ public class Enemy_On_Damage : State
     m_rigidBody.isKinematic = false;
 
     m_standBy = m_colorIndex = 0;
+    m_sound.Play();
   }
 
   public override void
     Update()
   {
-
     if(m_colorIndex < m_colors.Count)
     {
       m_renderer.color = m_colors[m_colorIndex];
@@ -131,4 +139,6 @@ public class Enemy_On_Damage : State
   List<Color> m_colors;
 
   SpriteRenderer m_renderer;
+
+  AudioSource m_sound;
 }

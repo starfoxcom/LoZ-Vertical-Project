@@ -12,6 +12,14 @@ public class Enemy_Dead : State
 
     m_maxStandBy = 60;
 
+    foreach (var sound in m_gameObject.GetComponents<AudioSource>())
+    {
+      if(sound.clip.name == "LTTP_Enemy_Kill")
+      {
+        m_sound = sound;
+      }
+    }
+
     m_rigidBody = m_gameObject.GetComponent<Rigidbody2D>();
 
     m_collision = m_gameObject.GetComponent<Collider2D>();
@@ -45,6 +53,7 @@ public class Enemy_Dead : State
     m_rigidBody.isKinematic = false;
 
     m_standBy = m_colorIndex = 0;
+
   }
 
   public override void
@@ -78,6 +87,7 @@ public class Enemy_Dead : State
     if (m_standBy == m_maxStandBy / 2)
     {
       m_animator[1].SetBool("Dead", true);
+      m_sound.Play();
       stopMovement();
     }
     if( m_standBy >= m_maxStandBy)
@@ -124,4 +134,6 @@ public class Enemy_Dead : State
   SpriteRenderer m_renderer;
 
   Animator[] m_animator;
+
+  AudioSource m_sound;
 }

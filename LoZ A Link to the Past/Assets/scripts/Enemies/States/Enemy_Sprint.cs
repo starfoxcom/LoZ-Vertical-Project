@@ -19,6 +19,14 @@ public class Enemy_Sprint : State
     m_sword = _sword;
 
     m_animator = m_gameObject.GetComponent<Animator>();
+
+    foreach (var sound in m_gameObject.GetComponents<AudioSource>())
+    {
+      if (sound.clip.name == "LTTP_Enemy_Chase")
+      {
+        m_sound = sound;
+      }
+    }
   }
 
   public override void OnExit()
@@ -43,6 +51,8 @@ public class Enemy_Sprint : State
       m_gameObject.GetComponent<Collider2D>().isTrigger = false;
       m_rigidBody.isKinematic = false;
     }
+
+    m_played = false;
 
   }
 
@@ -79,6 +89,12 @@ public class Enemy_Sprint : State
     if (m_standBy >= m_maxStandBy)
     {
       startMovement();
+      if(m_sword && !m_played)
+      {
+        m_sound.Play();
+
+        m_played = true;
+      }
 
       if (m_timer >= m_maxTime)
       {
@@ -189,9 +205,13 @@ public class Enemy_Sprint : State
 
   bool m_sword = false;
 
+  bool m_played = false;
+
   Rigidbody2D m_rigidBody;
 
   Animator m_animator;
+
+  AudioSource m_sound;
 
   const float ThreeFourthsPi = (0.75f * Mathf.PI);
 
