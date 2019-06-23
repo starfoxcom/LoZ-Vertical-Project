@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 /// <summary>
-///  this class will take care of deliveing to the player the typ of
+///  this class will take care of give Link his tools 
+///  like 
 /// </summary>
 namespace Assets.Item_Scripts.Chest_Clases
 {
@@ -87,8 +88,8 @@ namespace Assets.Item_Scripts.Chest_Clases
 
       }// end function
 
-    }// end class  
+    }
 
-  }
+  }// end class 
 }// end names space 
 
