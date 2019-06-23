@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8794208946554159208}
   - component: {fileID: 8794208946554159209}
   - component: {fileID: 8794208946554159214}
-  - component: {fileID: 7239680502858103921}
+  - component: {fileID: 8816606035255698667}
   m_Layer: 0
   m_Name: Zelda
   m_TagString: Untagged
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9e86f8dbf737d468b1f116386ad3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
+  m_Target: {fileID: 6771614637876415574, guid: f77e82d16d80b8746ba9a72dbbf2539e,
+    type: 3}
 --- !u!50 &8794208946554159214
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +117,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &7239680502858103921
+--- !u!95 &8816606035255698667
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -126,7 +127,7 @@ Animator:
   m_GameObject: {fileID: 8794208946554159210}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 98ae5ca031518c44da3801c7f45ddf6c, type: 2}
+  m_Controller: {fileID: 9100000, guid: a50c1b96ca2bfb948b6e1d738ab46f3b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
