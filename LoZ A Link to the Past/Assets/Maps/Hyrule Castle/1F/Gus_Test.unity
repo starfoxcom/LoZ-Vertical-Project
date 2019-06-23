@@ -9306,6 +9306,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Link
       objectReference: {fileID: 0}
+    - target: {fileID: 6771614637876415578, guid: f77e82d16d80b8746ba9a72dbbf2539e,
+        type: 3}
+      propertyPath: m_ui
+      value: 
+      objectReference: {fileID: 790383399}
     - target: {fileID: 6771614637876415579, guid: f77e82d16d80b8746ba9a72dbbf2539e,
         type: 3}
       propertyPath: m_active_controller
@@ -9366,11 +9371,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6771614637876415578, guid: f77e82d16d80b8746ba9a72dbbf2539e,
-        type: 3}
-      propertyPath: m_ui
-      value: 
-      objectReference: {fileID: 790383399}
     - target: {fileID: 1076784816, guid: f77e82d16d80b8746ba9a72dbbf2539e, type: 3}
       propertyPath: m_Size.y
       value: 0.0001

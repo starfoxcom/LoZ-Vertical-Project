@@ -4,7 +4,7 @@ using UnityEngine;
 public class Enemy_Sprint : State
 {
 
-  public Enemy_Sprint(GameObject _gameObject, FSM _fsm, List<Vector2> _directions, bool _sword = false)
+  public Enemy_Sprint(GameObject _gameObject, FSM _fsm, bool _sword = false)
   {
     m_id = ENEMY_GLOBALS.SPRINT_STATE_ID;
 
@@ -12,18 +12,20 @@ public class Enemy_Sprint : State
 
     m_rigidBody = m_gameObject.GetComponent<Rigidbody2D>();
 
-    m_directions = _directions;
-
     m_maxStandBy = 50;
 
     m_maxTime = 150;
 
     m_sword = _sword;
+
+    m_animator = m_gameObject.GetComponent<Animator>();
   }
 
   public override void OnExit()
   {
 
+    m_gameObject.GetComponent<Collider2D>().isTrigger = true;
+    stopMovement();
   }
 
   public override void OnPrepare()
@@ -31,6 +33,15 @@ public class Enemy_Sprint : State
 
     m_timer = m_standBy = 0;
 
+    m_direction = m_rigidBody.velocity;
+
+    stopMovement();
+
+    if(m_sword)
+    {
+      m_gameObject.GetComponent<Collider2D>().isTrigger = false;
+      m_rigidBody.isKinematic = false;
+    }
 
   }
 
@@ -44,15 +55,23 @@ public class Enemy_Sprint : State
 
         if (!m_sword)
         {
+
+          m_gameObject.transform.position +=
+         new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
+
           m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
+          m_fsm.m_messages.Dequeue();
+
+          return;
         }
 
         m_fsm.m_messages.Dequeue();
 
-        return;
       }
     }
+
+    Debug.DrawRay(m_gameObject.transform.position, m_direction.normalized * .1f);
 
     if (m_standBy >= m_maxStandBy)
     {
@@ -63,6 +82,7 @@ public class Enemy_Sprint : State
 
         stopMovement();
 
+        //TODO: If m_sword then setState to SCOUT_STATE
         m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
         return;
@@ -97,27 +117,38 @@ public class Enemy_Sprint : State
 
     GameObject link = GameObject.FindGameObjectWithTag("Link");
 
-    Vector3 direction;
-
     if (m_sword)
     {
-      direction = link.transform.position - m_gameObject.transform.position;
-      direction.Normalize();
-      m_rigidBody.velocity = direction * .5f;
+      m_direction = link.transform.position - m_gameObject.transform.position;
+      m_direction.Normalize();
+      m_rigidBody.velocity = m_direction * .7f;
     }
     else
     {
-      direction = m_rigidBody.velocity;
-      direction.Normalize();
-      m_rigidBody.velocity = direction * .5f;
+      m_direction.Normalize();
+
+      m_rigidBody.velocity = m_direction * .7f;
+
+      m_animator.SetInteger("Direction", -1);
+
+
+      m_animator.SetBool("Up", (m_direction.y == 1));
+
+      m_animator.SetBool("Down", m_direction.y == -1);
+
+      m_animator.SetBool("Left", m_direction.x == -1);
+
+      m_animator.SetBool("Right", m_direction.x == 1);
     }
   }
 
-  int m_timer, m_maxTime, m_standBy, m_maxStandBy, m_directionIndex;
+  int m_timer, m_maxTime, m_standBy, m_maxStandBy;
 
-  List<Vector2> m_directions;
+  Vector3 m_direction;
 
   bool m_sword = false;
 
   Rigidbody2D m_rigidBody;
+
+  Animator m_animator;
 }

@@ -10,15 +10,108 @@ public class Link_Animation_Controller : MonoBehaviour
 
   private Animator m_animator;
 
+  public Animator m_sword_animator;
+
+  public Animator m_shield_animator;
+
+  Link_Controller m_link_cntrl;
+
   private bool m_vertical_preference = false;
 
+  public void
+  DesactiveHit()
+  {
+    m_animator.SetBool("hit", false);
+    return;
+  }
+
+  public void
+  ActiveHit()
+  {
+    m_animator.SetBool("hit", true);
+    return;
+  }
+
+  public void
+  ActiveInmune()
+  {
+    return;
+  }
+
+  public void
+  DesactiveInmune()
+  {
+  }
   
+  public void
+  SwordAttack()
+  {
+    m_sword_animator.gameObject.SetActive(true);
+
+    bool up =     m_animator.GetBool("up");
+    bool down =   m_animator.GetBool("down");
+    bool right =  m_animator.GetBool("right");
+    bool left =   m_animator.GetBool("left");
+
+    m_sword_animator.SetBool("up",up);
+    m_sword_animator.SetBool("down", down);
+    m_sword_animator.SetBool("right", right);
+    m_sword_animator.SetBool("left", left);
+
+    m_sword_animator.SetBool("active", true);
+    m_animator.SetBool("attack", true);
+
+    if(up)
+    {
+      m_animator.Play("link_sword_attack_up");
+    }
+    else if (down)
+    {
+      m_animator.Play("link_sword_attack_down");
+    }
+    else if(left)
+    {
+      m_animator.Play("link_sword_attack_left");
+    }
+    else if(right)
+    {
+      m_animator.Play("link_sword_attack_right");
+    }
+    
+
+    return;
+  }
+
+  public void
+  fundarSword()
+  {
+    m_sword_animator.SetBool("active", false);
+    m_animator.SetBool("attack", false);
+
+    m_sword_animator.gameObject.SetActive(false);    
+    return;
+  }
+
   // Start is called before the first frame update
   void Start()
   {
     m_link_move = gameObject.GetComponent<Link_Movement>();
     m_rb =        gameObject.GetComponent<Rigidbody2D>();
     m_animator =  gameObject.GetComponent<Animator>();
+
+    m_link_cntrl = gameObject.GetComponent<Link_Controller>();
+
+    GameObject m_equipment = m_link_cntrl.GetShield();
+    if (m_equipment != null)
+    {
+      m_shield_animator = m_equipment.GetComponent<Animator>();
+    }
+
+    m_equipment = m_link_cntrl.GetSword();
+    if (m_equipment != null)
+    {
+      m_sword_animator = m_equipment.GetComponent<Animator>();
+    }
 
     return;
   }
