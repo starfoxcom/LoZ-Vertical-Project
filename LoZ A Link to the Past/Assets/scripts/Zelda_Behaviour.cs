@@ -8,6 +8,7 @@ public class Zelda_Behaviour : MonoBehaviour
     private Rigidbody2D m_rb;
     private Link_Movement m_Movement;
     private Queue<Vector3> q_Positions;
+    private Animator m_animator;
     Vector3 m_Direction;
 
     /*
@@ -36,6 +37,7 @@ public class Zelda_Behaviour : MonoBehaviour
         q_Positions = new Queue<Vector3>();
 
         m_rb = m_Target.GetComponent<Rigidbody2D>();
+        m_animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,5 +54,9 @@ public class Zelda_Behaviour : MonoBehaviour
                 q_Positions.Dequeue();
             }
         }
+        m_animator.SetBool("Up", transform.position.x > 0.0);
+        m_animator.SetBool("Down", transform.position.x < 0.0);
+        m_animator.SetBool("Left", transform.position.y > 0.0);
+        m_animator.SetBool("Right", transform.position.y < 0.0);
     }
 }

@@ -12,6 +12,11 @@ TagManager:
   - Boomerang
   - Lamp_Fire
   - Block
+  - Boss
+  - Boss_Ball
+  - Portal
+  - RoomManager
+  - halfBlock
   layers:
   - Default
   - TransparentFX
@@ -21,8 +26,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Looby
+  - Second_Level
   - 
   - 
   - 
@@ -48,4 +53,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2072771445
+    locked: 0
+  - name: Elements
+    uniqueID: 1112493631
     locked: 0
