@@ -19,12 +19,21 @@ public class Enemy_Sprint : State
     m_sword = _sword;
 
     m_animator = m_gameObject.GetComponent<Animator>();
+
+    foreach (var sound in m_gameObject.GetComponents<AudioSource>())
+    {
+      if (sound.clip.name == "LTTP_Enemy_Chase")
+      {
+        m_sound = sound;
+      }
+    }
   }
 
   public override void OnExit()
   {
 
     m_gameObject.GetComponent<Collider2D>().isTrigger = true;
+    m_rigidBody.isKinematic = true;
     stopMovement();
   }
 
@@ -43,6 +52,8 @@ public class Enemy_Sprint : State
       m_rigidBody.isKinematic = false;
     }
 
+    m_played = false;
+
   }
 
   public override void Update()
@@ -56,18 +67,20 @@ public class Enemy_Sprint : State
         if (!m_sword)
         {
 
-          m_gameObject.transform.position +=
-         new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
+          stepBack();
 
           m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
-
-          m_fsm.m_messages.Dequeue();
 
           return;
         }
 
-        m_fsm.m_messages.Dequeue();
+      }
+      else if (onCollisionWith(Message.MESSAGE_TYPE.SWORD_COLLISION))
+      {
+        stopMovement();
+        m_fsm.SetState(ENEMY_GLOBALS.DAMAGED_STATE_ID);
 
+        return;
       }
     }
 
@@ -76,6 +89,12 @@ public class Enemy_Sprint : State
     if (m_standBy >= m_maxStandBy)
     {
       startMovement();
+      if(m_sword && !m_played)
+      {
+        m_sound.Play();
+
+        m_played = true;
+      }
 
       if (m_timer >= m_maxTime)
       {
@@ -102,14 +121,17 @@ public class Enemy_Sprint : State
       m_fsm.m_messages.Dequeue();
       return true;
     }
-
-    m_fsm.m_messages.Dequeue();
     return false;
   }
 
   void stopMovement()
   {
     m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+    if(m_sword)
+    {
+      m_animator.SetBool("Sprint", false);
+    }
   }
 
   void startMovement()
@@ -121,7 +143,36 @@ public class Enemy_Sprint : State
     {
       m_direction = link.transform.position - m_gameObject.transform.position;
       m_direction.Normalize();
-      m_rigidBody.velocity = m_direction * .7f;
+      m_rigidBody.velocity = m_direction * .6f;
+      float angle = Mathf.Atan2(m_direction.y, m_direction.x);
+
+      m_animator.SetBool("Sprint", true);
+      m_animator.SetBool("Left", false);
+      m_animator.SetBool("Down", false);
+      m_animator.SetBool("Right", false);
+      m_animator.SetBool("Up", false);
+
+
+      if (angle > ThreeFourthsPi || angle < -ThreeFourthsPi)
+      {
+        //Left
+        m_animator.SetInteger("Direction", 2);        
+      }
+      else if (angle < -OneFourthsPi && angle > -ThreeFourthsPi)
+      {
+        //Down
+        m_animator.SetInteger("Direction", 3);
+      }
+      else if (angle < OneFourthsPi || angle < -OneFourthsPi)
+      {
+        //Right
+        m_animator.SetInteger("Direction", 0);
+      }
+      else
+      {
+        //Up
+        m_animator.SetInteger("Direction", 1);
+      }
     }
     else
     {
@@ -142,13 +193,27 @@ public class Enemy_Sprint : State
     }
   }
 
+  void stepBack()
+  {
+    m_gameObject.transform.position +=
+        new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
+  }
+
   int m_timer, m_maxTime, m_standBy, m_maxStandBy;
 
   Vector3 m_direction;
 
   bool m_sword = false;
 
+  bool m_played = false;
+
   Rigidbody2D m_rigidBody;
 
   Animator m_animator;
+
+  AudioSource m_sound;
+
+  const float ThreeFourthsPi = (0.75f * Mathf.PI);
+
+  const float OneFourthsPi = (0.25f * Mathf.PI);
 }

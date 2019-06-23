@@ -14,6 +14,7 @@ public class Message
   {
     LINK_COLLISION = 0,
     WALL_BLOCK_COLLISION,
+    SWORD_COLLISION,
   }
 
   public MESSAGE_TYPE m_type;

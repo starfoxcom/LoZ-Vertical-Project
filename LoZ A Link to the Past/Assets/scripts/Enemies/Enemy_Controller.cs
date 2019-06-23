@@ -40,6 +40,8 @@ public class Enemy_Controller : MonoBehaviour
     m_fsm.AddState(new Enemy_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions, m_sword));
     m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_sword));
+    m_fsm.AddState(new Enemy_On_Damage(gameObject, m_fsm, m_sword));
+    m_fsm.AddState(new Enemy_Dead(gameObject, m_fsm));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -48,26 +50,31 @@ public class Enemy_Controller : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D collision)
   {
-    //float backOffset = 0;
     if (collision.gameObject.tag == "Block")
     {
 
-      //if (m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
-      //{
-      //  backOffset = 0.04f;
-      //}
-      //else
-      //{
-      //  backOffset = 0.035f;
-      //}
-      //gameObject.transform.position +=
-      //  (gameObject.transform.position - collision.gameObject.transform.position) * backOffset;
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
-
-    if(collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
+    else if(collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
     {
+      if(collision.gameObject.tag == "Link")
+      {
+        collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage,transform.position);
+      }
       Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+    }
+    else if (collision.gameObject.tag == "Sword")
+    {
+      m_health -= 2;
+      if (m_health <= 0)
+      {
+        m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      }
+      else
+      {
+        m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+
+      }
     }
   }
 
@@ -80,9 +87,27 @@ public class Enemy_Controller : MonoBehaviour
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
 
-    if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
+    else if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
     {
+      if(collision.gameObject.tag == "Link")
+      {
+        collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage, transform.position);
+      }
       Physics2D.IgnoreCollision(collision, GetComponent<Collider2D>());
+    }
+
+    else if(collision.gameObject.tag == "Sword")
+    {
+      m_health -= 2;
+      if (m_health <= 0)
+      {
+        m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      }
+      else
+      {
+        m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+
+      }
     }
   }
 
@@ -90,7 +115,11 @@ public class Enemy_Controller : MonoBehaviour
   void
   Update()
   {
-    if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
+    if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.DAMAGED_STATE_ID)
+    {
+
+    }
+    else if(m_fsm.getActiveStateID() == ENEMY_GLOBALS.SPRINT_STATE_ID)
     {
 
     }
@@ -108,4 +137,10 @@ public class Enemy_Controller : MonoBehaviour
 
   [SerializeField]
   private bool m_sword = false;
+
+  [SerializeField]
+  private int m_health = 0;
+
+  [SerializeField]
+  private int m_damage = 0;
 }
