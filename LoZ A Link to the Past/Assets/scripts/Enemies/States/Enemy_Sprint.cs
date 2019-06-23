@@ -122,6 +122,24 @@ public class Enemy_Sprint : State
       m_direction = link.transform.position - m_gameObject.transform.position;
       m_direction.Normalize();
       m_rigidBody.velocity = m_direction * .7f;
+      float angle = Mathf.Atan2(m_direction.y, m_direction.x);
+
+      if (angle > ThreeFourthsPi || angle < -ThreeFourthsPi)
+      {
+        //Right
+      }
+      else if (angle < -OneFourthsPi && angle > -ThreeFourthsPi)
+      {
+        //Up
+      }
+      else if (angle < OneFourthsPi || angle < -OneFourthsPi)
+      {
+        //Left
+      }
+      else
+      {
+        //Down
+      }
     }
     else
     {
@@ -151,4 +169,8 @@ public class Enemy_Sprint : State
   Rigidbody2D m_rigidBody;
 
   Animator m_animator;
+
+  const float ThreeFourthsPi = (0.75f * Mathf.PI);
+
+  const float OneFourthsPi = (0.25f * Mathf.PI);
 }

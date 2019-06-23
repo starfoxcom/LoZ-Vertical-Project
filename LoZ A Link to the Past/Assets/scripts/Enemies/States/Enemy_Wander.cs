@@ -16,7 +16,7 @@ public class Enemy_Wander : State
 
     m_maxStandBy = 50;
 
-    m_maxTime = 150;
+    m_maxTime = 100;
 
     m_sword = _sword;
 
