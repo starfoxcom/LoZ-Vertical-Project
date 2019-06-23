@@ -99,19 +99,8 @@ public class Link_Animation_Controller : MonoBehaviour
     m_rb =        gameObject.GetComponent<Rigidbody2D>();
     m_animator =  gameObject.GetComponent<Animator>();
 
-    m_link_cntrl = gameObject.GetComponent<Link_Controller>();
-
-    GameObject m_equipment = m_link_cntrl.GetShield();
-    if (m_equipment != null)
-    {
-      m_shield_animator = m_equipment.GetComponent<Animator>();
-    }
-
-    m_equipment = m_link_cntrl.GetSword();
-    if (m_equipment != null)
-    {
-      m_sword_animator = m_equipment.GetComponent<Animator>();
-    }
+    m_link_cntrl = gameObject.GetComponent<Link_Controller>();    
+    m_sword_animator.gameObject.SetActive(false);
 
     return;
   }
