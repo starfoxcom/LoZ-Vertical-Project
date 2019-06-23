@@ -5,21 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item_Consumible
-  - Item_Tool
-  - Block_High
-  - Link
-  - Block
-  - Lamp_Fire
-  - Portal
-  - RoomManager
-  - Boomerang
   - Enemy
-<<<<<<< HEAD
-  - Sword
-=======
-  - lvl_jump
-  - halfBlock
->>>>>>> 8eb20b670208b0e5a7a84e5967a6d64cb3e28212
   layers:
   - Default
   - TransparentFX
@@ -29,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - Level 0
-  - Level 1
+  - 
+  - 
   - 
   - 
   - 
@@ -56,10 +42,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Level2
-    uniqueID: 3899148991
-    locked: 0
-  - name: Level1
-    uniqueID: 1354938441
     locked: 0
