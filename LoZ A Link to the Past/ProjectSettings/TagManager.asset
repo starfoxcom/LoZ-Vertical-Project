@@ -5,14 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item_Consumible
-  - Item_Tool
-  - Block_High
-  - Link
-  - Block
-  - Lamp_Fire
-  - Portal
-  - RoomManager
-  - Boomerang
   - Enemy
   layers:
   - Default
@@ -50,10 +42,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Level2
-    uniqueID: 3899148991
-    locked: 0
-  - name: Level1
-    uniqueID: 1354938441
     locked: 0

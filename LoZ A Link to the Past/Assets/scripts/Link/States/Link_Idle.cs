@@ -63,6 +63,11 @@ public class Link_Idle
       }
     }
 
+    if (Input.GetButtonDown("Button_Y"))
+    {
+      m_fsm.SetState(LINK_GLOBALS.ATTACK_STATE_ID);
+    }
+
     return;
   }
 

@@ -20,6 +20,8 @@ public class Enemy_Wander : State
 
     m_sword = _sword;
 
+    m_animator = m_gameObject.GetComponent<Animator>();
+
   }
 
   public override void
@@ -33,7 +35,13 @@ public class Enemy_Wander : State
   {
     m_timer = m_standBy = 0;
 
-    setNewDirection(m_sword);
+    //if(!m_sword)
+    //{
+      setNewDirection(m_sword);
+
+    //}
+
+    m_checked = false;
   }
 
   public override void
@@ -69,38 +77,48 @@ public class Enemy_Wander : State
             m_directionIndex = 1;
           }
 
-          m_gameObject.transform.position +=
-          new Vector3(m_directions[m_directionIndex].x * -1 * .015f, m_directions[m_directionIndex].y * -1 * .015f);
+          stepBack();
 
           startMovement();
 
           //CApsule this in a function to select if is a simple soldier or a sword soldier
-          //if (linkOnView())
-          //{
+          if (linkOnView())
+          {
+            if (!m_sword)
+            {
+              startMovementNoAnim();
+            }
 
-          //  m_fsm.m_messages.Dequeue();
+            Debug.Log("I see link");
+            m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
-          //  return;
-          //}
+            m_fsm.m_messages.Dequeue();
+
+            return;
+          }
           m_fsm.m_messages.Dequeue();
 
           return;
 
         }
 
-        m_gameObject.transform.position +=
-          new Vector3(m_directions[m_directionIndex].x * -1 * .015f, m_directions[m_directionIndex].y * -1 * .015f);
+        stepBack();
 
         setNewDirection(m_sword);
 
         stopMovement();
 
-        //if (linkOnView())
-        //{
+        if (linkOnView())
+        {
+          if (!m_sword)
+          {
+            startMovementNoAnim();
+          }
+          Debug.Log("I see link");
+          m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
-
-        //  return;
-        //}
+          return;
+        }
 
         m_standBy = 40;
         if(m_timer >= 0)
@@ -116,7 +134,59 @@ public class Enemy_Wander : State
       }
     }
 
-    Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex] * .1f);
+    float offset = .1f;
+
+    if(m_sword)
+    {
+      offset = 10;
+    }
+    Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex] * 10);
+    if (m_directionIndex == 0)
+    {
+
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex + 1] * offset);
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directions.Count - 1] * offset);
+
+    }
+    else if (m_directionIndex == 1)
+    {
+
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex + 1] * offset);
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex - 1] * offset);
+    }
+    else if (m_directionIndex == 2)
+    {
+
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex + 1] * offset);
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex - 1] * offset);
+    }
+    else
+    {
+
+
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[0] * offset);
+      Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex - 1] * offset);
+    }
+
+    if (!m_checked)
+    {
+      if (linkOnView())
+      {
+        if (!m_sword)
+        {
+          startMovementNoAnim();
+        }
+
+        Debug.Log("I see link");
+        m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+
+        m_fsm.m_messages.Dequeue();
+
+        return;
+      }
+      m_checked = true;
+    }
+
 
     if (m_standBy >= m_maxStandBy)
     {
@@ -168,6 +238,18 @@ public class Enemy_Wander : State
 
       temp = Random.Range(0, 2);
 
+      m_animator.SetInteger("Direction", temp);
+
+      m_animator.SetBool("Up", false);
+
+      m_animator.SetBool("Down", false);
+
+      m_animator.SetBool("Left", false);
+
+      m_animator.SetBool("Right", false);
+
+
+
       if (m_directionIndex != 0 && m_directionIndex != m_directions.Count - 1)
       {
 
@@ -188,12 +270,12 @@ public class Enemy_Wander : State
         }
       }
     }
+  }
 
-    //if (linkOnView())
-    //{
-
-    //  return;
-    //}
+  void stepBack()
+  {
+    m_gameObject.transform.position +=
+         new Vector3(m_directions[m_directionIndex].x * -1 * .05f, m_directions[m_directionIndex].y * -1 * .05f);
   }
 
   void stopMovement()
@@ -203,26 +285,98 @@ public class Enemy_Wander : State
 
   void startMovement()
   {
-    m_rigidBody.velocity = m_directions[m_directionIndex] * .25f;
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .5f;
+
+    m_animator.SetInteger("Direction", -1);
+
+    m_animator.SetBool("Up", (m_directionIndex == 1));
+
+    m_animator.SetBool("Down", m_directionIndex == 3);
+
+    m_animator.SetBool("Left", m_directionIndex == 2);
+
+    m_animator.SetBool("Right", m_directionIndex == 0);
+  }
+
+  void startMovementNoAnim()
+  {
+    m_rigidBody.velocity = m_directions[m_directionIndex] * .5f;
   }
 
   bool linkOnView()
   {
+
     if (GameObject.FindGameObjectWithTag("Link"))
     {
 
       GameObject link = GameObject.FindGameObjectWithTag("Link");
 
-      Vector3 distance = link.transform.position - m_gameObject.transform.position;
+      Vector3 position = link.transform.position;
 
-      if (distance.magnitude <= 1)
+      float left, right, forward;
+
+      float offset = .1f;
+
+      if (m_sword)
       {
-        m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+        offset = 10;
+      }
 
-        return true;
+      if (m_directionIndex == 0)
+      {
+        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 10);
+        left = m_gameObject.transform.position.y + (m_directions[m_directionIndex + 1].y * offset);
+        right = m_gameObject.transform.position.y + (m_directions[m_directions.Count - 1].y * offset);
+
+        if (position.x > m_gameObject.transform.position.x && position.x < forward
+          && position.y > right && position.y < left)
+        {
+          return true;
+        }
+
+      }
+      else if (m_directionIndex == 1)
+      {
+
+
+        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 10);
+        left = m_gameObject.transform.position.x + (m_directions[m_directionIndex + 1].x * offset);
+        right = m_gameObject.transform.position.x + (m_directions[m_directionIndex - 1].x * offset);
+
+        if (position.y > m_gameObject.transform.position.y && position.y < forward
+          && position.x < right && position.x > left)
+        {
+          return true;
+        }
+      }
+      else if (m_directionIndex == 2)
+      {
+
+        
+        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 10);
+        left = m_gameObject.transform.position.y + (m_directions[m_directionIndex + 1].y * offset);
+        right = m_gameObject.transform.position.y + (m_directions[m_directionIndex - 1].y * offset);
+
+        if (position.x < m_gameObject.transform.position.x && position.x > forward
+          && position.y < right && position.y > left)
+        {
+          return true;
+        }
+      }
+      else
+      {
+
+        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 10);
+        left = m_gameObject.transform.position.x + (m_directions[0].x * offset);
+        right = m_gameObject.transform.position.x + (m_directions[m_directionIndex - 1].x * offset);
+
+        if (position.y < m_gameObject.transform.position.y && position.y > forward
+          && position.x > right && position.x < left)
+        {
+          return true;
+        }
       }
     }
-
     return false;
   }
 
@@ -232,6 +386,10 @@ public class Enemy_Wander : State
 
   bool m_sword = false;
 
+  bool m_checked = false;
+
   Rigidbody2D m_rigidBody;
+
+  Animator m_animator;
 
 }
