@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Item_Consumible
   - Enemy
+  - Sword
+  - Link
+  - Boomerang
+  - Lamp_Fire
+  - Block
+  - Portal
+  - RoomManager
+  - halfBlock
   layers:
   - Default
   - TransparentFX
@@ -42,4 +50,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 2002871525
     locked: 0
