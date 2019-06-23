@@ -112,7 +112,10 @@ public class Enemy_Sprint : State
   {
     m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-    m_animator.SetBool("Sprint", false);
+    if(m_sword)
+    {
+      m_animator.SetBool("Sprint", false);
+    }
   }
 
   void startMovement()

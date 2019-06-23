@@ -41,6 +41,7 @@ public class Enemy_Controller : MonoBehaviour
     m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions, m_sword));
     m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_sword));
     m_fsm.AddState(new Enemy_On_Damage(gameObject, m_fsm, m_sword));
+    m_fsm.AddState(new Enemy_Dead(gameObject, m_fsm));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -65,11 +66,11 @@ public class Enemy_Controller : MonoBehaviour
     else if (collision.gameObject.tag == "Sword")
     {
       m_health -= 2;
-      //if (m_health <= 0)
-      //{
-      //  m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
-      //}
-      //else
+      if (m_health <= 0)
+      {
+        m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      }
+      else
       {
         m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
 
@@ -98,11 +99,11 @@ public class Enemy_Controller : MonoBehaviour
     else if(collision.gameObject.tag == "Sword")
     {
       m_health -= 2;
-      //if(m_health <= 0)
-      //{
-      //  m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
-      //}
-      //else
+      if (m_health <= 0)
+      {
+        m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      }
+      else
       {
         m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
 
