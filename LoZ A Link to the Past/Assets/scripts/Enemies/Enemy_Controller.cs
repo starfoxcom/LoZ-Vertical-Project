@@ -44,7 +44,7 @@ public class Enemy_Controller : MonoBehaviour
     m_fsm.AddState(new Enemy_Dead(gameObject, m_fsm));
     m_fsm.AddState(new Enemy_Stunned(gameObject, m_fsm));
 
-    m_fsm.SetState(ENEMY_GLOBALS.STUNNED_STATE_ID);
+    m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
     return;
   }
