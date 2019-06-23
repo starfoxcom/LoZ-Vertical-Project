@@ -7,16 +7,18 @@ using UnityEngine.UI;
 //Class that changes the text of every consumable of link when 
 public class UI_Behaviour : MonoBehaviour
 {
+    bool finishselect = false;
     private static bool checho = false;
     private float timer; //timer to animte green pointer of select screen and the transition between startscreen and play
+    private static bool yb = false;
     private static Vector3 CirclePtrPos;
     public bool bHasBoomerang = true;
-    public bool bHasLantern = false;
-    public bool bEquippedBoomerang = true;
+    public bool bHasLantern = true;
+    public bool bEquippedBoomerang = true; //if equipped link obviously current equipment is the boomerang if false then its the lantern
     private Vector3 moveStartScreenToCamera = new Vector3(-350.1852f, 161.2223f); // move start screen to  the the middle where the camera cant see and deactivate
     private Vector3 moveStartScrenOffCamera = new Vector3(-350.1852f, 879);
-    private Vector3 PointBoomerang = new Vector3(-183f, 215f);
-    private Vector3 PointLantern = new Vector3(-284.0f, 90.0f);
+    private Vector3 PointBoomerang = new Vector3(-183, 221);
+    private Vector3 PointLantern = new Vector3(-287, 93f);
     private  Vector3 movePointer = new Vector3(0.0f,53.0f,0.0f); //vector used to move the select screen pointer
     private Vector3 moveSelectScreen = new Vector3(0.0f, 212.0f, 0.0f); //vector used to move every component to load the screen at the center of the screen
     public Image m_Key; //text where its supposed to be the key sprite, it needs to hide when link its not in a dungeon
@@ -201,17 +203,24 @@ public class UI_Behaviour : MonoBehaviour
             MoveSelectPointer();
         }
 
-     
-        if(Input.GetKeyDown(KeyCode.DownArrow) & ! bStartScreenActivated ) 
+
+        if (Input.GetButtonDown("Button_Start" )& ! bStartScreenActivated & ! bSelectScreenActivated & !finishselect) 
         //if(Input.GetButtonDown("Button_Start") & ! bStartScreenActivated) 
         {
             bStartScreenActivated = true;
             ActivateStartMenu();
         }
-        if (bStartScreenActivated) 
+        
+        if(bStartScreenActivated)
         {
             SelectItem();
         }
+
+        if (finishselect)
+        {
+            DeActivateStartScreen();
+        }
+        
 
     }
 
@@ -295,12 +304,12 @@ public class UI_Behaviour : MonoBehaviour
 
     public void MoveSelectPointer() // When the Select screen is activated This function control the inputs handled
     {
-        if(Input.GetAxis("XBOX_Vertical") > 0 & !bPointerUp) 
+        if((Input.GetAxis("XBOX_Vertical") == 1 | Input.GetAxis("Vertical") == 1) & !bPointerUp) 
         {
             m_SelectMenuImage[1].transform.position += movePointer;
             bPointerUp = true;
         }
-        else if(Input.GetAxis("XBOX_Vertical") < 0 & bPointerUp)
+        else if((Input.GetAxis("XBOX_Vertical") == -1 | Input.GetAxis("Vertical") == -1) & bPointerUp)
         {
             m_SelectMenuImage[1].transform.position -= movePointer;
             bPointerUp = false;
@@ -316,7 +325,7 @@ public class UI_Behaviour : MonoBehaviour
         }
     }
 
-    public void ActivateStartMenu()  //depending on link current equipped item must react to that 
+    public void ActivateStartMenu()  //link starts with every 
     {
         StartScreen.SetActive(true);
         if(!bHasLantern & !bHasBoomerang)
@@ -329,7 +338,7 @@ public class UI_Behaviour : MonoBehaviour
         }
         if(bHasBoomerang)
         {
-            m_StartMenuImage[0].gameObject.SetActive(true);
+            m_StartMenuImage[0].gameObject.SetActive(true); 
         }
         if(bHasLantern)
         {
@@ -338,16 +347,17 @@ public class UI_Behaviour : MonoBehaviour
 
             if (bEquippedBoomerang) //equipped boomerang
             {
-                m_StartMenuImage[6].transform.position = PointBoomerang;
+                m_StartMenuImage[6].rectTransform.anchoredPosition = PointBoomerang;
                 m_StartMenuImage[3].gameObject.SetActive(false); //deactivate lantern select icon
             }
             else if (!bEquippedBoomerang & bHasLantern) // equipped lantern
             {
-                m_StartMenuImage[6].transform.position = PointLantern;
+                m_StartMenuImage[6].rectTransform.anchoredPosition = PointLantern;
                 m_StartMenuImage[2].gameObject.SetActive(false);
             }
 
         
+        m_StartMenuImage[6].gameObject.SetActive(true);
         StartScreen.transform.localPosition = moveStartScreenToCamera;
         DeActivateHUD();
         //TODO: Needs to go down to the camera
@@ -356,104 +366,93 @@ public class UI_Behaviour : MonoBehaviour
 
     private void SelectItem() // needs to return something 
     {
-        if (!bHasBoomerang & !bHasLantern)
-        {
-            if (Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_Start") | Input.GetButtonDown("Button_X") |
-                Input.GetButtonDown("Button_Y") | Input.GetButtonDown("Button_Select"))
+        
+        if (checho)
             {
-                DeActivateStartScreen();
-            }
-        }
-        else {
-            if (checho)
+                if (Input.GetAxis("XBOX_Horizontal") == 0 | Input.GetAxis("Horizontal") == 0)
             {
-                if (Input.GetAxis("XBOX_Horizontal") == 0)
+                   if (Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_X") | Input.GetButtonDown("Button_Y"))
+                {
+
+                    DeActivateStartScreen();
+                }
+
+                else
                 {
                     checho = false;
+                }
+               
                 }
                 else
                 {
                     return;
                 }
-            }
-
-            if (Input.GetAxis("XBOX_Horizontal") > 0)
-            {
-
-                CirclePtrPos = m_StartMenuImage[6].rectTransform.anchoredPosition;
-                checho = true;
-                if (CirclePtrPos == PointBoomerang) //if pointing to boomerang and link has the lantern
-                {
-                    if (bHasLantern)
-                    {
-                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointLantern;
-
-                    }
-                }
-                else if (CirclePtrPos == PointLantern) //if pointing to lantern and link has the boomerang
-                {
-                    if (bHasBoomerang)
-                    {
-                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointBoomerang;
-                    }
-
-                }
-
-
-            }
-            else if (Input.GetAxis("XBOX_Horizontal") < 0)
-            {
-                checho = true;
-                CirclePtrPos = m_StartMenuImage[6].rectTransform.anchoredPosition;
-                if (CirclePtrPos == PointBoomerang) //if pointing to boomerang and link has the lantern
-                {
-                    if (bHasLantern)
-                    {
-                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointLantern;
-
-                    }
-                }
-                else if (CirclePtrPos == PointLantern) //if pointing to lantern and link has the boomerang
-                {
-                    if (bHasBoomerang)
-                    {
-                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointBoomerang;
-                    }
-
-                }
-            }
-
-            //if (Input.GetKeyDown(KeyCode.DownArrow))
-            //{
-            //    DeActivateStartScreen();
-            //}
-
         }
 
-        void DeActivateStartScreen()
-        {
-            if(bHasBoomerang | bHasLantern)
+            if ((Input.GetAxis("XBOX_Horizontal") == 1  | Input.GetAxis("Horizontal") == 1) & !checho)
             {
-                if (CirclePtrPos == PointBoomerang) // if selected 
+
+                CirclePtrPos = m_StartMenuImage[6].transform.localPosition;
+                checho = true;
+
+                if (CirclePtrPos == PointBoomerang) //if pointing to boomerang and link has the lantern
                 {
-                    EquipBoomerang();
-                    bEquippedBoomerang = true;
+                    if (bHasLantern)
+                    {
+                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointLantern;
+                        m_StartMenuImage[2].gameObject.SetActive(false); //boomerang 
+                        m_StartMenuImage[3].gameObject.SetActive(true); //lantern select
+
+                    }
                 }
 
-                else if (CirclePtrPos == PointLantern)
+                else if (CirclePtrPos == PointLantern) //if pointing to lantern and link has the boomerang
                 {
-                    EquipLantern();
-                    bEquippedBoomerang = false;
+                    if (bHasBoomerang)
+                    {
+                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointBoomerang;
+                  
+                        m_StartMenuImage[2].gameObject.SetActive(true); //boomerang 
+                        m_StartMenuImage[3].gameObject.SetActive(false); //lantern select
+                }
+
+                }
+
+
+            }
+            else if (((Input.GetAxis("XBOX_Horizontal")  == -1) | Input.GetAxis("Horizontal") == -1) & !checho)
+            {
+                checho = true;
+            CirclePtrPos = m_StartMenuImage[6].transform.localPosition;
+                if (CirclePtrPos == PointBoomerang) //if pointing to boomerang and link has the lantern
+                {
+                    if (bHasLantern)
+                    {
+                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointLantern;
+                 
+                    m_StartMenuImage[2].gameObject.SetActive(false); //boomerang 
+                        m_StartMenuImage[3].gameObject.SetActive(true); //lantern select
+
+                }
+                }
+                else if (CirclePtrPos == PointLantern) //if pointing to lantern and link has the boomerang
+                {
+                    if (bHasBoomerang)
+                    {
+
+                        m_StartMenuImage[6].rectTransform.anchoredPosition = PointBoomerang;
+                        m_StartMenuImage[2].gameObject.SetActive(true); //boomerang 
+                        m_StartMenuImage[3].gameObject.SetActive(false); //lantern select
+                }
+
                 }
             }
-           
-            StartScreen.transform.position = moveStartScrenOffCamera;
-            StartScreen.SetActive(false);
-            bStartScreenActivated = false;
-            ActivateHUD();
-        } 
-
+            else if(Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_X") | Input.GetButtonDown("Button_Y"))
+        {
+            finishselect = true;
+        }
         
+
 
     }
 
@@ -465,9 +464,33 @@ public class UI_Behaviour : MonoBehaviour
     void ActivateHUD()
     {
         CanvasHUD.SetActive(true);
+        bStartScreenActivated = false;
+        finishselect = false;
     }
 
-    
+
+    void DeActivateStartScreen()
+    {
+        if (bHasBoomerang | bHasLantern)
+        {
+            if (CirclePtrPos == PointBoomerang) // if selected 
+            {
+                EquipBoomerang();
+                bEquippedBoomerang = true;
+            }
+
+            else if (CirclePtrPos == PointLantern)
+            {
+                EquipLantern();
+                bEquippedBoomerang = false;
+            }
+        }
+
+        StartScreen.transform.position = moveStartScrenOffCamera;
+        StartScreen.SetActive(false);
+        m_StartMenuImage[6].gameObject.SetActive(false);
+        ActivateHUD();
+    }
 
     //void AnumCirlcePointer()
     //{
