@@ -33,7 +33,6 @@ public class Boomerang_Controller : MonoBehaviour
   {
     Link_Data linkData = m_link.GetComponent<Link_Data>();
     linkData.m_has_boomerang = true;
-
     m_fsm.SetState(IDLE_STATE);
     return;
   }
@@ -98,6 +97,28 @@ public class Boomerang_Controller : MonoBehaviour
           Catch();
         }
       }      
+    }
+    else
+    {
+
+      if(_collision.gameObject.tag == "Boss")
+      {
+        BossController boss = _collision.gameObject.GetComponent<BossController>();
+        boss.Hit(0);
+
+        return;
+      }
+
+      if(m_fsm != null)
+      {
+        if(m_fsm.getActiveStateID() != BACK_STATE)
+        {
+
+          // TODO: ColLision FX
+
+          m_fsm.SetState(BACK_STATE);
+        }
+      }
     }
 
     return;

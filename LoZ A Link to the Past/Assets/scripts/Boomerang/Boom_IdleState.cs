@@ -17,7 +17,12 @@ public class Boom_IdleState
   OnExit()
   {
     SpriteRenderer spr_renderer =
-    m_gameObject.GetComponent<SpriteRenderer>();   
+    m_gameObject.GetComponent<SpriteRenderer>();
+
+    BoxCollider2D box_collider =
+    m_gameObject.GetComponent<BoxCollider2D>();
+
+    box_collider.enabled = true;
 
     spr_renderer.enabled = true;   
     m_audio.Play();
@@ -28,6 +33,11 @@ public class Boom_IdleState
   public override void
   OnPrepare()
   {
+    BoxCollider2D box_collider =
+   m_gameObject.GetComponent<BoxCollider2D>();
+
+    box_collider.enabled = false;
+
     SpriteRenderer spr_renderer =
     m_gameObject.GetComponent<SpriteRenderer>();
 

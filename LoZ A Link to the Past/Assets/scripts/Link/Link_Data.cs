@@ -237,6 +237,7 @@ public class Link_Data : MonoBehaviour
       m_lamp_pool.Add(lamp);
     }
 
+    m_ui.EquipBoomerang();
     m_audio = gameObject.GetComponent<AudioSource>();
 
     return;
