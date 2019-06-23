@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Link_Controller : MonoBehaviour
 {
+  public bool m_inmune = false;
+
   /************************************************************************/
   /* Public                                                               */
   /************************************************************************/
@@ -42,6 +44,23 @@ public class Link_Controller : MonoBehaviour
   GetFromPortal()
   {
     return m_from_portal;
+  }
+
+  public Vector2
+  GetEnemeyPosition()
+  {
+    return m_enemy_transform;
+  }
+
+  public void
+  Damage(int _hit_points, Vector2 _enemy_transport)
+  {    
+    if (m_fsm.getActiveStateID() != LINK_GLOBALS.OUCH_STATE_ID && !m_inmune)
+    {
+      m_fsm.SetState(LINK_GLOBALS.OUCH_STATE_ID);
+      m_data.AddHealth(-_hit_points);
+    }
+    return;
   }
 
   public void
@@ -89,6 +108,26 @@ public class Link_Controller : MonoBehaviour
     return;
   }
 
+  public GameObject
+  GetSword()
+  {
+    return m_sword_go;
+  }
+
+  public GameObject
+  GetShield()
+  {
+    return m_shield_go;
+  }
+
+  public void
+  ActiveInmune()
+  {
+    m_inmune_trigger = Time.time + 1.0f;
+    m_inmune = true;
+    return;
+  }
+
   /************************************************************************/
   /* Private                                                              */
   /************************************************************************/
@@ -100,6 +139,14 @@ public class Link_Controller : MonoBehaviour
     // get components
     m_data = gameObject.GetComponent<Link_Data>();
     m_movement_controller = gameObject.GetComponent<Link_Movement>();
+    m_anim_control = gameObject.GetComponent<Link_Animation_Controller>();
+    m_spr_render = gameObject.GetComponent<SpriteRenderer>();
+
+    Transform sword_trans = gameObject.transform.Find("Link_Sword");
+    Transform shield_trans = gameObject.transform.Find("Link_Shield");
+
+    m_sword_go =  sword_trans.gameObject;
+    m_shield_go = shield_trans.gameObject;
 
     // FSM
 
@@ -111,6 +158,8 @@ public class Link_Controller : MonoBehaviour
     m_fsm.AddState(new Link_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Link_Boomerang(gameObject, m_fsm));
     m_fsm.AddState(new Link_Transition(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Attack(gameObject, m_fsm));
+    m_fsm.AddState(new Link_Ouch(gameObject, m_fsm));
 
     m_fsm.SetState(LINK_GLOBALS.IDLE_STATE_ID);
 
@@ -126,12 +175,43 @@ public class Link_Controller : MonoBehaviour
     m_fsm.Update();
     InputDebug();
 
+    if(m_inmune)
+    {
+      float alpha = 0.5f + (Mathf.Sin(Time.time * 30f) * 0.3f + 0.15f);
+      m_spr_render.color = new Color
+      (
+      m_spr_render.color.r,
+      m_spr_render.color.g,
+      m_spr_render.color.b,
+      alpha
+      );
+
+      if(Time.time > m_inmune_trigger)
+      {
+        m_inmune = false;
+        m_spr_render.color = new Color
+        (
+        m_spr_render.color.r,
+        m_spr_render.color.g,
+        m_spr_render.color.b,
+        1.0f
+        );
+      }
+    }
+
     return;
   }
 
   private void
   InputDebug()
   {
+    if(Input.GetKeyDown(KeyCode.H))
+    {
+      Vector2 enem_pos = transform.position;
+      enem_pos += new Vector2(1.0f, -1.0f);
+      Damage(1, enem_pos);
+    }
+
     if(Input.GetKeyDown(KeyCode.Alpha1))
     {
       m_data.AddRupiah(1);
@@ -202,7 +282,19 @@ public class Link_Controller : MonoBehaviour
 
   private Link_Movement m_movement_controller;
 
+  private GameObject m_sword_go;
+
+  private GameObject m_shield_go;
+
+  private Vector2 m_enemy_transform;
+
+  private SpriteRenderer m_spr_render;
+
+  private float m_inmune_trigger;
+
   private Boomerang_Controller m_boomerang_cntr;
+
+  private Link_Animation_Controller m_anim_control;
 
   private Portal m_to_portal;
 

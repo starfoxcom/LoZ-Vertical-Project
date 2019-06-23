@@ -60,8 +60,7 @@ public class Link_Movement : MonoBehaviour
   // Update is called once per frame
   void 
   Update()
-  {
-  }
+  { }
 
   public void
   Stop()
