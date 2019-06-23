@@ -64,8 +64,16 @@ public class Enemy_Controller : MonoBehaviour
     }
     else if (collision.gameObject.tag == "Sword")
     {
-      Debug.Log("Hit by sword");
-      m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+      m_health -= 2;
+      //if (m_health <= 0)
+      //{
+      //  m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      //}
+      //else
+      {
+        m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+
+      }
     }
   }
 
@@ -89,8 +97,16 @@ public class Enemy_Controller : MonoBehaviour
 
     else if(collision.gameObject.tag == "Sword")
     {
-      Debug.Log("Hit by sword");
-      m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+      m_health -= 2;
+      //if(m_health <= 0)
+      //{
+      //  m_fsm.SetState(ENEMY_GLOBALS.NORMAL_DEAD_STATE_ID);
+      //}
+      //else
+      {
+        m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
+
+      }
     }
   }
 

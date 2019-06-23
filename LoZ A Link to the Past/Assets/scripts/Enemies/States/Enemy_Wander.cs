@@ -81,7 +81,6 @@ public class Enemy_Wander : State
 
           startMovement();
 
-          //CApsule this in a function to select if is a simple soldier or a sword soldier
           if (linkOnView())
           {
             if (!m_sword)
@@ -236,6 +235,8 @@ public class Enemy_Wander : State
     {
 
       temp = Random.Range(0, m_directions.Count);
+
+
 
       m_directionIndex = temp;
     }
