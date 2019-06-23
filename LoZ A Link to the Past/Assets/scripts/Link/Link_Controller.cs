@@ -57,6 +57,7 @@ public class Link_Controller : MonoBehaviour
   {    
     if (m_fsm.getActiveStateID() != LINK_GLOBALS.OUCH_STATE_ID && !m_inmune)
     {
+      m_enemy_transform = _enemy_transport;
       m_fsm.SetState(LINK_GLOBALS.OUCH_STATE_ID);
       m_data.AddHealth(-_hit_points);
     }
