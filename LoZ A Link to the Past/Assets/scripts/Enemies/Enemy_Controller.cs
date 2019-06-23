@@ -39,7 +39,7 @@ public class Enemy_Controller : MonoBehaviour
 
     m_fsm.AddState(new Enemy_Idle(gameObject, m_fsm));
     m_fsm.AddState(new Enemy_Wander(gameObject, m_fsm, m_directions, m_sword));
-    m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_directions, m_sword));
+    m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_sword));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -64,6 +64,11 @@ public class Enemy_Controller : MonoBehaviour
       //  (gameObject.transform.position - collision.gameObject.transform.position) * backOffset;
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
+
+    if(collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
+    {
+      Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+    }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)
@@ -73,6 +78,11 @@ public class Enemy_Controller : MonoBehaviour
     {
 
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
+    }
+
+    if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
+    {
+      Physics2D.IgnoreCollision(collision, GetComponent<Collider2D>());
     }
   }
 

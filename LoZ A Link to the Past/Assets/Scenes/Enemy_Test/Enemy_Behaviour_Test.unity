@@ -1630,7 +1630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2484e1ec9003d094b9fff404c27aae8e, type: 3}
---- !u!1001 &1077059297
+--- !u!1001 &1091104118
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1645,12 +1645,12 @@ PrefabInstance:
     - target: {fileID: 3550521338541967046, guid: efaa7fe72b9665c42ae1cf6363678176,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8522015
+      value: 1.879
       objectReference: {fileID: 0}
     - target: {fileID: 3550521338541967046, guid: efaa7fe72b9665c42ae1cf6363678176,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23528266
+      value: 0.162
       objectReference: {fileID: 0}
     - target: {fileID: 3550521338541967046, guid: efaa7fe72b9665c42ae1cf6363678176,
         type: 3}
@@ -1697,8 +1697,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5575787632040262251, guid: efaa7fe72b9665c42ae1cf6363678176, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efaa7fe72b9665c42ae1cf6363678176, type: 3}
 --- !u!1001 &1152761544
 PrefabInstance:
@@ -1991,17 +1990,17 @@ PrefabInstance:
     - target: {fileID: 6771614637876415574, guid: f77e82d16d80b8746ba9a72dbbf2539e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6771614637876415572, guid: f77e82d16d80b8746ba9a72dbbf2539e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.149
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 6771614637876415572, guid: f77e82d16d80b8746ba9a72dbbf2539e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.808
+      value: 0.195
       objectReference: {fileID: 0}
     - target: {fileID: 6771614637876415572, guid: f77e82d16d80b8746ba9a72dbbf2539e,
         type: 3}
