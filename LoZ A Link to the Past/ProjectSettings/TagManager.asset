@@ -14,7 +14,12 @@ TagManager:
   - RoomManager
   - Boomerang
   - Enemy
+<<<<<<< HEAD
   - Sword
+=======
+  - lvl_jump
+  - halfBlock
+>>>>>>> 8eb20b670208b0e5a7a84e5967a6d64cb3e28212
   layers:
   - Default
   - TransparentFX
@@ -24,8 +29,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Level 0
+  - Level 1
   - 
   - 
   - 
