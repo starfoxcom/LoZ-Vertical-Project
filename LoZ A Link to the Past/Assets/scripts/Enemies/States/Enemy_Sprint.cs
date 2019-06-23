@@ -111,6 +111,8 @@ public class Enemy_Sprint : State
   void stopMovement()
   {
     m_gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+    m_animator.SetBool("Sprint", false);
   }
 
   void startMovement()
@@ -122,24 +124,35 @@ public class Enemy_Sprint : State
     {
       m_direction = link.transform.position - m_gameObject.transform.position;
       m_direction.Normalize();
-      m_rigidBody.velocity = m_direction * .7f;
+      m_rigidBody.velocity = m_direction * .6f;
       float angle = Mathf.Atan2(m_direction.y, m_direction.x);
+
+      m_animator.SetBool("Sprint", true);
+      m_animator.SetBool("Left", false);
+      m_animator.SetBool("Down", false);
+      m_animator.SetBool("Right", false);
+      m_animator.SetBool("Up", false);
+
 
       if (angle > ThreeFourthsPi || angle < -ThreeFourthsPi)
       {
-        //Right
+        //Left
+        m_animator.SetInteger("Direction", 2);        
       }
       else if (angle < -OneFourthsPi && angle > -ThreeFourthsPi)
       {
-        //Up
+        //Down
+        m_animator.SetInteger("Direction", 3);
       }
       else if (angle < OneFourthsPi || angle < -OneFourthsPi)
       {
-        //Left
+        //Right
+        m_animator.SetInteger("Direction", 0);
       }
       else
       {
-        //Down
+        //Up
+        m_animator.SetInteger("Direction", 1);
       }
     }
     else

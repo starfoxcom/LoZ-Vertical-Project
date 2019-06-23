@@ -20,6 +20,8 @@ public class Enemy_On_Damage : State
 
     m_colors = new List<Color>();
 
+    m_sword = _sword;
+
     m_colors.Add(Color.blue);
     m_colors.Add(Color.magenta);
     m_colors.Add(Color.cyan);

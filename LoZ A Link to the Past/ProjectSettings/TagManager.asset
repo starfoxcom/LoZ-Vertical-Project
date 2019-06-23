@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Item_Consumible
   - Enemy
+  - Sword
+  - Link
+  - Shield
+  - Boomerang
+  - Lamp_Fire
+  - Block
   layers:
   - Default
   - TransparentFX

@@ -14,11 +14,19 @@ public class Enemy_Wander : State
 
     m_rigidBody = m_gameObject.GetComponent<Rigidbody2D>();
 
-    m_maxStandBy = 50;
+    m_sword = _sword;
+
+    if (m_sword)
+    {
+      m_maxStandBy = 200;
+    }
+    else
+    {
+      m_maxStandBy = 50;
+
+    }
 
     m_maxTime = 100;
-
-    m_sword = _sword;
 
     m_animator = m_gameObject.GetComponent<Animator>();
 
@@ -35,11 +43,14 @@ public class Enemy_Wander : State
   {
     m_timer = m_standBy = 0;
 
-    //if(!m_sword)
-    //{
+    if(m_sword)
+    {
+      scout();
+    }
+    else
+    {
       setNewDirection(m_sword);
-
-    //}
+    }
 
     m_checked = false;
   }
@@ -55,6 +66,8 @@ public class Enemy_Wander : State
 
         if (m_sword)
         {
+
+          stepBack();
 
           if (m_directionIndex == 0)
           {
@@ -76,8 +89,6 @@ public class Enemy_Wander : State
 
             m_directionIndex = 1;
           }
-
-          stepBack();
 
           startMovement();
 
@@ -172,7 +183,8 @@ public class Enemy_Wander : State
       Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex - 1] * offset);
     }
 
-    if (!m_checked)
+    if (m_standBy == m_maxStandBy * .25f || m_standBy == m_maxStandBy * .5f ||
+      m_standBy == m_maxStandBy * .75f)
     {
       if (linkOnView())
       {
@@ -181,7 +193,6 @@ public class Enemy_Wander : State
           startMovementNoAnim();
         }
 
-        Debug.Log("I see link");
         m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
         if(m_fsm.m_messages.Count != 0)
@@ -191,13 +202,40 @@ public class Enemy_Wander : State
 
         return;
       }
-      m_checked = true;
     }
 
 
     if (m_standBy >= m_maxStandBy)
     {
+
+      if(m_scouted)
+      {
+        setNewDirection(m_sword);
+
+        m_scouted = false;
+      }
       startMovement();
+
+      if (m_timer == m_maxTime / 2)
+      {
+        if (linkOnView())
+        {
+          if (!m_sword)
+          {
+            startMovementNoAnim();
+          }
+
+          Debug.Log("I see link");
+          m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
+
+          if (m_fsm.m_messages.Count != 0)
+          {
+            m_fsm.m_messages.Dequeue();
+          }
+
+          return;
+        }
+      }
 
       if (m_timer >= m_maxTime)
       {
@@ -219,11 +257,36 @@ public class Enemy_Wander : State
   {
     if (m_fsm.m_messages.Peek().m_type == _type)
     {
+      if (m_sword)
+      {
+        m_fsm.m_messages.Clear();
+      }
+      else
+      {
+        m_fsm.m_messages.Dequeue();
+      }
 
-      m_fsm.m_messages.Dequeue();
       return true;
     }
     return false;
+  }
+
+  void scout()
+  {
+    m_directionIndex = m_animator.GetInteger("Direction");
+
+    m_animator.SetInteger("Direction", m_directionIndex);
+
+    m_animator.SetBool("Up", false);
+
+    m_animator.SetBool("Down", false);
+
+    m_animator.SetBool("Left", false);
+
+    m_animator.SetBool("Right", false);
+
+    m_scouted = true;
+
   }
 
   void setNewDirection(bool _sword)
@@ -235,8 +298,6 @@ public class Enemy_Wander : State
     {
 
       temp = Random.Range(0, m_directions.Count);
-
-
 
       m_directionIndex = temp;
     }
@@ -294,7 +355,10 @@ public class Enemy_Wander : State
   {
     m_rigidBody.velocity = m_directions[m_directionIndex] * .5f;
 
-    m_animator.SetInteger("Direction", -1);
+    if(!m_sword)
+    {
+      m_animator.SetInteger("Direction", -1);
+    }
 
     m_animator.SetBool("Up", (m_directionIndex == 1));
 
@@ -394,6 +458,8 @@ public class Enemy_Wander : State
   bool m_sword = false;
 
   bool m_checked = false;
+
+  bool m_scouted = false;
 
   Rigidbody2D m_rigidBody;
 
