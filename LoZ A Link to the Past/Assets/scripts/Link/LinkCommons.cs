@@ -15,6 +15,10 @@ static class LINK_GLOBALS
 
   public static int TRANSITION_STATE_ID = 6;
 
+  public static int ATTACK_STATE_ID = 7;
+
+  public static int OUCH_STATE_ID = 8;
+
   public static string CONSUMIBLE_TAG = "Item_Consumible";
 }
 
