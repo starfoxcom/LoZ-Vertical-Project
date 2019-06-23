@@ -92,11 +92,8 @@ public class Enemy_Wander : State
             Debug.Log("I see link");
             m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
-            m_fsm.m_messages.Dequeue();
-
             return;
           }
-          m_fsm.m_messages.Dequeue();
 
           return;
 
@@ -129,6 +126,14 @@ public class Enemy_Wander : State
         {
           m_timer = 0;
         }
+
+        return;
+      }
+
+      else if(onCollisionWith(Message.MESSAGE_TYPE.SWORD_COLLISION))
+      {
+        stopMovement();
+        m_fsm.SetState(ENEMY_GLOBALS.DAMAGED_STATE_ID);
 
         return;
       }
@@ -180,7 +185,10 @@ public class Enemy_Wander : State
         Debug.Log("I see link");
         m_fsm.SetState(ENEMY_GLOBALS.SPRINT_STATE_ID);
 
-        m_fsm.m_messages.Dequeue();
+        if(m_fsm.m_messages.Count != 0)
+        {
+          m_fsm.m_messages.Dequeue();
+        }
 
         return;
       }
@@ -216,8 +224,6 @@ public class Enemy_Wander : State
       m_fsm.m_messages.Dequeue();
       return true;
     }
-
-    m_fsm.m_messages.Dequeue();
     return false;
   }
 

@@ -25,6 +25,7 @@ public class Enemy_Sprint : State
   {
 
     m_gameObject.GetComponent<Collider2D>().isTrigger = true;
+    m_rigidBody.isKinematic = true;
     stopMovement();
   }
 
@@ -56,18 +57,20 @@ public class Enemy_Sprint : State
         if (!m_sword)
         {
 
-          m_gameObject.transform.position +=
-         new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
+          stepBack();
 
           m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
-
-          m_fsm.m_messages.Dequeue();
 
           return;
         }
 
-        m_fsm.m_messages.Dequeue();
+      }
+      else if (onCollisionWith(Message.MESSAGE_TYPE.SWORD_COLLISION))
+      {
+        stopMovement();
+        m_fsm.SetState(ENEMY_GLOBALS.DAMAGED_STATE_ID);
 
+        return;
       }
     }
 
@@ -102,8 +105,6 @@ public class Enemy_Sprint : State
       m_fsm.m_messages.Dequeue();
       return true;
     }
-
-    m_fsm.m_messages.Dequeue();
     return false;
   }
 
@@ -158,6 +159,12 @@ public class Enemy_Sprint : State
 
       m_animator.SetBool("Right", m_direction.x == 1);
     }
+  }
+
+  void stepBack()
+  {
+    m_gameObject.transform.position +=
+        new Vector3(m_rigidBody.velocity.normalized.x * -1 * .05f, m_rigidBody.velocity.normalized.y * -1 * .05f);
   }
 
   int m_timer, m_maxTime, m_standBy, m_maxStandBy;

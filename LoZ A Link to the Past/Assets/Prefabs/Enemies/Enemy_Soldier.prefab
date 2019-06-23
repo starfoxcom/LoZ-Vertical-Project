@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sword: 0
+  m_health: 4
+  m_damage: 4
 --- !u!70 &5144854635872502256
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
