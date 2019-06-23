@@ -61,7 +61,7 @@ public class Enemy_Stunned : State
   {
     if (m_colorIndex < m_colors.Count)
     {
-      if (m_standBy < m_maxStandBy * .15f)
+      if (m_standBy < m_maxStandBy * .05f)
       {
         m_renderer.color = m_colors[m_colorIndex];
       }
@@ -73,7 +73,7 @@ public class Enemy_Stunned : State
     else
     {
 
-      if (m_standBy < m_maxStandBy * .15f)
+      if (m_standBy < m_maxStandBy * .05f)
       {
         m_colorIndex = 0;
       }
@@ -100,7 +100,7 @@ public class Enemy_Stunned : State
       direction.Normalize();
       m_rigidBody.velocity = direction * 1.5f;
     }
-    if(m_standBy >= m_maxStandBy * .15f)
+    if(m_standBy >= m_maxStandBy * .05f)
     {
       stopMovement();
       if (m_standBy >= m_maxStandBy * .75f)

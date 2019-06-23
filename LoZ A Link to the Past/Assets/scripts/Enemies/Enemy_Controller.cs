@@ -95,7 +95,7 @@ public class Enemy_Controller : MonoBehaviour
 
     else if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
     {
-      if(collision.gameObject.tag == "Link")
+      if(collision.gameObject.tag == "Link" && m_fsm.getActiveStateID() != ENEMY_GLOBALS.STUNNED_STATE_ID)
       {
         collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage, transform.position);
       }
