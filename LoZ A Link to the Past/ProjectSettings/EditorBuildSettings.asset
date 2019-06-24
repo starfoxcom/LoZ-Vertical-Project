@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/scripts/Scenes/Intro_Scene/Intro_Clip.unity
+    guid: 2937f54e3c4aa384d9e6dbe3457d1a5e
+  - enabled: 1
+    path: Assets/Maps/Hyrule Castle/1F/Stairs_Test.unity
+    guid: b51f43ba1cd835645848f13936860a32
   m_configObjects: {}
