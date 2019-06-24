@@ -25,7 +25,7 @@ public class IntroScene : MonoBehaviour
             if (Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_X")
            | Input.GetButtonDown("Button_Y") | Input.GetButtonDown("Button_Start"))
             {
-                SceneManager.LoadScene("Testing_Room_01"); //TODO: put game scene on build 
+                SceneManager.LoadScene("Stairs_Test"); //TODO: put game scene on build 
             }
         }
 
@@ -42,7 +42,7 @@ public class IntroScene : MonoBehaviour
             if (Input.GetButtonDown("Button_A") | Input.GetButtonDown("Button_B") | Input.GetButtonDown("Button_X")
            | Input.GetButtonDown("Button_Y") | Input.GetButtonDown("Button_Start"))
             {
-                SceneManager.LoadScene("Testing_Room_01"); //TODO: put game scene on build 
+                SceneManager.LoadScene("Stairs_Test"); //TODO: put game scene on build 
             }
         }
         

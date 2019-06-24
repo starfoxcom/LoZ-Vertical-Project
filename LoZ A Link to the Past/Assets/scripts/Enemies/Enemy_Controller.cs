@@ -42,6 +42,7 @@ public class Enemy_Controller : MonoBehaviour
     m_fsm.AddState(new Enemy_Sprint(gameObject, m_fsm, m_sword));
     m_fsm.AddState(new Enemy_On_Damage(gameObject, m_fsm, m_sword));
     m_fsm.AddState(new Enemy_Dead(gameObject, m_fsm));
+    m_fsm.AddState(new Enemy_Stunned(gameObject, m_fsm));
 
     m_fsm.SetState(ENEMY_GLOBALS.IDLE_STATE_ID);
 
@@ -55,11 +56,11 @@ public class Enemy_Controller : MonoBehaviour
 
       m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.WALL_BLOCK_COLLISION, gameObject));
     }
-    else if(collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
+    else if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
     {
-      if(collision.gameObject.tag == "Link")
+      if (collision.gameObject.tag == "Link")
       {
-        collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage,transform.position);
+        collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage, transform.position);
       }
       Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
     }
@@ -76,6 +77,11 @@ public class Enemy_Controller : MonoBehaviour
 
       }
     }
+
+    else if (collision.gameObject.tag == "Boomerang")
+    {
+      m_fsm.SetState(ENEMY_GLOBALS.STUNNED_STATE_ID);
+    }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)
@@ -89,7 +95,7 @@ public class Enemy_Controller : MonoBehaviour
 
     else if (collision.gameObject.tag == "Link" || collision.gameObject.tag == "Enemy")
     {
-      if(collision.gameObject.tag == "Link")
+      if(collision.gameObject.tag == "Link" && m_fsm.getActiveStateID() != ENEMY_GLOBALS.STUNNED_STATE_ID)
       {
         collision.gameObject.GetComponent<Link_Controller>().Damage(m_damage, transform.position);
       }
@@ -108,6 +114,10 @@ public class Enemy_Controller : MonoBehaviour
         m_fsm.m_messages.Enqueue(new Message(Message.MESSAGE_TYPE.SWORD_COLLISION, gameObject));
 
       }
+    }
+    else if (collision.gameObject.tag == "Boomerang")
+    {
+      m_fsm.SetState(ENEMY_GLOBALS.STUNNED_STATE_ID);
     }
   }
 

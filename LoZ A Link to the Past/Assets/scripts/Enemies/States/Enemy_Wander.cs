@@ -153,9 +153,9 @@ public class Enemy_Wander : State
 
     if(m_sword)
     {
-      offset = 10;
+      offset = 2;
     }
-    Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex] * 10);
+    Debug.DrawRay(m_gameObject.transform.position, m_directions[m_directionIndex] * 2);
     if (m_directionIndex == 0)
     {
 
@@ -390,12 +390,12 @@ public class Enemy_Wander : State
 
       if (m_sword)
       {
-        offset = 10;
+        offset = 2;
       }
 
       if (m_directionIndex == 0)
       {
-        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 10);
+        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 2);
         left = m_gameObject.transform.position.y + (m_directions[m_directionIndex + 1].y * offset);
         right = m_gameObject.transform.position.y + (m_directions[m_directions.Count - 1].y * offset);
 
@@ -410,7 +410,7 @@ public class Enemy_Wander : State
       {
 
 
-        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 10);
+        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 2);
         left = m_gameObject.transform.position.x + (m_directions[m_directionIndex + 1].x * offset);
         right = m_gameObject.transform.position.x + (m_directions[m_directionIndex - 1].x * offset);
 
@@ -424,7 +424,7 @@ public class Enemy_Wander : State
       {
 
         
-        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 10);
+        forward = m_gameObject.transform.position.x + (m_directions[m_directionIndex].x * 2);
         left = m_gameObject.transform.position.y + (m_directions[m_directionIndex + 1].y * offset);
         right = m_gameObject.transform.position.y + (m_directions[m_directionIndex - 1].y * offset);
 
@@ -437,7 +437,7 @@ public class Enemy_Wander : State
       else
       {
 
-        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 10);
+        forward = m_gameObject.transform.position.y + (m_directions[m_directionIndex].y * 2);
         left = m_gameObject.transform.position.x + (m_directions[0].x * offset);
         right = m_gameObject.transform.position.x + (m_directions[m_directionIndex - 1].x * offset);
 

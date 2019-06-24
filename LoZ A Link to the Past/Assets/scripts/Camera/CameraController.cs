@@ -147,6 +147,7 @@ public class CameraController : MonoBehaviour
    m_camera.orthographicSize
    );
 
+    Screen.SetResolution(256, 224, true);
     return;
   }
     

@@ -40,23 +40,26 @@ public class Zelda_Behaviour : MonoBehaviour
         m_animator = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+  // Update is called once per frame
+  void Update()
+  {
+    if (m_rb.velocity != Vector2.zero)
     {
-        if (m_rb.velocity != Vector2.zero)
-        {
-            SavingTransform();
-            m_Direction = Seek();
-            Vector3 newPosition = transform.position + m_Direction *.0155f;
-            transform.position = newPosition;
-            if ((q_Positions.Peek() - transform.position).magnitude < 0.1f)
-            {
-                q_Positions.Dequeue();
-            }
-        }
-        m_animator.SetBool("Up", transform.position.x > 0.0);
-        m_animator.SetBool("Down", transform.position.x < 0.0);
-        m_animator.SetBool("Left", transform.position.y > 0.0);
-        m_animator.SetBool("Right", transform.position.y < 0.0);
+      SavingTransform();
+      m_Direction = Seek();
+      Vector3 newPosition = transform.position + m_Direction * .0155f;
+      transform.position = newPosition;
+      if ((q_Positions.Peek() - transform.position).magnitude < 0.1f)
+      {
+        q_Positions.Dequeue();
+      }
     }
+
+    Vector3 newTransform = new Vector3(q_Positions.Peek().x - transform.position.x, q_Positions.Peek().y - transform.position.y);
+    newTransform.Normalize();
+    m_animator.SetBool("Up", newTransform.y > 0.0);
+    m_animator.SetBool("Down", newTransform.y < 0.0);
+    m_animator.SetBool("Left", newTransform.x < 0.0);
+    m_animator.SetBool("Right", newTransform.x > 0.0);
+  }
 }
